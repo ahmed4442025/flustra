@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pripo/main.dart';
+
+import '../../../main.dart';
 
 /// Enum to represent the type of device
 enum DeviceScreenType { mobile, tablet, desktop }
@@ -10,28 +11,28 @@ class AppResponsive {
 
 
   /// Access to current context
-  BuildContext get _context => navigatorKey.currentContext!;
+  static BuildContext get _context => navigatorKey.currentContext!;
 
   /// Get screen width
-  double get screenWidth => MediaQuery.of(_context).size.width;
+  static double get screenWidth => MediaQuery.of(_context).size.width;
 
   /// Get screen height
-  double get screenHeight => MediaQuery.of(_context).size.height;
+  static double get screenHeight => MediaQuery.of(_context).size.height;
 
   /// Get current orientation
-  Orientation get orientation => MediaQuery.of(_context).orientation;
+  static Orientation get orientation => MediaQuery.of(_context).orientation;
 
   /// Check if device is mobile
-  bool get isMobile => screenWidth < 600;
+  static bool get isMobile => screenWidth < 600;
 
   /// Check if device is tablet
-  bool get isTablet => screenWidth >= 600 && screenWidth < 1200;
+  static bool get isTablet => screenWidth >= 600 && screenWidth < 1200;
 
   /// Check if device is desktop
-  bool get isDesktop => screenWidth >= 1200;
+  static bool get isDesktop => screenWidth >= 1200;
 
   /// Return device type as enum
-  DeviceScreenType get deviceType {
+  static DeviceScreenType get deviceType {
     if (isDesktop) return DeviceScreenType.desktop;
     if (isTablet) return DeviceScreenType.tablet;
     return DeviceScreenType.mobile;

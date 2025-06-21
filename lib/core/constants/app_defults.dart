@@ -1,23 +1,25 @@
-// ========================== 🔥 app colors 🔥 ==========================
-
-import 'package:flutter/material.dart';
+import 'package:flustra_template/core/config/app_settings/app_settings_cubit.dart';
 import 'package:flustra_template/core/constants/app_colors.dart';
-import 'package:flustra_template/core/theme/theme_controller.dart';
+import 'package:flutter/material.dart';
 
-ThemeData get _theme => themeController.currentTheme;
+ThemeData get _theme => AppSettingsCubit.i.themeController.currentTheme;
+
+AppColorsBase get _getAppColorsBase => AppSettingsCubit.i.themeController.currentColors;
+
+// ========================== 🔥 App colors 🔥 ==========================
 
 class AppColors {
   AppColors._();
 
-  // ========================== 🔥 Primary Colors 🔥 ==========================
+  // ==========================  Primary Colors  ==========================
   /// Main primary color used throughout the app.
   static Color get primary => _theme.primaryColor;
 
-  static Color get accentOrange => _getAppColorsBase.accentOrange;
+  static Color get secondaryPrimary3 => _getAppColorsBase.accentOrange;
 
   static Color get secondaryPrimary => _theme.colorScheme.secondary;
 
-  // ========================== 🔥 Text Colors 🔥 ==========================
+  // ==========================  Text Colors  ==========================
 
   /// Default text color for general content.
   static Color get textPrimary => _getAppColorsBase.textPrimary;
@@ -25,7 +27,7 @@ class AppColors {
   /// Secondary text color for less emphasis content.
   static Color get textSecondary => _getAppColorsBase.textSecondary;
 
-  // ========================== 🔥 Background Colors 🔥 ==========================
+  // ==========================  Background Colors  ==========================
 
   /// General background color for screens and containers.
   static Color get background => _theme.colorScheme.surface;
@@ -36,17 +38,17 @@ class AppColors {
   /// Divider or section background to separate content.
   static Color get divider => _theme.dividerColor;
 
-  // ========================== 🔥 Border Colors 🔥 ==========================
+  // ==========================  Border Colors  ==========================
 
   /// Standard border color for inputs and containers.
   static Color get border => _getAppColorsBase.border;
 
-  // ========================== 🔥 Button Colors 🔥 ==========================
+  // ==========================  Button Colors  ==========================
 
   /// Disabled button color for inactive states.
   static Color get buttonDisabled => _getAppColorsBase.buttonDisabled;
 
-  // ========================== 🔥 Status Colors 🔥 ==========================
+  // ==========================  Status Colors  ==========================
 
   /// Success color for positive feedback.
   static Color get success => _getAppColorsBase.success;
@@ -57,14 +59,10 @@ class AppColors {
   /// Error color for error messages and indicators.
   static Color get error => _theme.colorScheme.error;
 
-  static AppColorsBase get _getAppColorsBase {
-    return switch (themeController.mode) {
-      ThemeModeType.light => colorsManagerNormal,
-      ThemeModeType.dark => colorsManagerDark,
-    };
-  }
+  static Color get info => _getAppColorsBase.info;
 }
 
+// ========================== 🔥 Text Styles 🔥 ==========================
 class AppTextStyle {
   AppTextStyle._();
 

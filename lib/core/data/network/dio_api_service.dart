@@ -2,16 +2,17 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:flustra_template/core/constants/app_api.dart';
 import 'package:flustra_template/core/data/cache/cache_key.dart';
 import 'package:flustra_template/core/data/cache/cache_service.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-import 'IApiService.dart';
+import 'api_service_repo.dart';
+
 
 class DioApiService implements IApiService {
   final Dio _dio = Dio();
-  final CacheService _cacheService = cache;
+  final CacheServices _cacheService = AppCache;
 
   DioApiService() {
     _dio.options = BaseOptions(
@@ -23,8 +24,8 @@ class DioApiService implements IApiService {
     );
 
     // -------------------------- proxy --------------------------
-    String? proxy = cache.getString(key: CacheKey.proxyRunning);
-    if (proxy != null) _setProxy(proxy);
+    String? proxy = AppCache.getString(key: CacheKey.proxyRunning);
+    if (proxy != null) setProxy(proxy);
 
     // -------------------------- logger --------------------------
     bool showLoges = true;
@@ -87,7 +88,11 @@ class DioApiService implements IApiService {
   // -------------------------- proxy --------------------------
   String? _proxyRun;
 
-  String? _setProxy(String? proxy) {
+  @override
+  String? get proxyRun => _proxyRun;
+
+  @override
+  String? setProxy(String? proxy) {
     try {
       _dio.httpClientAdapter = IOHttpClientAdapter(
         createHttpClient: () {
@@ -98,19 +103,15 @@ class DioApiService implements IApiService {
         },
       );
       _proxyRun = proxy;
-      if (proxy != null) cache.saveData(key: CacheKey.proxyRunning, value: proxy);
+      if (proxy != null) AppCache.saveData(key: CacheKey.proxyRunning, value: proxy);
+      if (proxy == null) AppCache.remove(key: CacheKey.proxyRunning);
       return null;
     } catch (e, s) {
       _proxyRun = null;
-      cache.remove(key: CacheKey.proxyRunning);
+      AppCache.remove(key: CacheKey.proxyRunning);
       print("$e$s");
       return e.toString();
     }
   }
-
-  void removeProxy() {
-    _setProxy(null);
-    _proxyRun = null;
-    cache.remove(key: CacheKey.proxyRunning);
-  }
 }
+

@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'cache_key.dart';
 import 'cache_service.dart';
 
-class SharedPrefsCacheService implements CacheService {
+class SharedPrefsCacheService implements CacheServices {
   final SharedPreferences _prefs;
 
   SharedPrefsCacheService({required SharedPreferences prefs}) : _prefs = prefs;

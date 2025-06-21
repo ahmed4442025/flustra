@@ -1,9 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flustra_template/core/get_it/get_it.dart';
 
-import 'dio_api_service.dart';
 
-IApiService get DioHelper => getIt<DioApiService>();
+IApiService get DioHelper => getIt<IApiService>();
 
 abstract class IApiService {
   Future<Response> getData({required String uri, Map<String, dynamic>? query, Map<String, dynamic>? headers});
@@ -20,4 +19,9 @@ abstract class IApiService {
   Future<Response> putData({required String uri, dynamic data, Map<String, dynamic>? query, Map<String, dynamic>? headers});
 
   Future<Response> deleteData({required String uri, dynamic data, Map<String, dynamic>? query, Map<String, dynamic>? headers});
+
+  // -------------------------- Proxy --------------------------
+  String? setProxy(String? proxy);
+
+  String? get proxyRun;
 }

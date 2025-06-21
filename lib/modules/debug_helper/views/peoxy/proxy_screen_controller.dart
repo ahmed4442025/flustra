@@ -1,11 +1,10 @@
 import 'dart:io';
 
+import 'package:flustra_template/core/data/network/api_service_repo.dart';
+import 'package:flustra_template/core/router/app_router.dart';
+import 'package:flustra_template/core/router/route_help_methods.dart';
+import 'package:flustra_template/core/services/app_snake_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:pripo/core/data/network/IApiService.dart';
-import 'package:pripo/core/router/app_router.dart';
-import 'package:pripo/core/router/route_help_methods.dart';
-import 'package:pripo/core/services/app_snake_bar.dart';
-import 'package:pripo/modules/auth/logic/auth_cubit.dart';
 
 import '../../services/proxy_cach.dart';
 
@@ -38,10 +37,11 @@ class ProxyScreenController extends ChangeNotifier {
   /// These methods are used by the UI or other logic to interact with the controller. => Call notifyListeners() to update the UI
 
   // -------------------------- test proxy --------------------------
-  void onTapTheme(){
+  void onTapTheme() {
     navigateTo(AppRoutes.themeShowcaseScreen);
     // AuthCubit.i.login(username: "Abdo3", password: "123456");
   }
+
   // -------------------------- onTapProxyChip --------------------------
 
   void onTapProxyChip(String proxy) => proxyController.text = proxy;
@@ -65,7 +65,6 @@ class ProxyScreenController extends ChangeNotifier {
   }
 
   // --------------------------  --------------------------
-
 
   Future onTapSave() async {
     String proxyString = proxyController.text;

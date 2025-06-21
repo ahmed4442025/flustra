@@ -1,6 +1,16 @@
+import 'package:flustra_template/core/config/app_settings/app_settings_cubit.dart';
+import 'package:flustra_template/core/constants/app_defults.dart';
+import 'package:flustra_template/core/constants/app_images.dart';
+import 'package:flustra_template/core/helper/widgets/image_asset_widget.dart';
+import 'package:flustra_template/core/localization/localization_supported_data.dart';
+import 'package:flustra_template/core/router/app_router.dart';
+import 'package:flustra_template/core/router/route_help_methods.dart';
+import 'package:flustra_template/core/theme/app_theme.dart';
+import 'package:flustra_template/modules/home_with_navigation_bar/views/home_navigation_bar/home_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:pripo/core/constants/app_defults.dart';
-import 'package:pripo/core/theme/theme_controller.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../core/constants/app_constant.dart';
 
 class ThemeShowcaseScreen extends StatefulWidget {
   const ThemeShowcaseScreen({super.key});
@@ -22,32 +32,36 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         backgroundColor: AppColors.background,
         title: const Text('Theme Showcase'),
-        actions: [
-          Switch(
-            value: isDark,
-            onChanged: (value) {
-              themeController.changeTheme(mode: isDark ? ThemeModeType.dark : ThemeModeType.light);
-              setState(() => isDark = value);
-            },
-          ),
-        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        heroTag: "add theme",
+        child: const Icon(Icons.add),
+        onPressed: () {
+          // navigateTo(AppRoutes.homeScreenWithNavigationBar,arguments: "123");
+          HomeScreenWithNavigationBar.navigateToMe(HomeScreenWithNavigationBarData(initialPage: MainScreenPageType.settings));
+        },
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          _buildDropdownThemeMode(),
+          const SizedBox(height: 8),
+          _buildDropdownLanguage(),
+          const SizedBox(height: 8),
+
           // Typography Preview
-          Text(
-            "123456",
-            style: TextStyle(),
-          ),
           Text("Text Theme", style: AppTextStyle.displayLarge),
           const SizedBox(height: 8),
           _buildTextSample("displayLarge", AppTextStyle.displayLarge),
           _buildTextSample("displayMedium", AppTextStyle.displayMedium),
           _buildTextSample("displaySmall", AppTextStyle.displaySmall),
+
+          _buildTextSample("titleLarge", AppTextStyle.titleLarge),
+          _buildTextSample("titleMedium", AppTextStyle.titleMedium),
+          _buildTextSample("titleSmall", AppTextStyle.titleSmall),
+
           _buildTextSample("bodyLarge", AppTextStyle.bodyLarge),
           _buildTextSample("bodyMedium", AppTextStyle.bodyMedium),
           _buildTextSample("bodySmall", AppTextStyle.bodySmall),
@@ -87,19 +101,18 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
 
           const Divider(height: 32),
 
-          // Buttons
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // -------------------------- Buttons --------------------------
+          SizedBox(height: 16),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
             children: [
+              FilledButton(onPressed: () {}, child: const Text("FilledButton")),
               ElevatedButton(onPressed: () {}, child: const Text("Elevated")),
               OutlinedButton(onPressed: () {}, child: const Text("Outlined")),
               TextButton(onPressed: () {}, child: const Text("Text")),
-            ],
-          ), // Buttons
-          SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
+              Divider(height: 32),
+              FilledButton(onPressed: null, child: const Text("FilledButton")),
               ElevatedButton(onPressed: null, child: const Text("Elevated")),
               OutlinedButton(onPressed: null, child: const Text("Outlined")),
               TextButton(onPressed: null, child: const Text("Text")),
@@ -148,7 +161,7 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
             children: [
               _buildColorTile("primary", theme.colorScheme.primary),
               _buildColorTile("secondary", theme.colorScheme.secondary),
-              _buildColorTile("secondary 3", AppColors.accentOrange),
+              _buildColorTile("secondary 3", AppColors.secondaryPrimary3),
               _buildColorTile("background", theme.colorScheme.surface),
               _buildColorTile("error", theme.colorScheme.error),
               _buildColorTile("textPrimary", theme.textTheme.bodyLarge?.color ?? Colors.black),
@@ -170,6 +183,49 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
     );
   }
 
+  // -------------------------- dropdown theme mode --------------------------
+  Widget _buildDropdownThemeMode() {
+    return DropdownButtonFormField<ThemeModeType>(
+      value: AppSettingsCubit.i.themeController.mode,
+      items: ThemeModeType.values
+          .map((e) => DropdownMenuItem(
+              value: e,
+              child: Row(
+                children: [
+                  CircleAvatar(backgroundColor: e.getColors().primary, radius: 12),
+                  SizedBox(width: 5),
+                  Text(e.name, style: AppTextStyle.bodyLarge),
+                ],
+              )))
+          .toList(),
+      onChanged: (val) => AppSettingsCubit.i.changeTheme(val!),
+      decoration: const InputDecoration(labelText: "Theme Mode"),
+    );
+  }
+
+  // -------------------------- dropdown language --------------------------
+  Widget _buildDropdownLanguage() {
+    return DropdownButtonFormField<LanguageOption>(
+      padding: EdgeInsets.all(0),
+      value: AppLocalizationController.currentLanguage,
+      items: AppConstant.supportedLanguagesModels
+          .map((e) => DropdownMenuItem(
+              value: e,
+              child: Row(
+                children: [
+                  SvgPicture.asset(e.flagAsset, width: 20, height: 20),
+                  SizedBox(width: 5),
+                  Text("${e.nameWithTr()} - ", style: AppTextStyle.titleMedium),
+                  SizedBox(width: 5),
+                  Text(e.nameRaw, style: AppTextStyle.bodySmall)
+                ],
+              )))
+          .toList(),
+      onChanged: (val) => AppLocalizationController.changeLanguage(val!),
+      decoration: const InputDecoration(labelText: "Theme Mode"),
+    );
+  }
+
   Widget _buildTextSample(String name, TextStyle? style) {
     if (style == null) return const SizedBox();
     return Padding(
@@ -178,9 +234,15 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(name, style: style),
-          Text(
-            "FontSize: ${style.fontSize?.toInt()} | Weight: ${style.fontWeight}",
-            style: const TextStyle(fontSize: 12),
+          Row(
+            children: [
+              CircleAvatar(backgroundColor: style.color, radius: 5),
+              SizedBox(width: 8),
+              Text(
+                "FontSize: ${style.fontSize?.toInt()} | Weight: ${style.fontWeight} | FontColor: ${style.color?.toARGB32().toRadixString(16).toUpperCase()}",
+                style: const TextStyle(fontSize: 12),
+              ),
+            ],
           ),
         ],
       ),

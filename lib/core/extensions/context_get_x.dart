@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 extension ContextExtLTR on BuildContext {
   bool get isRTL => Directionality.of(this) == TextDirection.rtl;
+
   bool get isLTR => Directionality.of(this) == TextDirection.ltr;
 }
 
@@ -29,9 +30,7 @@ extension ContextExt on BuildContext {
   /// [reducedBy] is a percentage value of how much of the height you want
   /// if you for example want 46% of the height, then you reduce it by 56%.
   double heightTransformer({double dividedBy = 1, double reducedBy = 0.0}) {
-    return (mediaQuerySize.height -
-        ((mediaQuerySize.height / 100) * reducedBy)) /
-        dividedBy;
+    return (mediaQuerySize.height - ((mediaQuerySize.height / 100) * reducedBy)) / dividedBy;
   }
 
   /// Gives you the power to get a portion of the width.
@@ -44,8 +43,7 @@ extension ContextExt on BuildContext {
   /// [reducedBy] is a percentage value of how much of the width you want
   /// if you for example want 46% of the width, then you reduce it by 56%.
   double widthTransformer({double dividedBy = 1, double reducedBy = 0.0}) {
-    return (mediaQuerySize.width - ((mediaQuerySize.width / 100) * reducedBy)) /
-        dividedBy;
+    return (mediaQuerySize.width - ((mediaQuerySize.width / 100) * reducedBy)) / dividedBy;
   }
 
   /// Divide the height proportionally by the given value
@@ -54,8 +52,7 @@ extension ContextExt on BuildContext {
     double reducedByW = 0.0,
     double reducedByH = 0.0,
   }) {
-    return heightTransformer(dividedBy: dividedBy, reducedBy: reducedByH) /
-        widthTransformer(dividedBy: dividedBy, reducedBy: reducedByW);
+    return heightTransformer(dividedBy: dividedBy, reducedBy: reducedByH) / widthTransformer(dividedBy: dividedBy, reducedBy: reducedByW);
   }
 
   /// similar to [MediaQuery.of(context).padding]
@@ -154,8 +151,7 @@ extension ContextExt on BuildContext {
     T? tablet,
     T? desktop,
   }) {
-    assert(
-    watch != null || mobile != null || tablet != null || desktop != null);
+    assert(watch != null || mobile != null || tablet != null || desktop != null);
 
     var deviceWidth = mediaQuerySize.width;
     //big screen width can display smaller sizes

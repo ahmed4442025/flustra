@@ -1,13 +1,13 @@
-// ========================== 🔥 botToast 🔥 ==========================
-
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flustra_template/core/constants/app_defults.dart';
 import 'package:flutter/material.dart';
-import 'package:pripo/core/constants/app_defults.dart';
 
 import '../app_snake_bar.dart';
 export '../app_snake_bar.dart';
 
 class AppBotToast {
+  AppBotToast._();
+
   static void show(String? message, {ToastType? type}) {
     if (message == null || message.trim().isEmpty) return;
 

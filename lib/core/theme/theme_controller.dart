@@ -1,50 +1,34 @@
-import 'dart:async';
-
+import 'package:flustra_template/core/constants/app_colors.dart';
+import 'package:flustra_template/core/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 
 import 'app_theme.dart';
 
-final ThemeController themeController = ThemeController();
-
-// ========================== 🔥 controller 🔥 ==========================
+// ========================== 🔥 Controller 🔥 ==========================
 
 class ThemeController {
-  // -------------------------- variables --------------------------
-  ThemeModeType _mode = ThemeModeType.light;
+  // -------------------------- Mode --------------------------
+  ThemeModeType _mode = AppConstant.defaultThemeMode;
 
   ThemeModeType get mode => _mode;
 
-  ThemeData _currentTheme = lightTheme;
+  // -------------------------- Current theme --------------------------
+  late ThemeData _currentTheme = mode.getTheme();
 
   ThemeData get currentTheme => _currentTheme;
 
-  // -------------------------- stream --------------------------
-  final _themeController = StreamController<ThemeModeType>.broadcast();
+  // -------------------------- Current color --------------------------
+  late AppColorsBase _currentColors = mode.getColors();
 
-  Stream<ThemeModeType> get themeStream => _themeController.stream;
+  AppColorsBase get currentColors => _currentColors;
 
   // -------------------------- methods --------------------------
 
-  void changeTheme({required ThemeModeType mode}) {
+  /// don't call this method directly use [AppSettingsCubit.changeTheme]
+  void changeTheme({required ThemeModeType mode, required Function() onChanged}) {
     _mode = mode;
+    _currentColors = mode.getColors();
     _currentTheme = mode.getTheme();
-    _themeController.sink.add(mode);
+    onChanged();
   }
-
-  void dispose() => _themeController.close();
-}
-
-// ========================== 🔥 Types 🔥 ==========================
-
-enum ThemeModeType {
-  light,
-  dark,
-}
-
-// ========================== 🔥 ThemeModeExtension 🔥 ==========================
-extension ThemeModeExtension on ThemeModeType? {
-  ThemeData getTheme() => switch (this) {
-        ThemeModeType.light || null => lightTheme,
-        ThemeModeType.dark => darkTheme,
-      };
 }

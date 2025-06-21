@@ -1,11 +1,25 @@
-import 'app_strings_localizations.dart';
+import '../app_strings_localizations.dart';
 
-const Map<String, dynamic> arJson = {
-  ...arJsonValidators,
-  ...enJsonErrorHandler,
+const Map<String, String> arJson = {
+  // ========================== 🔥 App 🔥 ==========================
+  // todo : add app strings for your app
+
+  // ========================== 🔥 Other 🔥 ==========================
+  AppStrings.noMoreData: 'لا توجد بيانات أخرى',
+
+  ..._arJsonLanguage,
+  ..._arJsonValidators,
+  ..._enJsonErrorHandler,
 };
 
-const Map<String, dynamic> enJsonErrorHandler = {
+const Map<String, dynamic> _arJsonLanguage = {
+  // ========================== 🔥 translations label 🔥 ==========================
+  AppStrings.english: 'الانجليزية',
+  AppStrings.arabic: 'العربية',
+  AppStrings.german: 'الألمانية',
+};
+
+const Map<String, dynamic> _enJsonErrorHandler = {
 // ========================== 🔥 Error handler 🔥 ==========================
   AppStrings.weDidNotReceiveTheExpectedData: 'خطأ في تحميل البيانات. تعذر الاتصال بالخادم. يرجى المحاولة مرة أخرى لاحقًا.',
   AppStrings.errorConnectionTimeout: "انتهت مهلة الاتصال. تحقق من الإنترنت وحاول مرة أخرى.",
@@ -19,7 +33,7 @@ const Map<String, dynamic> enJsonErrorHandler = {
 // ========================== 🔥 End error handler 🔥 ==========================
 };
 
-const Map<String, String> arJsonValidators = {
+const Map<String, String> _arJsonValidators = {
   AppStrings.errorEmptyField: "هذا الحقل مطلوب.",
   AppStrings.errorInvalidEmail: "يرجى إدخال بريد إلكتروني صالح.",
   AppStrings.errorInvalidPhone: "يرجى إدخال رقم هاتف صالح.",

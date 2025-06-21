@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:pripo/core/data/cache/cache_key.dart';
+import '../../../core/data/cache/cache_key.dart';
 
 class ProxyManager {
   List<String> proxies = [];

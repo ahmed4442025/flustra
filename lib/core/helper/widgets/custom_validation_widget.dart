@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pripo/core/constants/app_defults.dart';
-import 'package:pripo/core/theme/base_theme_data.dart';
+
+import '../../constants/app_defults.dart';
+import '../../theme/base_theme_data.dart';
 
 class ValidationWidget<T> extends StatefulWidget {
   final ValidationController controller;

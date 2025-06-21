@@ -1,4 +1,3 @@
-
 class ErrorCodes {
   /// General/default errors
   static const int defaultError = -1;
@@ -18,4 +17,3 @@ class ErrorCodes {
   static const int notFound = 404;
   static const int internalServerError = 500;
 }
-

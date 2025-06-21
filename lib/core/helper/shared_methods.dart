@@ -4,19 +4,23 @@ import 'dart:math';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart' as tr;
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flustra_template/core/common/error_handler/error_handler.dart';
 import 'package:flustra_template/core/common/error_handler/failure.dart';
-import 'package:flustra_template/core/data/network/IApiService.dart';
-import 'package:flustra_template/core/localization/app_localizations.dart';
-import 'package:flustra_template/main.dart' show navigatorKey;
+import 'package:flustra_template/core/data/network/api_service_repo.dart';
+import 'package:flustra_template/core/extensions/trans_extention.dart';
+import 'package:flustra_template/core/localization/app_strings_localizations.dart';
+import 'package:flustra_template/main.dart' show AppContext;
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 // ==================== other ====================
-bool isAr() => navigatorKey.currentContext!.locale.toString() == "ar";
 
 bool get isDesktop => !kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS);
+
+
+bool isRTLLocale() {
+  return Directionality.of(AppContext!) == TextDirection.rtl;
+}
 
 void calcTime({required Function() call, int callbackTimes = 1, int repeatCount = 1}) {
   for (int i = 0; i < repeatCount; i++) {
@@ -28,7 +32,7 @@ void calcTime({required Function() call, int callbackTimes = 1, int repeatCount 
   }
 }
 
-void unFocusKeyboard() => FocusScope.of(navigatorKey.currentContext!).requestFocus(FocusNode());
+void unFocusKeyboard() => FocusScope.of(AppContext!).requestFocus(FocusNode());
 
 //
 // Future<dynamic> showDialogLoginFirst(String msg, {Function()? onTapLogin}) async {
@@ -95,7 +99,7 @@ Future<Either<Failure, T>> handleResponse<T>({
     if (method == DioMethod.put) res = (await DioHelper.putData(uri: endPoint, data: data, query: query));
 
     if (res?.data is Map) json = res?.data ?? {};
-    if (res?.data is! Map) return left(Failure(-63773, LocaleKeys.weDidNotReceiveTheExpectedData.tr(), TypeMsg.error));
+    if (res?.data is! Map) return left(Failure(-63773, AppStrings.weDidNotReceiveTheExpectedData.tx(), TypeMsg.error));
 
     if (_handleServerError(json) != null) return left(_handleServerError(json)!); // check id success is true
     return right(asObject(json));

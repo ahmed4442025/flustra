@@ -4,8 +4,8 @@ import 'package:flustra_template/core/router/app_router.dart';
 import 'package:flustra_template/core/router/route_help_methods.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/home_drawer.dart';
-import 'simple_test_page.dart';
+import '../../widgets/home_drawer.dart';
+import 'home_navigation_bar_controller.dart';
 
 enum MainScreenPageType {
   home,
@@ -32,13 +32,24 @@ class HomeScreenWithNavigationBar extends StatefulWidget {
 }
 
 class _HomeScreenWithNavigationBarState extends State<HomeScreenWithNavigationBar> {
-  int _selectedIndex = 0;
+  void _refresh() {
+    if (mounted) setState(() {});
+  }
 
-  // to change the page based on index
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+  late final HomeNavigationBarController _controller = HomeNavigationBarController.i;
+
+  @override
+  void initState() {
+    _controller.addListener(_refresh);
+    Future.delayed(Duration(milliseconds: 100), () => _controller.onItemTapped(widget.data?.initialPage ?? MainScreenPageType.home));
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.removeListener(_refresh);
+    super.dispose();
   }
 
   @override
@@ -47,13 +58,13 @@ class _HomeScreenWithNavigationBarState extends State<HomeScreenWithNavigationBa
       canPop: false,
       onPopInvokedWithResult: (didPop, _) {
         if (didPop) return;
-        _handleBackButton();
+        _controller.handleBackButton(context);
       },
       child: Scaffold(
-        key: _scaffoldKey,
+        key: _controller.scaffoldKey,
         appBar: _buildAppBar(),
         drawer: HomeDrawerWidget(),
-        body: _pages.elementAt(_selectedIndex),
+        body: _controller.selectedPage,
         floatingActionButton: _buildFloatingActionButton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: _buildBottomAppBar(),
@@ -61,54 +72,30 @@ class _HomeScreenWithNavigationBarState extends State<HomeScreenWithNavigationBa
     );
   }
 
-  void _handleBackButton() {
-    // if drawer is open, close it
-    if (_scaffoldKey.currentState?.isDrawerOpen ?? false) {
-      Navigator.of(context).pop();
-    }
-    // if not home screen, go to home screen
-    else if (_selectedIndex != 0) {
-      _onItemTapped(0);
-    }
-    // if home screen, show exit confirmation dialog
-    else {
-      showExitConfirmationDialog();
-    }
-  }
-
-  /// دالة لبناء الـ AppBar العلوي
+  // -------------------------- App Bar --------------------------
   AppBar _buildAppBar() {
     return AppBar(
       title: const Text('Modern UI'),
       centerTitle: true,
-      leading: IconButton(
-        icon: const Icon(Icons.menu),
-        onPressed: () => _scaffoldKey.currentState?.openDrawer(),
-      ),
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.notifications_none),
-          onPressed: () {
-            // أضف هنا وظيفة لزر الإشعارات
-          },
-        ),
-      ],
+      leading: IconButton(icon: const Icon(Icons.menu), onPressed: _controller.onTapDrawer),
     );
   }
 
-  /// دالة لبناء الزر العائم (FAB)
+// -------------------------- FAB --------------------------
   Widget _buildFloatingActionButton() {
     return FloatingActionButton(
+      heroTag: "add home",
       onPressed: () {
-        showExitConfirmationDialog();
-        // AppSnackBar.show("message", type: ToastType.info);
+        print("widget.data?.initialPage ${widget.data?.initialPage}");
+        _controller.onItemTapped(widget.data?.initialPage ?? MainScreenPageType.home);
+        // showExitConfirmationDialog();
       },
       shape: const CircleBorder(),
       child: const Icon(Icons.add),
     );
   }
 
-  /// دالة لبناء شريط التنقل السفلي
+// -------------------------- BottomAppBar --------------------------
   Widget _buildBottomAppBar() {
     return BottomAppBar(
       color: AppColors.primary,
@@ -117,29 +104,7 @@ class _HomeScreenWithNavigationBarState extends State<HomeScreenWithNavigationBa
       notchMargin: 8.0,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          _buildNavItem(Icons.home, 'الرئيسية', 0),
-          _buildNavItem(Icons.search, 'بحث', 1),
-          const SizedBox(width: 40), // مساحة فارغة في المنتصف للـ FAB
-          _buildNavItem(Icons.person, 'ملفي', 2),
-          _buildNavItem(Icons.settings, 'الإعدادات', 3),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNavItem(IconData icon, String label, int index) {
-    final isSelected = _selectedIndex == index;
-    final color = isSelected ? Colors.white : Colors.grey;
-    return Expanded(
-      child: InkWell(
-        onTap: () => _onItemTapped(index),
-        child: Column(
-          children: [
-            Icon(icon, color: color),
-            Text(label, style: TextStyle(color: color)),
-          ],
-        ),
+        children: _controller.navBarItems,
       ),
     );
   }

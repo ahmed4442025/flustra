@@ -1,13 +1,9 @@
-// DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
-
-// ignore_for_file: prefer_single_quotes
-
 import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart' show AssetLoader;
 
-import 'ar.dart';
-import 'en.dart';
+import 'tr/ar.dart';
+import 'tr/en.dart';
 
 class CodegenLoader extends AssetLoader {
   const CodegenLoader();
@@ -18,6 +14,10 @@ class CodegenLoader extends AssetLoader {
   }
 
   static Map<String, Map<String, dynamic>> get mapLocales {
-    return {"en": enJson, "ar": arJson};
+    return {
+      "en": enJson,
+      "ar": arJson,
+      "de": enJson, // todo : add other languages
+    };
   }
 }

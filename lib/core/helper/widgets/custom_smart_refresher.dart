@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flustra_template/core/localization/app_strings_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:pripo/core/localization/app_strings_localizations.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 class CustomSmartRefresher extends StatefulWidget {
@@ -21,7 +21,8 @@ class CustomSmartRefresher extends StatefulWidget {
     required this.isLastPage,
     this.enablePullDown = true,
     this.enablePullUp = true,
-    this.reverse, this.scrollController ,
+    this.reverse,
+    this.scrollController,
   });
 
   @override
@@ -66,12 +67,7 @@ class _CustomSmartRefresherState extends State<CustomSmartRefresher> {
         if (mode == LoadStatus.loading) {
           body = const CircularProgressIndicator();
         } else if (widget.isLastPage()) {
-          body = Text(
-            AppStrings.noMoreData.tr(),
-            style: const TextStyle(
-              color: Colors.black,
-            ),
-          );
+          body = Text(AppStrings.noMoreData.tr());
         }
 
         return SizedBox(

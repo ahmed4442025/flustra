@@ -1,11 +1,11 @@
+import 'package:flustra_template/core/data/network/api_service_repo.dart';
+import 'package:flustra_template/core/helper/uti/clear_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pripo/core/data/network/IApiService.dart';
-import 'package:pripo/core/extensions/color.dart';
-import 'package:pripo/core/router/app_router.dart';
-import 'package:pripo/core/router/route_help_methods.dart';
+import 'package:flustra_template/core/extensions/color.dart';
+import 'package:flustra_template/core/router/app_router.dart';
+import 'package:flustra_template/core/router/route_help_methods.dart';
 
-import '../../widgets/clear_text.dart';
 import '../../widgets/my_firebase_token_widget.dart';
 import 'proxy_screen_controller.dart';
 
@@ -47,6 +47,7 @@ class _ProxyViewState extends State<ProxyView> {
         runSpacing: 8,
         children: [
           FloatingActionButton(
+            heroTag: "add proxy",
             onPressed: _controller.onTapTheme,
             child: Icon(Icons.color_lens_outlined),
           ),

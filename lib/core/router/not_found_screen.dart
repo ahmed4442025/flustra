@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:flustra_template/core/router/route_help_methods.dart';
+import 'package:flutter/material.dart';
 
 class NotFoundScreen extends StatelessWidget {
   final String homeRoute;
+
   const NotFoundScreen({super.key, required this.homeRoute});
 
   @override
@@ -32,7 +33,6 @@ class NotFoundScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-
               const SizedBox(height: 30),
               ElevatedButton.icon(
                 onPressed: () => navigateTo(homeRoute),

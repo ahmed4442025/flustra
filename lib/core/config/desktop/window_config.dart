@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flustra_template/core/constants/app_constant.dart';
 import 'package:flustra_template/core/helper/shared_methods.dart';
+import 'package:flutter/material.dart';
 import 'package:window_manager/window_manager.dart';
 
 class WindowInitializer {
@@ -11,10 +11,9 @@ class WindowInitializer {
     }
     await windowManager.ensureInitialized();
 
-
     const windowOptions = WindowOptions(
-      size: Size(600, 450),
-      minimumSize: Size(400, 300),
+      size: Size(600, 700),
+      minimumSize: Size(300, 600),
       center: true,
       backgroundColor: Colors.transparent,
       // skipTaskbar: false,

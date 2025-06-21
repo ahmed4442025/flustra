@@ -1,12 +1,23 @@
-import 'app_strings_localizations.dart';
+import '../app_strings_localizations.dart';
 
-const Map<String, dynamic> enJson = {
-  ...enJsonErrorHandler,
-  ...enJsonValidators,
+const Map<String, String> enJson = {
+  // ========================== 🔥 App 🔥 ==========================
+  // todo : add app strings for your app
+
+  // ========================== 🔥 Other 🔥 ==========================
+  AppStrings.noMoreData: 'No more data',
+
+
+// ========================== 🔥 translations label 🔥 ==========================
+  AppStrings.english: 'English',
+  AppStrings.arabic: 'Arabic',
+  AppStrings.german: 'German',
+  ..._enJsonErrorHandler,
+  ..._enJsonValidators,
 };
 
 // ========================== 🔥 Validators 🔥 ==========================
-const Map<String, String> enJsonValidators = {
+const Map<String, String> _enJsonValidators = {
   AppStrings.errorEmptyField: "This field is required.",
   AppStrings.errorInvalidEmail: "Please enter a valid email address.",
   AppStrings.errorInvalidPhone: "Please enter a valid phone number.",
@@ -21,7 +32,7 @@ const Map<String, String> enJsonValidators = {
   AppStrings.errorInvalidUrl: "Please enter a valid URL."
 };
 
-const Map<String, dynamic> enJsonErrorHandler = {
+const Map<String, dynamic> _enJsonErrorHandler = {
 // ========================== 🔥 Error handler 🔥 ==========================
   AppStrings.weDidNotReceiveTheExpectedData: 'Error loading data. Could not connect to the server. Please try again later',
   AppStrings.errorConnectionTimeout: "Connection timed out. Please check your internet and try again.",

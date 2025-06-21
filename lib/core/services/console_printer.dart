@@ -73,11 +73,11 @@ const Map<ConsoleTextStyle, String> _textStyleMap = {
 };
 
 void printColored(
-  String message, {
-  ConsoleColor textColor = ConsoleColor.defaultColor,
-  ConsoleColor backgroundColor = ConsoleColor.defaultColor,
-  List<ConsoleTextStyle> styles = const [],
-}) {
+    Object? message, {
+      ConsoleColor textColor = ConsoleColor.defaultColor,
+      ConsoleColor backgroundColor = ConsoleColor.defaultColor,
+      List<ConsoleTextStyle> styles = const [],
+    }) {
   final textColorCode = _foregroundColorMap[textColor] ?? '';
   final bgColorCode = _backgroundColorMap[backgroundColor] ?? '';
   final styleCodes = styles.map((s) => _textStyleMap[s] ?? '').join();
@@ -86,7 +86,7 @@ void printColored(
   debugPrint('$textColorCode$bgColorCode$styleCodes$message$reset');
 }
 
-extension ColoredPrintExtension on String {
+extension ColoredPrintExtension on Object? {
   void printWithColor({
     ConsoleColor textColor = ConsoleColor.defaultColor,
     ConsoleColor backgroundColor = ConsoleColor.defaultColor,

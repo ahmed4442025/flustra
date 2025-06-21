@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../constants/app_images.dart';
+
 class CachedImageWidget extends StatelessWidget {
   final String? imageUrl;
   final Widget? errorWidget;
@@ -13,14 +15,14 @@ class CachedImageWidget extends StatelessWidget {
 
   const CachedImageWidget(
       {super.key,
-      required this.imageUrl,
-      this.width,
-      this.height,
-      this.fit,
-      this.borderRadius,
-      this.isCircle = false,
-      this.enableBorder = false,
-      this.errorWidget});
+        required this.imageUrl,
+        this.width,
+        this.height,
+        this.fit,
+        this.borderRadius,
+        this.isCircle = false,
+        this.enableBorder = false,
+        this.errorWidget});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class CachedImageWidget extends StatelessWidget {
   }
 
   Widget buildCachedNetworkImage() {
-    if (imageUrl == null) return buildErrorWidget();
+    if (imageUrl == null || imageUrl!.isEmpty) return buildErrorWidget();
     return RepaintBoundary(
       child: CachedNetworkImage(
         imageUrl: imageUrl!,
@@ -49,7 +51,7 @@ class CachedImageWidget extends StatelessWidget {
             shape: isCircle == true ? BoxShape.circle : BoxShape.rectangle,
             image: DecorationImage(
               image: imageProvider,
-              fit: BoxFit.cover,
+              fit: fit ?? BoxFit.cover,
             ),
           ),
         ),
@@ -60,9 +62,9 @@ class CachedImageWidget extends StatelessWidget {
 
   Widget buildErrorWidget() {
     if (errorWidget != null) return errorWidget!;
-    if (isCircle) return CircleAvatar(backgroundImage: const AssetImage("assets/images/logo_app.png"), radius: (width ?? 50) / 2);
+    if (isCircle) return CircleAvatar(backgroundImage: AssetImage(AppAssetsImages.logo.logo), radius: (width ?? 50) / 2);
     return Image.asset(
-      "assets/images/logo_app.png",
+      AppAssetsImages.logo.logo,
       width: width,
       height: height,
     );

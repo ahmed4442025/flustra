@@ -1,6 +1,6 @@
 import 'cache_key.dart';
 
-abstract class CacheService {
+abstract class CacheServices {
   Future<bool> saveData({required CacheKey key, required dynamic value});
 
   dynamic getData({required CacheKey key});

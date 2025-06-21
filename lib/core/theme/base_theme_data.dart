@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flustra_template/core/constants/app_colors.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 ThemeData generateBaseThemeData({required AppColorsBase myColors, required bool dark}) {
   ColorScheme colorScheme = dark
@@ -28,6 +29,13 @@ ThemeData generateBaseThemeData({required AppColorsBase myColors, required bool 
       backgroundColor: myColors.background,
       centerTitle: true,
       elevation: 0,
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: myColors.background, // Background color of the status bar [Android only]
+        systemNavigationBarColor: myColors.background, // Background color of the navigation bar [Android only]
+
+        statusBarIconBrightness: dark ? Brightness.light : Brightness.dark, // Icon brightness for status bar [IOS]
+        systemNavigationBarIconBrightness: dark ? Brightness.light : Brightness.dark, // Icon brightness for nav bar [Android only]
+      ),
     ),
     // -------------------------------------------------------------------------
 
@@ -41,9 +49,9 @@ ThemeData generateBaseThemeData({required AppColorsBase myColors, required bool 
       displaySmall: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: myColors.textPrimary),
 
       // -------------------------- title --------------------------
-      titleLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: myColors.textPrimary),
-      titleMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: myColors.textPrimary),
-      titleSmall: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: myColors.textPrimary),
+      titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: myColors.textPrimary),
+      titleMedium: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: myColors.textPrimary),
+      titleSmall: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: myColors.textPrimary),
 
       // -------------------------- body --------------------------
       bodyLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: myColors.textPrimary),
@@ -51,6 +59,12 @@ ThemeData generateBaseThemeData({required AppColorsBase myColors, required bool 
       bodySmall: TextStyle(fontSize: 10, fontWeight: FontWeight.w400, color: myColors.textSecondary),
     ),
     // -------------------------------------------------------------------------
+
+    // ========================== 🔥 CircularProgressIndicator 🔥 ==========================
+    progressIndicatorTheme: ProgressIndicatorThemeData(color: myColors.primary),
+
+    // ========================== 🔥 Icon 🔥 ==========================
+    iconTheme: IconThemeData(color: myColors.primary),
 
     // ========================== 🔥 Input decoration [TextField , DropDown , .... ] 🔥 ==========================
     inputDecorationTheme: InputDecorationTheme(
@@ -111,6 +125,16 @@ ThemeData generateBaseThemeData({required AppColorsBase myColors, required bool 
     ),
     // -------------------------------------------------------------------------
 
+    // ========================== 🔥 InkWell 🔥 ==========================
+    splashFactory: NoSplash.splashFactory,
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
+    // ========================== 🔥 FAB 🔥 ==========================
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: myColors.accentOrange,
+      foregroundColor: Colors.white,
+    ),
+    // -------------------------------------------------------------------------
     // ========================== 🔥 DividerThemeData 🔥 ==========================
     dividerColor: myColors.divider,
     dividerTheme: DividerThemeData(color: myColors.divider),
