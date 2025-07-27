@@ -89,6 +89,7 @@ class BaseCubit<StatesEnum> extends Cubit<BaseState<StatesEnum>> {
     if (stateType != null) _stateMap[type] = stateType;
     emit((BaseState(type)));
   }
+// ========================== 🔥 fastFire 🔥 ========================== //
 
   Future<Either<Failure, T>> fastFire<T>({
     required StatesEnum type,
@@ -115,11 +116,12 @@ class BaseCubit<StatesEnum> extends Cubit<BaseState<StatesEnum>> {
   }
 
   // -------------------------- pagination --------------------------
-  final Map<StatesEnum, BasePaginationResponse> _paginationMap = {};
+  final Map<dynamic, BasePaginationResponse> _paginationMap = {};
 
-  BasePaginationResponse paginationOf(StatesEnum state) => _paginationMap[state] ?? BasePaginationResponse();
+  BasePaginationResponse paginationOf(dynamic state) => _paginationMap[state] ?? BasePaginationResponse();
 
   Future<Either<Failure, T>> fastPagination<T>({
+    dynamic paginationKey,
     required StatesEnum type,
     required Future<Either<Failure, T>> Function(int page) fun,
     required Function(T r) onRefreshSuccess,
@@ -128,7 +130,8 @@ class BaseCubit<StatesEnum> extends Cubit<BaseState<StatesEnum>> {
     required PaginationMethod paginationMethod,
     Function(Failure r)? onFailure,
   }) async {
-    BasePaginationResponse paginationInfo = paginationOf(type);
+    paginationKey ??= type;
+    BasePaginationResponse paginationInfo = paginationOf(paginationKey);
     // if load more check if not last page or exit
     if (paginationMethod == PaginationMethod.loadMore && paginationInfo.currentPage >= paginationInfo.lastPage) {
       return left(Failure(-1054, "", TypeMsg.ok));
@@ -149,7 +152,7 @@ class BaseCubit<StatesEnum> extends Cubit<BaseState<StatesEnum>> {
         return left(l); // return left with failure
       },
           (r) {
-        if (toMeta(r) != null) _paginationMap[type] = toMeta(r)!;
+        if (toMeta(r) != null) _paginationMap[paginationKey] = toMeta(r)!;
         if (paginationMethod == PaginationMethod.refresh) onRefreshSuccess(r); // call onSuccess
         if (paginationMethod == PaginationMethod.loadMore) onLoadMoreSuccess(r); // call onSuccess
         fire(type, StateType.done); // update state to done
