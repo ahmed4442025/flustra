@@ -32,7 +32,7 @@ Future<dynamic> navigateTo(String routeName, {arguments, BuildContext? context, 
       context.pushReplacement(routeName, extra: arguments);
       break;
     case NavigationType.finish:
-      context.pushReplacement(routeName, extra: arguments);
+      context.goNamed(routeName, extra: arguments);
       break;
   }
 }
