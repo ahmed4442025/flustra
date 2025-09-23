@@ -13,6 +13,8 @@ class AppColors {
 
   // ==========================  Primary Colors  ==========================
   /// Main primary color used throughout the app.
+  static bool get isDark => _theme.brightness == Brightness.dark;
+
   static Color get primary => _theme.primaryColor;
 
   static Color get secondaryPrimary3 => _getAppColorsBase.accentOrange;

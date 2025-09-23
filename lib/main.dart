@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'core/app.dart';
 import 'core/config/desktop/window_config.dart';
+import 'core/config/mobile/mobile_config.dart';
 import 'core/constants/app_constant.dart';
 import 'core/get_it/get_it.dart';
 import 'core/helper/shared_methods.dart';
@@ -20,6 +21,8 @@ void main() async {
   if (isDesktop) await WindowInitializer.init(); // ✅ إعداد حجم ومكان النافذة في الويندوز
 
   await setupGetIt();
+
+  MobileConfig.init();
 
   runApp(EasyLocalization(
       assetLoader: const CodegenLoader(),
