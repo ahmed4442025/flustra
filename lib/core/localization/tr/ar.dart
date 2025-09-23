@@ -7,6 +7,13 @@ const Map<String, String> arJson = {
   // ========================== 🔥 Other 🔥 ==========================
   AppStrings.noMoreData: 'لا توجد بيانات أخرى',
 
+  AppStrings.noInternetConnection: 'لا يوجد اتصال بالإنترنت',
+  AppStrings.weakInternetConnection: 'اتصال إنترنت ضعيف',
+  AppStrings.reconnecting: 'إعادة الاتصال...',
+  AppStrings.internetConnectionRestored: 'تم استعادة الاتصال بالإنترنت',
+  AppStrings.noInternet: 'لا يوجد اتصال بالإنترنت',
+  AppStrings.connected: 'متصل',
+
   ..._arJsonLanguage,
   ..._arJsonValidators,
   ..._enJsonErrorHandler,
@@ -43,7 +50,7 @@ const Map<String, String> _arJsonValidators = {
   AppStrings.errorPasswordNoDigit: "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل.",
   AppStrings.errorPasswordNoSpecialChar: "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل.",
   AppStrings.errorPasswordsDoNotMatch: "كلمتا المرور غير متطابقتين.",
-  AppStrings.errorInvalidUsername: "يجب أن يكون اسم المستخدم من 3 إلى 16 حرفًا ويتكون من أحرف وأرقام.",
+  AppStrings.errorInvalidUsername: 'يجب أن يكون اسم المستخدم من 3 إلى 16 حرفًا، يبدأ بحرف ويستخدم فقط الحروف أو الأرقام أو الشرطة السفلية.',
   AppStrings.errorInvalidFullName: "يرجى إدخال اسم كامل صالح.",
   AppStrings.errorInvalidUrl: "يرجى إدخال رابط إلكتروني صالح."
 };

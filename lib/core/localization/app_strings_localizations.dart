@@ -7,6 +7,12 @@ abstract class AppStrings {
   static const String arabic = 'Arabic';
   static const String german = 'German';
 
+  static const String noInternetConnection = 'No internet connection';
+  static const String weakInternetConnection = 'Weak internet connection';
+  static const String reconnecting = 'Reconnecting...';
+  static const String internetConnectionRestored = 'Internet connection restored';
+  static const String connected = "Connected";
+  static const String noInternet = "no internet";
   // ========================== 🔥 Validations 🔥 ==========================
   static const String errorEmptyField = 'This field is required.';
   static const String errorInvalidEmail = 'Please enter a valid email address.';
@@ -17,7 +23,7 @@ abstract class AppStrings {
   static const String errorPasswordNoDigit = 'Password must contain at least one digit.';
   static const String errorPasswordNoSpecialChar = 'Password must contain at least one special character.';
   static const String errorPasswordsDoNotMatch = 'Passwords do not match.';
-  static const String errorInvalidUsername = 'Username must be 3-16 characters and alphanumeric.';
+  static const String errorInvalidUsername = "Username must be 3–16 characters, start with a letter, and use only letters, numbers, or underscores.";
   static const String errorInvalidFullName = 'Please enter a valid full name.';
   static const String errorInvalidUrl = 'Please enter a valid URL.';
 

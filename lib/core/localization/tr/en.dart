@@ -12,6 +12,14 @@ const Map<String, String> enJson = {
   AppStrings.english: 'English',
   AppStrings.arabic: 'Arabic',
   AppStrings.german: 'German',
+
+  AppStrings.noInternetConnection: 'No internet connection',
+  AppStrings.weakInternetConnection: 'Weak internet connection',
+  AppStrings.reconnecting: 'Reconnecting...',
+  AppStrings.internetConnectionRestored: 'Internet connection restored',
+  AppStrings.noInternet: 'No internet',
+  AppStrings.connected: 'Connected',
+
   ..._enJsonErrorHandler,
   ..._enJsonValidators,
 };
@@ -27,7 +35,7 @@ const Map<String, String> _enJsonValidators = {
   AppStrings.errorPasswordNoDigit: "Password must contain at least one digit.",
   AppStrings.errorPasswordNoSpecialChar: "Password must contain at least one special character.",
   AppStrings.errorPasswordsDoNotMatch: "Passwords do not match.",
-  AppStrings.errorInvalidUsername: "Username must be 3-16 characters and alphanumeric.",
+  AppStrings.errorInvalidUsername: "Username must be 3–16 characters, start with a letter, and use only letters, numbers, or underscores.",
   AppStrings.errorInvalidFullName: "Please enter a valid full name.",
   AppStrings.errorInvalidUrl: "Please enter a valid URL."
 };

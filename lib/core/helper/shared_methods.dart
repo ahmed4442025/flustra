@@ -9,6 +9,7 @@ import 'package:flustra_template/core/common/error_handler/failure.dart';
 import 'package:flustra_template/core/data/network/api_service_repo.dart';
 import 'package:flustra_template/core/extensions/trans_extention.dart';
 import 'package:flustra_template/core/localization/app_strings_localizations.dart';
+import 'package:flustra_template/core/services/internet_connection/internet_cubit.dart';
 import 'package:flustra_template/main.dart' show AppContext;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -80,6 +81,8 @@ Future<Either<Failure, T>> handleResponse<T>({
   CancelToken? cancelToken,
 }) async {
   try {
+    if (!InternetCubit.i.isConnected) return left(Failure(-211, AppStrings.noInternetConnection.tx(), TypeMsg.error)); // no internet
+
     query ??= {};
     if (page != null) query["page"] = page;
     Response? res;

@@ -8,6 +8,7 @@ import 'core/constants/app_constant.dart';
 import 'core/get_it/get_it.dart';
 import 'core/helper/shared_methods.dart';
 import 'core/localization/codegen_loader.g.dart';
+import 'core/services/internet_connection/internet_cubit.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
@@ -21,6 +22,7 @@ void main() async {
   if (isDesktop) await WindowInitializer.init(); // ✅ إعداد حجم ومكان النافذة في الويندوز
 
   await setupGetIt();
+  InternetCubit.i;
 
   MobileConfig.init();
 
