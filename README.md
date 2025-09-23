@@ -10,33 +10,33 @@ how to use this template
 
 
 ---
-how to call things
+## how to call things
+
 everything is start with App
 
-colors => AppColors
-strings => AppStrings
-cache => AppCache
-textStyles => AppTextStyles
-validate => AppValidators
-sneakBar => AppSneakBar
-AppLocalizationController
-AppContext
-AppSettingsCubit
-AppSessionManager
-AppBotToast
+- colors => AppColors
+- strings => AppStrings
+- cache => AppCache
+- textStyles => AppTextStyles
+- validate => AppValidators
+- sneakBar => AppSneakBar
+- AppLocalizationController
+- AppContext
+- AppSettingsCubit
+- AppSessionManager
+- AppBotToast
 
 you don't need to call `Them.of(context)` it will be done for you
----
 
 
----
-#Desktop devices
-using WindowInitializer class you can control the initial window size, title and more
-don't use flutter_screenutil it's a bad idea for targeting different screen sizes (windows , web , .. ) it's only good for mobile devices
+
+## Desktop devices
+using `WindowInitializer` class you can control the initial window size, title and more
+don't use `flutter_screenutil` it's a bad idea for targeting different screen sizes (windows , web , .. ) it's only good for mobile devices
+
 for good practice use [MediaQuery.of(context).size, LayoutBuilder , ...]
 
----
-public settings
+## public settings
 
 from AppSettingsCubit you can change [theme , localization]
 don't try change it directly without AppSettingsCubit
@@ -49,21 +49,28 @@ app settings:
 to add new setting use `AppSettingsModel` class , add what you need to store it in shared preferences add it to fromJson, toJson, defaults,  and don't forget to handel it in `AppSettingsCubit`
 
 
----
-debug
+## debug
 printColored
 
----
+## How to change app icon
+
 App icon
+
 to change app icon replace your new icon with 'assets/logo/logo.png'
+
 -> un comment 'flutter_launcher_icons'
+
 -> pup get
+
 then run 'dart run flutter_launcher_icons'
+
 -> comment 'flutter_launcher_icons'
+
 -> pub get
 
-remember to comment 'flutter_launcher_icons' after change app icon [it will add more packages that you don't need]
----
+#### remember to comment 'flutter_launcher_icons' after change app icon [it will add more packages that you don't need]
+
+
 
 how to use
 Theme manager ...
