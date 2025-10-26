@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         builder: (_, child) {
           child = _botToastBuilder(context,child);
+          child = GestureDetector(onTap: () => FocusManager.instance.primaryFocus?.unfocus(), child: child);
           return child;
         },
 
