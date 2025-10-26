@@ -19,9 +19,9 @@ class _AppAssetsImagesLogo {
 class _AppAssetsImagesOnboarding {
   const _AppAssetsImagesOnboarding._();
 
-  final String onboarding1 = 'assets/images/onboarding/onboarding1.png';
-  final String onboarding2 = 'assets/images/onboarding/onboarding2.png';
-  final String onboarding3 = 'assets/images/onboarding/onboarding3.png';
+  final String onboarding1 = 'assets/images/onboarding/onboarding1.jpg';
+  final String onboarding2 = 'assets/images/onboarding/onboarding2.jpg';
+  final String onboarding3 = 'assets/images/onboarding/onboarding3.jpg';
 }
 
 // ========================== 🔥  Flags 🔥 ==========================
