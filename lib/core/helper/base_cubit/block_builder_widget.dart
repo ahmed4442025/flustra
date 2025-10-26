@@ -1,7 +1,7 @@
-import 'package:flustra_template/core/get_it/get_it.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../get_it/get_it.dart';
 import 'bse_cubit.dart';
 
 class BlockBuilderWidget<Cubit extends BaseCubit<S>, S> extends StatelessWidget {
@@ -30,7 +30,7 @@ class BlockBuilderWidget<Cubit extends BaseCubit<S>, S> extends StatelessWidget 
     if (getIt.isRegistered<Cubit>()) cubit = getIt.get<Cubit>();
     if (cubit == null) print("cubit == null  cubit($Cubit)");
 
-    return useProvider(
+    return _useProvider(
       useIt: cubit != null,
       child: BlocBuilder<Cubit, BaseState>(
         buildWhen: (p, c) => types.contains(c.type),
@@ -51,11 +51,41 @@ class BlockBuilderWidget<Cubit extends BaseCubit<S>, S> extends StatelessWidget 
     );
   }
 
-  Widget useProvider({required Widget child, required bool useIt}) {
+  Widget _useProvider({required Widget child, required bool useIt}) {
     if (!useIt) return child;
-    return BlocProvider.value(
-      value: getIt<Cubit>(),
-      child: child,
+    return BlocProvider.value(value: getIt<Cubit>(), child: child);
+  }
+}
+
+// ========================== 🔥 2 🔥 ==========================
+
+class BlockBuilderWidget2<Cubit extends BaseCubit<S>, S> extends StatelessWidget {
+  final List<S> types;
+  final Widget Function(S currentApi, StateType state) body;
+
+  const BlockBuilderWidget2({super.key, required this.body, required this.types});
+
+  @override
+  Widget build(BuildContext context) {
+    Cubit? cubit;
+    if (getIt.isRegistered<Cubit>()) cubit = getIt.get<Cubit>();
+    if (cubit == null) print("cubit == null  cubit($Cubit)");
+
+    return _useProvider(
+      useIt: cubit != null,
+      child: BlocBuilder<Cubit, BaseState>(
+        buildWhen: (p, c) => types.contains(c.type),
+        builder: (context, state) {
+          var type = state.type;
+          if (!types.contains(type)) type = types.firstOrNull;
+          return body(type, context.read<Cubit>().stateOf(type));
+        },
+      ),
     );
+  }
+
+  Widget _useProvider({required Widget child, required bool useIt}) {
+    if (!useIt) return child;
+    return BlocProvider.value(value: getIt<Cubit>(), child: child);
   }
 }

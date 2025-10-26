@@ -83,6 +83,11 @@ class BaseCubit<StatesEnum> extends Cubit<BaseState<StatesEnum>> {
 
   StateType stateOf(StatesEnum state) => _stateMap[state] ?? StateType.done; // get the state of one api
 
+  void disposeState(dynamic state) {
+    _stateMap.remove(state);
+    _paginationMap.remove(state);
+  }
+
   // -------------------------- voids --------------------------
 
   void fire(StatesEnum type, [StateType? stateType]) {
@@ -107,7 +112,7 @@ class BaseCubit<StatesEnum> extends Cubit<BaseState<StatesEnum>> {
         fire(type, StateType.error); // update state to error
         return left(l); // return left with failure
       },
-          (r) {
+      (r) {
         onSuccess(r); // call onSuccess
         fire(type, StateType.done); // update state to done
         return right(r); // return right with data
@@ -144,14 +149,14 @@ class BaseCubit<StatesEnum> extends Cubit<BaseState<StatesEnum>> {
     var res = await fun(nextPage); // call function and wait until finished
 
     return res.fold(
-          (l) {
+      (l) {
         l.printInfo("fastPagination<$T>"); // print error for debugging
         if (onFailure != null) onFailure(l); // call onFailure if existing
         if (paginationMethod == PaginationMethod.refresh) fire(type, StateType.error); // update state to error
         if (paginationMethod == PaginationMethod.loadMore) fire(type, StateType.done); // update state to error
         return left(l); // return left with failure
       },
-          (r) {
+      (r) {
         if (toMeta(r) != null) _paginationMap[paginationKey] = toMeta(r)!;
         if (paginationMethod == PaginationMethod.refresh) onRefreshSuccess(r); // call onSuccess
         if (paginationMethod == PaginationMethod.loadMore) onLoadMoreSuccess(r); // call onSuccess
