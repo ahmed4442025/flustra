@@ -82,7 +82,7 @@ ThemeData generateBaseThemeData({required AppColorsBase myColors, required bool 
 // ========================== 🔥 Elevated Button 🔥 ==========================
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.resolveWith((states) => states.contains(WidgetState.disabled) ? null : myColors.primary),
+        backgroundColor: WidgetStateProperty.resolveWith((states) => states.contains(WidgetState.disabled) ?  myColors.buttonDisabled : myColors.primary),
         foregroundColor: WidgetStateProperty.resolveWith((states) => states.contains(WidgetState.disabled) ? null : Colors.white),
         textStyle: WidgetStateProperty.all(const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
         minimumSize: WidgetStateProperty.all(buttonMinimumSize),
