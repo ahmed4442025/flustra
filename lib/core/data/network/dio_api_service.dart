@@ -20,6 +20,7 @@ class DioApiService implements IApiService {
       receiveDataWhenStatusError: true,
       connectTimeout: const Duration(seconds: 6000),
       receiveTimeout: const Duration(seconds: 6000),
+      validateStatus: (status) => true,
       responseType: ResponseType.json,
     );
 
