@@ -41,16 +41,17 @@ const Map<String, dynamic> _enJsonErrorHandler = {
 };
 
 const Map<String, String> _arJsonValidators = {
-  AppStrings.errorEmptyField: "هذا الحقل مطلوب.",
-  AppStrings.errorInvalidEmail: "يرجى إدخال بريد إلكتروني صالح.",
-  AppStrings.errorInvalidPhone: "يرجى إدخال رقم هاتف صالح.",
-  AppStrings.errorPasswordTooShort: "يجب أن تكون كلمة المرور 6 أحرف على الأقل.",
-  AppStrings.errorPasswordNoUppercase: "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل.",
-  AppStrings.errorPasswordNoLowercase: "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل.",
-  AppStrings.errorPasswordNoDigit: "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل.",
-  AppStrings.errorPasswordNoSpecialChar: "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل.",
-  AppStrings.errorPasswordsDoNotMatch: "كلمتا المرور غير متطابقتين.",
+  // ========================== 🔥 Validations 🔥 ==========================
+  AppStrings.errorEmptyField: 'هذا الحقل لا يمكن أن يكون فارغًا.',
+  AppStrings.errorInvalidEmail: 'يرجى إدخال بريد إلكتروني صالح.',
+  AppStrings.errorInvalidPhone: 'أدخل رقم هاتف صالح.',
+  AppStrings.errorPasswordTooShort: 'استخدم 6 أحرف على الأقل.',
+  AppStrings.errorPasswordNoUppercase: 'أضف حرفًا كبيرًا واحدًا على الأقل.',
+  AppStrings.errorPasswordNoLowercase: 'أضف حرفًا صغيرًا واحدًا على الأقل.',
+  AppStrings.errorPasswordNoDigit: 'قم بتضمين رقم واحد على الأقل.',
+  AppStrings.errorPasswordNoSpecialChar: 'أضف رمزًا خاصًا واحدًا (مثال: !@#).',
+  AppStrings.errorPasswordsDoNotMatch: 'كلمتا المرور غير متطابقتين.',
   AppStrings.errorInvalidUsername: 'يجب أن يكون اسم المستخدم من 3 إلى 16 حرفًا، يبدأ بحرف ويستخدم فقط الحروف أو الأرقام أو الشرطة السفلية.',
-  AppStrings.errorInvalidFullName: "يرجى إدخال اسم كامل صالح.",
-  AppStrings.errorInvalidUrl: "يرجى إدخال رابط إلكتروني صالح."
+  AppStrings.errorInvalidFullName: 'أدخل اسمًا صحيحًا',
+  AppStrings.errorInvalidUrl: 'أدخل رابطًا (URL) صالحًا.',
 };

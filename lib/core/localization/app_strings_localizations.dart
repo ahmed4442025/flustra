@@ -14,18 +14,18 @@ abstract class AppStrings {
   static const String connected = "Connected";
   static const String noInternet = "no internet";
   // ========================== 🔥 Validations 🔥 ==========================
-  static const String errorEmptyField = 'This field is required.';
-  static const String errorInvalidEmail = 'Please enter a valid email address.';
-  static const String errorInvalidPhone = 'Please enter a valid phone number.';
-  static const String errorPasswordTooShort = 'Password must be at least 6 characters.';
-  static const String errorPasswordNoUppercase = 'Password must contain at least one uppercase letter.';
-  static const String errorPasswordNoLowercase = 'Password must contain at least one lowercase letter.';
-  static const String errorPasswordNoDigit = 'Password must contain at least one digit.';
-  static const String errorPasswordNoSpecialChar = 'Password must contain at least one special character.';
-  static const String errorPasswordsDoNotMatch = 'Passwords do not match.';
+  static const String errorEmptyField = "This field can't be empty.";
+  static const String errorInvalidEmail = "Please enter a valid email.";
+  static const String errorInvalidPhone = "Enter a valid phone number.";
+  static const String errorPasswordTooShort = "Use at least 6 characters.";
+  static const String errorPasswordNoUppercase = "Add at least one capital letter.";
+  static const String errorPasswordNoLowercase = "Add at least one lowercase letter.";
+  static const String errorPasswordNoDigit = "Include at least one number.";
+  static const String errorPasswordNoSpecialChar = "Add one special character (e.g. !@#).";
+  static const String errorPasswordsDoNotMatch = "Passwords don’t match.";
   static const String errorInvalidUsername = "Username must be 3–16 characters, start with a letter, and use only letters, numbers, or underscores.";
-  static const String errorInvalidFullName = 'Please enter a valid full name.';
-  static const String errorInvalidUrl = 'Please enter a valid URL.';
+  static const String errorInvalidFullName = "Enter valid name";
+  static const String errorInvalidUrl = "Enter a valid link (URL).";
 
   // ========================== 🔥 Error Validations 🔥 ==========================
 

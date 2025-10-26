@@ -5,7 +5,7 @@ import '../localization/app_strings_localizations.dart';
 class AppValidators {
   AppValidators._();
 
-  static String? _validateEmpty(String? value) {
+  static String? validateEmpty(String? value) {
     if (value == null || value.trim().isEmpty) {
       return AppStrings.errorEmptyField.tx();
     }
@@ -14,10 +14,11 @@ class AppValidators {
 
   // ========================== 🔥 Email Address 🔥 ==========================
   static String? email(String? value) {
-    final emptyCheck = _validateEmpty(value);
+    value = value?.trim();
+    final emptyCheck = validateEmpty(value);
     if (emptyCheck != null) return emptyCheck;
 
-    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    final emailRegex = RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$');
     if (!emailRegex.hasMatch(value!)) {
       return AppStrings.errorInvalidEmail.tx();
     }
@@ -26,7 +27,8 @@ class AppValidators {
 
   // ========================== 🔥 Phone Number 🔥 ==========================
   static String? phone(String? value) {
-    final emptyCheck = _validateEmpty(value);
+    value = value?.trim();
+    final emptyCheck = validateEmpty(value);
     if (emptyCheck != null) return emptyCheck;
 
     final phoneRegex = RegExp(r'^\+?[0-9]{7,15}$');
@@ -38,7 +40,7 @@ class AppValidators {
 
   // ========================== 🔥 Password Simple 🔥 ==========================
   static String? passwordSimple(String? value) {
-    final emptyCheck = _validateEmpty(value);
+    final emptyCheck = validateEmpty(value);
     if (emptyCheck != null) return emptyCheck;
 
     if (value!.length < 6) {
@@ -49,7 +51,7 @@ class AppValidators {
 
   // ========================== 🔥 Password Complex 🔥 ==========================
   static String? passwordComplex(String? value) {
-    final emptyCheck = _validateEmpty(value);
+    final emptyCheck = validateEmpty(value);
     if (emptyCheck != null) return emptyCheck;
 
     final errors = <String>[];
@@ -66,7 +68,7 @@ class AppValidators {
     if (!RegExp(r'\d').hasMatch(value)) {
       errors.add(AppStrings.errorPasswordNoDigit.tx());
     }
-    if (!RegExp(r'[!@#\$&*~]').hasMatch(value)) {
+    if (!RegExp(r'[!@#$&*~]').hasMatch(value)) {
       errors.add(AppStrings.errorPasswordNoSpecialChar.tx());
     }
 
@@ -78,7 +80,7 @@ class AppValidators {
 
   // ========================== 🔥 Confirm Password 🔥 ==========================
   static String? confirmPassword(String? password, String? confirmPassword) {
-    final emptyCheck = _validateEmpty(confirmPassword);
+    final emptyCheck = validateEmpty(confirmPassword);
     if (emptyCheck != null) return emptyCheck;
 
     if (password != confirmPassword) {
@@ -89,7 +91,8 @@ class AppValidators {
 
   // ========================== 🔥 Username 🔥 ==========================
   static String? username(String? value) {
-    final emptyCheck = _validateEmpty(value);
+    value = value?.trim();
+    final emptyCheck = validateEmpty(value);
     if (emptyCheck != null) return emptyCheck;
 
     final usernameRegex = RegExp(r'^[a-zA-Z][a-zA-Z0-9_]{2,15}$');
@@ -101,10 +104,11 @@ class AppValidators {
 
   // ========================== 🔥 Full Name 🔥 ==========================
   static String? fullName(String? value) {
-    final emptyCheck = _validateEmpty(value);
+    value = value?.trim();
+    final emptyCheck = validateEmpty(value);
     if (emptyCheck != null) return emptyCheck;
 
-    final nameRegex = RegExp(r'^[a-zA-Z\s]{2,}$');
+    final nameRegex = RegExp(r'^[\p{L}\s]{2,}$', unicode: true);
     if (!nameRegex.hasMatch(value!)) {
       return AppStrings.errorInvalidFullName.tx();
     }
@@ -113,10 +117,10 @@ class AppValidators {
 
   // ========================== 🔥 URL / Website 🔥 ==========================
   static String? url(String? value) {
-    final emptyCheck = _validateEmpty(value);
+    final emptyCheck = validateEmpty(value);
     if (emptyCheck != null) return emptyCheck;
 
-    final urlRegex = RegExp(r'^(https?:\/\/)?([\w\-])+\.{1}([a-zA-Z]{2,63})([\/\w\-\.\?=&%]*)*\/?$');
+    final urlRegex = RegExp(r'^(https?://)?([\w\-])+\.{1}([a-zA-Z]{2,63})([/\w\-.?=&%]*)*/?$');
     if (!urlRegex.hasMatch(value!)) {
       return AppStrings.errorInvalidUrl.tx();
     }

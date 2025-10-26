@@ -26,18 +26,18 @@ const Map<String, String> enJson = {
 
 // ========================== 🔥 Validators 🔥 ==========================
 const Map<String, String> _enJsonValidators = {
-  AppStrings.errorEmptyField: "This field is required.",
-  AppStrings.errorInvalidEmail: "Please enter a valid email address.",
-  AppStrings.errorInvalidPhone: "Please enter a valid phone number.",
-  AppStrings.errorPasswordTooShort: "Password must be at least 6 characters.",
-  AppStrings.errorPasswordNoUppercase: "Password must contain at least one uppercase letter.",
-  AppStrings.errorPasswordNoLowercase: "Password must contain at least one lowercase letter.",
-  AppStrings.errorPasswordNoDigit: "Password must contain at least one digit.",
-  AppStrings.errorPasswordNoSpecialChar: "Password must contain at least one special character.",
-  AppStrings.errorPasswordsDoNotMatch: "Passwords do not match.",
+  AppStrings.errorEmptyField: "This field can't be empty.",
+  AppStrings.errorInvalidEmail: "Please enter a valid email.",
+  AppStrings.errorInvalidPhone: "Enter a valid phone number.",
+  AppStrings.errorPasswordTooShort: "Use at least 6 characters.",
+  AppStrings.errorPasswordNoUppercase: "Add at least one capital letter.",
+  AppStrings.errorPasswordNoLowercase: "Add at least one lowercase letter.",
+  AppStrings.errorPasswordNoDigit: "Include at least one number.",
+  AppStrings.errorPasswordNoSpecialChar: "Add one special character (e.g. !@#).",
+  AppStrings.errorPasswordsDoNotMatch: "Passwords don’t match.",
   AppStrings.errorInvalidUsername: "Username must be 3–16 characters, start with a letter, and use only letters, numbers, or underscores.",
-  AppStrings.errorInvalidFullName: "Please enter a valid full name.",
-  AppStrings.errorInvalidUrl: "Please enter a valid URL."
+  AppStrings.errorInvalidFullName: "Enter valid name",
+  AppStrings.errorInvalidUrl: "Enter a valid link (URL).",
 };
 
 const Map<String, dynamic> _enJsonErrorHandler = {
@@ -53,3 +53,4 @@ const Map<String, dynamic> _enJsonErrorHandler = {
   AppStrings.errorUnknown: "Unexpected error occurred. Please try again later.",
 // ========================== 🔥 End error handler 🔥 ==========================
 };
+
