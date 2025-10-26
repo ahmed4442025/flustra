@@ -5,6 +5,13 @@ Use this as a base to kickstart your next Flutter project with pre-built structu
 
 ---
 
+<p align="center">
+    <img src="https://komarev.com/ghpvc/?username=flustraTemplate&label=Views&color=0e75b6&style=flat" alt="Views" />   
+  <a href="https://flutter.dev/">
+    <img src="https://img.shields.io/badge/Made%20with-Flutter-02569B?style=flat&logo=flutter" alt="Made with Flutter" />
+  </a>
+</p>
+
 ## 🚀 How to Use This Template
 
 1. **Clone the repository**
