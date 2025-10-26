@@ -1,13 +1,17 @@
 // import 'dart:io';
 //
-// import 'package:flutter_image_compress/flutter_image_compress.dart';
+// import 'package:flustra_template/core/services/console_printer.dart';
+// import 'package:flutter/foundation.dart';
 // import 'package:path/path.dart' as p;
-// import 'package:pripo/core/services/console_printer.dart';
 //
 // class CompressImage {
 //   CompressImage._();
 //
 //   static Future<File?> compressImage(File? file) async {
+//     if (kIsWeb) return null;
+//
+//     if (!(Platform.isAndroid || Platform.isIOS)) return null;
+//
 //     if (file == null) return null;
 //     String? newName = _reNameFile(file.absolute.path, "jpg");
 //     if (newName == null) return null;
@@ -26,7 +30,12 @@
 //       textColor: ConsoleColor.green,
 //     );
 //     if (newFile.lengthSync() > file.lengthSync()) newFile = file;
-//     printColored("returned size : ${_formatFileSize(newFile.lengthSync())}", textColor: ConsoleColor.blue,backgroundColor: ConsoleColor.black,styles: [ConsoleTextStyle.bold,ConsoleTextStyle.italic]);
+//     printColored(
+//       "returned size : ${_formatFileSize(newFile.lengthSync())}",
+//       textColor: ConsoleColor.blue,
+//       backgroundColor: ConsoleColor.black,
+//       styles: [ConsoleTextStyle.bold, ConsoleTextStyle.italic],
+//     );
 //     return newFile;
 //   }
 //
