@@ -61,9 +61,9 @@ String randomText([int wordsCount = 20]) {
 // ==================== dio ====================
 
 Failure? _handleServerError(Map<String, dynamic> responseJson) {
-  // if (responseJson.containsKey("success") && responseJson.containsKey("message")) {
-  //   if (!responseJson["success"]) return Failure(-1, responseJson['message'], TypeMsg.error);
-  // }
+  if (responseJson.containsKey("success") && responseJson.containsKey("message")) {
+    if (!responseJson["success"]) return Failure(-1, responseJson['message'], TypeMsg.error);
+  }
   return null;
 }
 
