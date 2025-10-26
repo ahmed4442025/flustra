@@ -14,6 +14,7 @@ final getIt = GetIt.instance;
 
 Future setupGetIt() async {
   await initPublicServices();
+  initRepositories();
   initCubits();
 }
 
