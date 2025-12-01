@@ -5,6 +5,7 @@ import 'package:dio/io.dart';
 import 'package:flustra_template/core/constants/app_api.dart';
 import 'package:flustra_template/core/data/cache/cache_key.dart';
 import 'package:flustra_template/core/data/cache/cache_service.dart';
+import 'package:flustra_template/modules/debug_helper/services/proxy_cach.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'api_service_repo.dart';
@@ -25,7 +26,7 @@ class DioApiService implements IApiService {
     );
 
     // -------------------------- proxy --------------------------
-    String? proxy = AppCache.getString(key: CacheKey.proxyRunning);
+    String? proxy = ProxyManager().getRunningProxy();
     if (proxy != null) setProxy(proxy);
 
     // -------------------------- logger --------------------------
@@ -104,12 +105,11 @@ class DioApiService implements IApiService {
         },
       );
       _proxyRun = proxy;
-      if (proxy != null) AppCache.saveData(key: CacheKey.proxyRunning, value: proxy);
-      if (proxy == null) AppCache.remove(key: CacheKey.proxyRunning);
+      ProxyManager().setRunningProxy(proxy);
       return null;
     } catch (e, s) {
       _proxyRun = null;
-      AppCache.remove(key: CacheKey.proxyRunning);
+      ProxyManager().setRunningProxy(null);
       print("$e$s");
       return e.toString();
     }
