@@ -1,3 +1,4 @@
+import 'package:flustra_template/core/constants/app_defults.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
