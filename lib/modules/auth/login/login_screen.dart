@@ -68,10 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text(
                     'سجل الدخول للمتابعة',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey[600],
-                    ),
+                    style: TextStyle(fontSize: 16, color: Colors.grey[600]),
                   ),
                   SizedBox(height: screenHeight * 0.05),
 
@@ -83,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       hintText: 'البريد الإلكتروني',
                       prefixIcon: Icon(Icons.email_outlined, color: Colors.grey[600]),
                     ),
-                    validator: AppValidators.email,
+                    validator: AppValidators.email.translated,
                   ),
                   SizedBox(height: screenHeight * 0.02),
 
@@ -102,27 +99,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: _controller.onTogglePasswordVisibility,
                       ),
                     ),
-                    validator: AppValidators.passwordComplex,
+                    validator: AppValidators.passwordComplex.translated,
                   ),
                   SizedBox(height: screenHeight * 0.015),
 
                   // رابط نسيت كلمة المرور
                   Align(
                     alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: _controller.onTapAppleLogin,
-                      child: const Text('نسيت كلمة المرور؟'),
-                    ),
+                    child: TextButton(onPressed: _controller.onTapAppleLogin, child: const Text('نسيت كلمة المرور؟')),
                   ),
                   SizedBox(height: screenHeight * 0.03),
 
                   // زر تسجيل الدخول
                   _controller.isLoading
                       ? Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor))
-                      : ElevatedButton(
-                          onPressed: _controller.onTapLogin,
-                          child: const Text('تسجيل الدخول'),
-                        ),
+                      : ElevatedButton(onPressed: _controller.onTapLogin, child: const Text('تسجيل الدخول')),
                   SizedBox(height: screenHeight * 0.03),
 
                   // فاصل "أو"
@@ -131,10 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       const Expanded(child: Divider(thickness: 1)),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text(
-                          'أو',
-                          style: TextStyle(color: Colors.grey[600]),
-                        ),
+                        child: Text('أو', style: TextStyle(color: Colors.grey[600])),
                       ),
                       const Expanded(child: Divider(thickness: 1)),
                     ],
@@ -150,9 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Colors.redAccent,
                         onPressed: () {
                           // منطق تسجيل الدخول بجوجل
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('تسجيل الدخول بجوجل (قيد الإنشاء)')),
-                          );
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تسجيل الدخول بجوجل (قيد الإنشاء)')));
                         },
                       ),
                       SizedBox(width: screenWidth * 0.04),
@@ -161,9 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Colors.black,
                         onPressed: () {
                           // منطق تسجيل الدخول بآبل
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('تسجيل الدخول بآبل (قيد الإنشاء)')),
-                          );
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تسجيل الدخول بآبل (قيد الإنشاء)')));
                         },
                       ),
                       SizedBox(width: screenWidth * 0.04),
@@ -172,9 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Colors.blueAccent,
                         onPressed: () {
                           // منطق تسجيل الدخول بفيسبوك
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('تسجيل الدخول بفيسبوك (قيد الإنشاء)')),
-                          );
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('تسجيل الدخول بفيسبوك (قيد الإنشاء)')));
                         },
                       ),
                     ],
@@ -186,21 +168,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(
-                        'ليس لديك حساب؟',
-                        style: TextStyle(color: Colors.grey[600]),
-                      ),
+                      Text('ليس لديك حساب؟', style: TextStyle(color: Colors.grey[600])),
                       TextButton(
                         onPressed: () {
                           // انتقل إلى شاشة إنشاء حساب
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('صفحة إنشاء حساب (قيد الإنشاء)')),
-                          );
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('صفحة إنشاء حساب (قيد الإنشاء)')));
                         },
-                        child: const Text(
-                          'إنشاء حساب',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
+                        child: const Text('إنشاء حساب', style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                     ],
                   ),
@@ -214,11 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildSocialLoginButton({
-    required IconData icon,
-    required Color color,
-    required VoidCallback onPressed,
-  }) {
+  Widget _buildSocialLoginButton({required IconData icon, required Color color, required VoidCallback onPressed}) {
     return InkWell(
       onTap: onPressed,
       borderRadius: BorderRadius.circular(12.0),
