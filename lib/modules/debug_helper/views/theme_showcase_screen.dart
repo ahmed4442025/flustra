@@ -152,29 +152,81 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
 
           const Divider(height: 32),
 
-          // Colors
-          Text("Color Palette", style: theme.textTheme.displayMedium),
-          const Divider(height: 32),
+          Text("Brand / Primary & Secondary", style: AppTextStyle.titleMedium),
+          const SizedBox(height: 8),
           Wrap(
             spacing: 12,
             runSpacing: 12,
             children: [
-              _buildColorTile("primary", theme.colorScheme.primary),
-              _buildColorTile("secondary", theme.colorScheme.secondary),
-              _buildColorTile("background", theme.colorScheme.surface),
-              _buildColorTile("error", theme.colorScheme.error),
-              _buildColorTile("textPrimary", theme.textTheme.bodyLarge?.color ?? Colors.black),
-              _buildColorTile("textSecondary", theme.textTheme.bodyMedium?.color ?? Colors.grey),
-              _buildColorTile("divider", theme.dividerColor),
-              _buildColorTile("card", theme.cardColor),
-              _buildColorTile(
-                  "border (input)",
-                  theme.inputDecorationTheme.enabledBorder is OutlineInputBorder
-                      ? (theme.inputDecorationTheme.enabledBorder as OutlineInputBorder).borderSide.color
-                      : Colors.transparent),
-              _buildColorTile("disabledBorder", theme.disabledColor),
-              _buildColorTile("checkbox", theme.checkboxTheme.fillColor?.resolve({WidgetState.selected}) ?? Colors.grey),
-              _buildColorTile("switch", theme.switchTheme.thumbColor?.resolve({WidgetState.selected}) ?? Colors.grey),
+              _buildColorTile("primary", AppColors.primary),
+              _buildColorTile("primaryHover", AppColors.primaryHover),
+              _buildColorTile("primaryTint", AppColors.primaryTint),
+              _buildColorTile("primaryTint2", AppColors.primaryTint2),
+              _buildColorTile("secondary", AppColors.secondary),
+              _buildColorTile("secondaryTint", AppColors.secondaryTint),
+              _buildColorTile("onPrimary", AppColors.onPrimary),
+            ],
+          ),
+          const SizedBox(height: 24),
+
+          Text("Surfaces & Containers", style: AppTextStyle.titleMedium),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 12,
+            runSpacing: 12,
+            children: [
+              _buildColorTile("surface", AppColors.surface),
+              _buildColorTile("surfaceContainer", AppColors.surfaceContainer),
+              _buildColorTile("surfaceContainerHigh", AppColors.surfaceContainerHigh),
+            ],
+          ),
+          const SizedBox(height: 24),
+
+          Text("Content / On-Surfaces", style: AppTextStyle.titleMedium),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 12,
+            runSpacing: 12,
+            children: [
+              _buildColorTile("onSurface", AppColors.onSurface),
+              _buildColorTile("onSurfaceVariant", AppColors.onSurfaceVariant),
+            ],
+          ),
+          const SizedBox(height: 24),
+
+          Text("Outline & Borders", style: AppTextStyle.titleMedium),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 12,
+            runSpacing: 12,
+            children: [
+              _buildColorTile("outline", AppColors.outline),
+              _buildColorTile("outlineVariant", AppColors.outlineVariant),
+            ],
+          ),
+          const SizedBox(height: 24),
+
+          Text("States & Semantic Statuses", style: AppTextStyle.titleMedium),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 12,
+            runSpacing: 12,
+            children: [
+              _buildColorTile("disabledElement", AppColors.disabledElement),
+              _buildColorTile("accent", AppColors.accent),
+              _buildColorTile("accentDeep", AppColors.accentDeep),
+              _buildColorTile("accentTint", AppColors.accentTint),
+              _buildColorTile("error", AppColors.error),
+              _buildColorTile("errorTint", AppColors.errorTint),
+              _buildColorTile("success", AppColors.success),
+              _buildColorTile("warning", AppColors.warning),
+              _buildColorTile("warningTint", AppColors.warningTint),
+              _buildColorTile("info", AppColors.info),
+              _buildColorTile("infoTint", AppColors.infoTint),
+              _buildColorTile("cold", AppColors.cold),
+              _buildColorTile("coldTint", AppColors.coldTint),
+              _buildColorTile("hint", AppColors.hint),
+              _buildColorTile("overlay", AppColors.overlay),
             ],
           ),
         ],
