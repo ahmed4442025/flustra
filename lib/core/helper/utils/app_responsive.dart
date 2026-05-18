@@ -9,7 +9,6 @@ enum DeviceScreenType { mobile, tablet, desktop }
 class AppResponsive {
   AppResponsive._();
 
-
   /// Access to current context
   static BuildContext get _context => navigatorKey.currentContext!;
 

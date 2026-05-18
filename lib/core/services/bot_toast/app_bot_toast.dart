@@ -3,6 +3,7 @@ import 'package:flustra_template/core/constants/app_defults.dart';
 import 'package:flutter/material.dart';
 
 import '../app_snake_bar.dart';
+
 export '../app_snake_bar.dart';
 
 class AppBotToast {
@@ -23,10 +24,7 @@ class AppBotToast {
       toastBuilder: (_) => Container(
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        decoration: BoxDecoration(
-          color: bgColor,
-          borderRadius: BorderRadius.circular(8),
-        ),
+        decoration: BoxDecoration(color: bgColor, borderRadius: BorderRadius.circular(8)),
         child: Text(message, style: AppTextStyle.bodyMedium.copyWith(color: Colors.white)),
       ),
       onlyOne: true,

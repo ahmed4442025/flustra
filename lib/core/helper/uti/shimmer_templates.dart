@@ -30,7 +30,7 @@ class ShimmerTemplates {
               ShimmerHelper.buildBasicShimmer(height: 12, width: 150),
             ],
           ),
-        )
+        ),
       ],
     );
   }
@@ -50,10 +50,7 @@ class ShimmerTemplates {
   static Widget horizontalListItem() {
     return Row(
       children: List.generate(5, (index) {
-        return Padding(
-          padding: const EdgeInsets.only(right: 8),
-          child: ShimmerHelper.buildBasicShimmer(height: 100, width: 80, radios: 8),
-        );
+        return Padding(padding: const EdgeInsets.only(right: 8), child: ShimmerHelper.buildBasicShimmer(height: 100, width: 80, radios: 8));
       }),
     );
   }

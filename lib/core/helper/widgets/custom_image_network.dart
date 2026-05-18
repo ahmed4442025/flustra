@@ -13,16 +13,17 @@ class CachedImageWidget extends StatelessWidget {
   final bool enableBorder;
   final BorderRadiusGeometry? borderRadius;
 
-  const CachedImageWidget(
-      {super.key,
-        required this.imageUrl,
-        this.width,
-        this.height,
-        this.fit,
-        this.borderRadius,
-        this.isCircle = false,
-        this.enableBorder = false,
-        this.errorWidget});
+  const CachedImageWidget({
+    super.key,
+    required this.imageUrl,
+    this.width,
+    this.height,
+    this.fit,
+    this.borderRadius,
+    this.isCircle = false,
+    this.enableBorder = false,
+    this.errorWidget,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +32,7 @@ class CachedImageWidget extends StatelessWidget {
   }
 
   ClipRRect buildClipRRect(BorderRadiusGeometry radius) {
-    return ClipRRect(
-      borderRadius: radius,
-      child: buildCachedNetworkImage(),
-    );
+    return ClipRRect(borderRadius: radius, child: buildCachedNetworkImage());
   }
 
   Widget buildCachedNetworkImage() {
@@ -49,10 +47,7 @@ class CachedImageWidget extends StatelessWidget {
           decoration: BoxDecoration(
             border: enableBorder == true ? Border.all(color: const Color(0xff9DFFDC), width: 0.6) : null,
             shape: isCircle == true ? BoxShape.circle : BoxShape.rectangle,
-            image: DecorationImage(
-              image: imageProvider,
-              fit: fit ?? BoxFit.cover,
-            ),
+            image: DecorationImage(image: imageProvider, fit: fit ?? BoxFit.cover),
           ),
         ),
         errorWidget: (_, __, ___) => buildErrorWidget(),
@@ -63,10 +58,6 @@ class CachedImageWidget extends StatelessWidget {
   Widget buildErrorWidget() {
     if (errorWidget != null) return errorWidget!;
     if (isCircle) return CircleAvatar(backgroundImage: AssetImage(AppAssetsImages.logo.logo), radius: (width ?? 50) / 2);
-    return Image.asset(
-      AppAssetsImages.logo.logo,
-      width: width,
-      height: height,
-    );
+    return Image.asset(AppAssetsImages.logo.logo, width: width, height: height);
   }
 }

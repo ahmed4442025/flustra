@@ -27,7 +27,7 @@ class _ClearTextFieldWidgetState extends State<ClearTextFieldWidget> {
     if (!show) return const SizedBox.shrink();
     return InkWell(
       onTap: () => widget.controller.clear(),
-      child: const Icon(Icons.close, size:15, color: Colors.black54),
+      child: const Icon(Icons.close, size: 15, color: Colors.black54),
     );
   }
 }

@@ -4,12 +4,7 @@ import 'package:flustra_template/modules/products/models/product.dart';
 
 import '../data/products/repo.dart';
 
-enum ProductsCubitTypes {
-  none,
-  banner,
-  categories,
-  products,
-}
+enum ProductsCubitTypes { none, banner, categories, products }
 
 class ProductsCubit extends BaseCubit<ProductsCubitTypes> {
   ProductsCubit() : super(ProductsCubitTypes.none);
@@ -18,32 +13,20 @@ class ProductsCubit extends BaseCubit<ProductsCubitTypes> {
 
   final ProductsRepo _repo = ProductsImp();
 
-// ========================== 🔥 banner 🔥 ==========================
+  // ========================== 🔥 banner 🔥 ==========================
   String? banner;
 
   BaseEitherResponse<String> getBanner() {
-    return fastFire<String>(
-      type: ProductsCubitTypes.banner,
-      fun: _repo.getBanner,
-      onSuccess: (r) => banner = r,
-    );
+    return fastFire<String>(type: ProductsCubitTypes.banner, fun: _repo.getBanner, onSuccess: (r) => banner = r);
   }
 
-// ========================== 🔥 categories 🔥 ==========================
+  // ========================== 🔥 categories 🔥 ==========================
   BaseEitherResponse<List<String>> getCategories({Function(List<String> x)? onSuccess}) {
-    return fastFire<List<String>>(
-      type: ProductsCubitTypes.categories,
-      fun: _repo.getCategories,
-      onSuccess: (r) => onSuccess?.call(r),
-    );
+    return fastFire<List<String>>(type: ProductsCubitTypes.categories, fun: _repo.getCategories, onSuccess: (r) => onSuccess?.call(r));
   }
 
-// ========================== 🔥 products 🔥 ==========================
+  // ========================== 🔥 products 🔥 ==========================
   BaseEitherResponse<List<Product>> getProducts() {
-    return fastFire<List<Product>>(
-      type: ProductsCubitTypes.products,
-      fun: _repo.getProducts,
-      onSuccess: x,
-    );
+    return fastFire<List<Product>>(type: ProductsCubitTypes.products, fun: _repo.getProducts, onSuccess: x);
   }
 }

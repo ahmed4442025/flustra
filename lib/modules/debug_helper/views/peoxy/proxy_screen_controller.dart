@@ -33,7 +33,7 @@ class ProxyScreenController extends ChangeNotifier {
     _setIp();
   }
 
-// ========================== 🌍 Public methods and events 🌍 ==========================
+  // ========================== 🌍 Public methods and events 🌍 ==========================
   /// These methods are used by the UI or other logic to interact with the controller. => Call notifyListeners() to update the UI
 
   // -------------------------- test proxy --------------------------
@@ -85,7 +85,7 @@ class ProxyScreenController extends ChangeNotifier {
     }
   }
 
-// ========================== 🔒 Private methods 🔒 ==========================
+  // ========================== 🔒 Private methods 🔒 ==========================
   /// These are internal methods specific to the controller, Use them to encapsulate any logic that doesn't need to be exposed.
 
   // --------------------------  --------------------------

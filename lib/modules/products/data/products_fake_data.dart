@@ -1,5 +1,6 @@
 // lib/data/fake_products_data.dart
 import 'dart:math';
+
 import '../models/product.dart';
 
 class FakeProductsData {
@@ -28,24 +29,20 @@ class FakeProductsData {
     "💄 Beauty",
     "👟 Shoes",
     "🌿 Groceries",
-    "🚗 Automotive"
+    "🚗 Automotive",
   ];
 
   // A list of 20 dynamically generated fake products.
-  static final List<Product> products = List.generate(
-    20,
-        (index) {
-      final originalPrice = (20 + _random.nextDouble() * 200).roundToDouble();
-      final discount = (0.2 + _random.nextDouble() * 0.4); // 20% to 60% off
-      final discountedPrice = (originalPrice * (1 - discount)).roundToDouble();
+  static final List<Product> products = List.generate(20, (index) {
+    final originalPrice = (20 + _random.nextDouble() * 200).roundToDouble();
+    final discount = (0.2 + _random.nextDouble() * 0.4); // 20% to 60% off
+    final discountedPrice = (originalPrice * (1 - discount)).roundToDouble();
 
-      return Product(
-        name: 'Product #${index + 1}',
-        originalPrice: originalPrice,
-        discountedPrice: discountedPrice,
-        description:
-        'This is a short, compelling description for product #${index + 1}. It is designed to be modern and fresh.',
-      );
-    },
-  );
+    return Product(
+      name: 'Product #${index + 1}',
+      originalPrice: originalPrice,
+      discountedPrice: discountedPrice,
+      description: 'This is a short, compelling description for product #${index + 1}. It is designed to be modern and fresh.',
+    );
+  });
 }

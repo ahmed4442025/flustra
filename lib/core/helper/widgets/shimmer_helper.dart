@@ -13,11 +13,7 @@ class ShimmerHelper {
       child: Shimmer.fromColors(
         baseColor: _shimmerBase,
         highlightColor: _shimmerHighlighted,
-        child: Container(
-          color: Colors.white,
-          height: height,
-          width: width,
-        ),
+        child: Container(color: Colors.white, height: height, width: width),
       ),
     );
   }

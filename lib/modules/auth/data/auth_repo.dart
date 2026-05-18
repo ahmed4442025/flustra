@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flustra_template/core/constants/app_api.dart';
 
-import '../../../core/common/default_app_response.dart';
 import '../../../core/common/error_handler/failure.dart';
 import '../../../core/helper/shared_methods.dart';
 import 'requests/login_request.dart';

@@ -1,10 +1,6 @@
 import 'package:flustra_template/core/config/app_settings/app_settings_cubit.dart';
 import 'package:flustra_template/core/constants/app_defults.dart';
-import 'package:flustra_template/core/constants/app_images.dart';
-import 'package:flustra_template/core/helper/widgets/image_asset_widget.dart';
 import 'package:flustra_template/core/localization/localization_supported_data.dart';
-import 'package:flustra_template/core/router/app_router.dart';
-import 'package:flustra_template/core/router/route_help_methods.dart';
 import 'package:flustra_template/core/theme/app_theme.dart';
 import 'package:flustra_template/modules/home_with_navigation_bar/views/home_navigation_bar/home_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -31,10 +27,7 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.surface,
-        title: const Text('Theme Showcase'),
-      ),
+      appBar: AppBar(backgroundColor: AppColors.surface, title: const Text('Theme Showcase')),
       floatingActionButton: FloatingActionButton(
         heroTag: "add theme",
         child: const Icon(Icons.add),
@@ -70,30 +63,23 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
 
           // Inputs
           TextFormField(
-            decoration: const InputDecoration(
-              labelText: "Text Field",
-              hintText: "Enter text...",
-            ),
+            decoration: const InputDecoration(labelText: "Text Field", hintText: "Enter text..."),
           ),
           const SizedBox(height: 16),
           TextFormField(
             enabled: false,
-            decoration: const InputDecoration(
-              labelText: "Text Field",
-              hintText: "Enter text...",
-            ),
+            decoration: const InputDecoration(labelText: "Text Field", hintText: "Enter text..."),
           ),
           const SizedBox(height: 16),
           DropdownButtonFormField<String>(
             value: dropdownValue,
             items: ['User 1', 'User 2']
-                .map((e) => DropdownMenuItem(
+                .map(
+                  (e) => DropdownMenuItem(
                     value: e,
-                    child: Row(
-                      children: [
-                        Text(e, style: AppTextStyle.bodyLarge),
-                      ],
-                    )))
+                    child: Row(children: [Text(e, style: AppTextStyle.bodyLarge)]),
+                  ),
+                )
                 .toList(),
             onChanged: (val) => setState(() => dropdownValue = val!),
             decoration: const InputDecoration(labelText: "Dropdown"),
@@ -129,10 +115,7 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
                 children: [
                   Text("Card Title", style: theme.textTheme.displaySmall),
                   const SizedBox(height: 8),
-                  Text(
-                    "This is a card using cardBackground color.",
-                    style: theme.textTheme.bodyMedium,
-                  ),
+                  Text("This is a card using cardBackground color.", style: theme.textTheme.bodyMedium),
                 ],
               ),
             ),
@@ -142,12 +125,7 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
 
           // Toggles
           Row(
-            children: [
-              Switch(
-                value: isSwitched,
-                onChanged: (val) => setState(() => isSwitched = val),
-              ),
-            ],
+            children: [Switch(value: isSwitched, onChanged: (val) => setState(() => isSwitched = val))],
           ),
 
           const Divider(height: 32),
@@ -187,10 +165,7 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
           Wrap(
             spacing: 12,
             runSpacing: 12,
-            children: [
-              _buildColorTile("onSurface", AppColors.onSurface),
-              _buildColorTile("onSurfaceVariant", AppColors.onSurfaceVariant),
-            ],
+            children: [_buildColorTile("onSurface", AppColors.onSurface), _buildColorTile("onSurfaceVariant", AppColors.onSurfaceVariant)],
           ),
           const SizedBox(height: 24),
 
@@ -199,10 +174,7 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
           Wrap(
             spacing: 12,
             runSpacing: 12,
-            children: [
-              _buildColorTile("outline", AppColors.outline),
-              _buildColorTile("outlineVariant", AppColors.outlineVariant),
-            ],
+            children: [_buildColorTile("outline", AppColors.outline), _buildColorTile("outlineVariant", AppColors.outlineVariant)],
           ),
           const SizedBox(height: 24),
 
@@ -239,7 +211,8 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
     return DropdownButtonFormField<ThemeModeType>(
       value: AppSettingsCubit.i.themeController.mode,
       items: ThemeModeType.values
-          .map((e) => DropdownMenuItem(
+          .map(
+            (e) => DropdownMenuItem(
               value: e,
               child: Row(
                 children: [
@@ -247,7 +220,9 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
                   SizedBox(width: 5),
                   Text(e.name, style: AppTextStyle.bodyLarge),
                 ],
-              )))
+              ),
+            ),
+          )
           .toList(),
       onChanged: (val) => AppSettingsCubit.i.changeTheme(val!),
       decoration: const InputDecoration(labelText: "Theme Mode"),
@@ -260,7 +235,8 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
       padding: EdgeInsets.all(0),
       value: AppLocalizationController.currentLanguage,
       items: AppConstant.supportedLanguagesModels
-          .map((e) => DropdownMenuItem(
+          .map(
+            (e) => DropdownMenuItem(
               value: e,
               child: Row(
                 children: [
@@ -268,9 +244,11 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
                   SizedBox(width: 5),
                   Text("${e.nameWithTr()} - ", style: AppTextStyle.titleMedium),
                   SizedBox(width: 5),
-                  Text(e.nameRaw, style: AppTextStyle.bodySmall)
+                  Text(e.nameRaw, style: AppTextStyle.bodySmall),
                 ],
-              )))
+              ),
+            ),
+          )
           .toList(),
       onChanged: (val) => AppLocalizationController.changeLanguage(val!),
       decoration: const InputDecoration(labelText: "Theme Mode"),

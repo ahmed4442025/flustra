@@ -1,5 +1,4 @@
 import 'package:flustra_template/core/constants/app_defults.dart';
-import 'package:flustra_template/core/helper/dialogs/exit_dialog.dart';
 import 'package:flustra_template/core/router/app_router.dart';
 import 'package:flustra_template/core/router/route_help_methods.dart';
 import 'package:flutter/material.dart';
@@ -7,12 +6,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/home_drawer.dart';
 import 'home_navigation_bar_controller.dart';
 
-enum MainScreenPageType {
-  home,
-  search,
-  profile,
-  settings,
-}
+enum MainScreenPageType { home, search, profile, settings }
 
 class HomeScreenWithNavigationBarData {
   final MainScreenPageType initialPage;
@@ -81,7 +75,7 @@ class _HomeScreenWithNavigationBarState extends State<HomeScreenWithNavigationBa
     );
   }
 
-// -------------------------- FAB --------------------------
+  // -------------------------- FAB --------------------------
   Widget _buildFloatingActionButton() {
     return FloatingActionButton(
       heroTag: "add home",
@@ -95,17 +89,14 @@ class _HomeScreenWithNavigationBarState extends State<HomeScreenWithNavigationBa
     );
   }
 
-// -------------------------- BottomAppBar --------------------------
+  // -------------------------- BottomAppBar --------------------------
   Widget _buildBottomAppBar() {
     return BottomAppBar(
       color: AppColors.primary,
       surfaceTintColor: Colors.white,
       shape: const CircularNotchedRectangle(),
       notchMargin: 8.0,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: _controller.navBarItems,
-      ),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: _controller.navBarItems),
     );
   }
 }

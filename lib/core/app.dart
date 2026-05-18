@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'helper/base_cubit/block_builder_widget.dart';
 import 'router/app_router.dart';
 
-final _botToastBuilder = BotToastInit();  //1. call BotToastInit
+final _botToastBuilder = BotToastInit(); //1. call BotToastInit
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       body: (_) => MaterialApp.router(
         debugShowCheckedModeBanner: false,
         builder: (_, child) {
-          child = _botToastBuilder(context,child);
+          child = _botToastBuilder(context, child);
           child = GestureDetector(onTap: () => FocusManager.instance.primaryFocus?.unfocus(), child: child);
           return child;
         },

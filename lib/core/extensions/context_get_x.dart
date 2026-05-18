@@ -47,11 +47,7 @@ extension ContextExt on BuildContext {
   }
 
   /// Divide the height proportionally by the given value
-  double ratio({
-    double dividedBy = 1,
-    double reducedByW = 0.0,
-    double reducedByH = 0.0,
-  }) {
+  double ratio({double dividedBy = 1, double reducedByW = 0.0, double reducedByH = 0.0}) {
     return heightTransformer(dividedBy: dividedBy, reducedBy: reducedByH) / widthTransformer(dividedBy: dividedBy, reducedBy: reducedByW);
   }
 
@@ -145,12 +141,7 @@ extension ContextExt on BuildContext {
   /// and less than 1200 return [tablet] value.
   /// if the device width is less than 300  return [watch] value.
   /// in other cases return [mobile] value.
-  T responsiveValue<T>({
-    T? watch,
-    T? mobile,
-    T? tablet,
-    T? desktop,
-  }) {
+  T responsiveValue<T>({T? watch, T? mobile, T? tablet, T? desktop}) {
     assert(watch != null || mobile != null || tablet != null || desktop != null);
 
     var deviceWidth = mediaQuerySize.width;
@@ -161,12 +152,7 @@ extension ContextExt on BuildContext {
       if (deviceWidth >= 300) mobile, //mobile is allowed
       watch, //watch is allowed
     ].whereType<T>();
-    final looseValues = [
-      watch,
-      mobile,
-      tablet,
-      desktop,
-    ].whereType<T>();
+    final looseValues = [watch, mobile, tablet, desktop].whereType<T>();
     return strictValues.firstOrNull ?? looseValues.first;
   }
 }

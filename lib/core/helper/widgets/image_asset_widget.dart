@@ -80,18 +80,11 @@ class ImageAssetWidget extends StatelessWidget {
 
     // If borderRadius is provided, wrap the image widget in a ClipRRect
     if (borderRadius != null) {
-      return ClipRRect(
-        borderRadius: borderRadius!,
-        child: imageWidget,
-      );
+      return ClipRRect(borderRadius: borderRadius!, child: imageWidget);
     }
 
     if (circular == true) {
-      return Center(
-        child: ClipOval(
-          child: imageWidget,
-        ),
-      );
+      return Center(child: ClipOval(child: imageWidget));
     }
 
     return imageWidget;
@@ -100,11 +93,11 @@ class ImageAssetWidget extends StatelessWidget {
   /// Builds a placeholder widget to display when the asset fails to load.
   Widget _buildErrorWidget() {
     return Icon(
-        Icons.image_not_supported_outlined,
-        color: Colors.grey.shade400,
-        // Make the icon size proportional to the widget size, with a fallback.
-        size: width != null ? width!  : 24,
-      );
-    return Image.asset(AppAssetsImages.logo.logo,width: width,height: height);
+      Icons.image_not_supported_outlined,
+      color: Colors.grey.shade400,
+      // Make the icon size proportional to the widget size, with a fallback.
+      size: width != null ? width! : 24,
+    );
+    return Image.asset(AppAssetsImages.logo.logo, width: width, height: height);
   }
 }

@@ -18,7 +18,6 @@ import 'package:flutter/material.dart';
 
 bool get isDesktop => !kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS);
 
-
 bool isRTLLocale() {
   return Directionality.of(AppContext!) == TextDirection.rtl;
 }

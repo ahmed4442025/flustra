@@ -20,11 +20,7 @@ enum ConsoleColor {
   defaultColor,
 }
 
-enum ConsoleTextStyle {
-  bold,
-  italic,
-  underline,
-}
+enum ConsoleTextStyle { bold, italic, underline }
 
 const Map<ConsoleColor, String> _foregroundColorMap = {
   ConsoleColor.black: '\x1B[30m',
@@ -73,11 +69,11 @@ const Map<ConsoleTextStyle, String> _textStyleMap = {
 };
 
 void printColored(
-    Object? message, {
-      ConsoleColor textColor = ConsoleColor.defaultColor,
-      ConsoleColor backgroundColor = ConsoleColor.defaultColor,
-      List<ConsoleTextStyle> styles = const [],
-    }) {
+  Object? message, {
+  ConsoleColor textColor = ConsoleColor.defaultColor,
+  ConsoleColor backgroundColor = ConsoleColor.defaultColor,
+  List<ConsoleTextStyle> styles = const [],
+}) {
   final textColorCode = _foregroundColorMap[textColor] ?? '';
   final bgColorCode = _backgroundColorMap[backgroundColor] ?? '';
   final styleCodes = styles.map((s) => _textStyleMap[s] ?? '').join();
@@ -92,11 +88,6 @@ extension ColoredPrintExtension on Object? {
     ConsoleColor backgroundColor = ConsoleColor.defaultColor,
     List<ConsoleTextStyle> styles = const [],
   }) {
-    printColored(
-      this,
-      textColor: textColor,
-      backgroundColor: backgroundColor,
-      styles: styles,
-    );
+    printColored(this, textColor: textColor, backgroundColor: backgroundColor, styles: styles);
   }
 }

@@ -2,12 +2,7 @@ import 'package:flustra_template/core/constants/app_defults.dart';
 import 'package:flustra_template/main.dart';
 import 'package:flutter/material.dart';
 
-enum ToastType {
-  success,
-  error,
-  info,
-  warning,
-}
+enum ToastType { success, error, info, warning }
 
 class AppSnackBar {
   AppSnackBar._();
@@ -23,11 +18,6 @@ class AppSnackBar {
       ToastType.warning => AppColors.warning,
     };
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: bgColor,
-      ),
-    );
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message), backgroundColor: bgColor));
   }
 }

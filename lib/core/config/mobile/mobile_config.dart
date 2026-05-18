@@ -10,9 +10,6 @@ class MobileConfig {
 
   /// Locks the device orientation to portrait mode only.
   static Future<void> lockOrientationToPortrait() async {
-    await SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   }
 }

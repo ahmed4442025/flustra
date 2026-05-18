@@ -79,18 +79,13 @@ class _SplashScreenState extends State<SplashScreen> {
                   maxWidth: min(context.width * .3, context.height * .3),
                   maxHeight: min(context.width * .3, context.height * .3),
                 ),
-                child: Image.asset(
-                  AppAssetsImages.logo.logo,
-                ),
+                child: Image.asset(AppAssetsImages.logo.logo),
               ),
               const SizedBox(height: 40),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: context.width * .1),
                 child: FittedBox(
-                  child: Text(
-                    AppConstant.appName,
-                    style: AppTextStyle.displayLarge.copyWith(color: AppColors.primary),
-                  ),
+                  child: Text(AppConstant.appName, style: AppTextStyle.displayLarge.copyWith(color: AppColors.primary)),
                 ),
               ),
             ],

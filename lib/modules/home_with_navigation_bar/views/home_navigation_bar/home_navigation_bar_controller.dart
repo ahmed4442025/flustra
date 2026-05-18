@@ -29,7 +29,7 @@ class HomeNavigationBarController extends ChangeNotifier {
   List<Widget> get navBarItems => _pages.values.map((e) => e.buttonIcon).toList();
 
   // -------------------------- pages --------------------------
-   Map<MainScreenPageType, NavBarItemModel> get _pages => {
+  Map<MainScreenPageType, NavBarItemModel> get _pages => {
     MainScreenPageType.home: NavBarItemModel(
       screen: ProductsHomeScreen(),
       buttonIcon: NavBarIconWidget(
@@ -77,6 +77,7 @@ class HomeNavigationBarController extends ChangeNotifier {
 
   // -------------------------- onTapDrawer --------------------------
   void onTapDrawer() => scaffoldKey.currentState?.openDrawer();
+
   // -------------------------- onItemTapped --------------------------
   void onItemTapped(MainScreenPageType type) {
     selectedPageType = type;
@@ -94,7 +95,7 @@ class HomeNavigationBarController extends ChangeNotifier {
     }
   }
 
-// ========================== 🔒 Private methods 🔒 ==========================
+  // ========================== 🔒 Private methods 🔒 ==========================
   /// These are internal methods specific to the controller, Use them to encapsulate any logic that doesn't need to be exposed.
 }
 

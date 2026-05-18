@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flustra_template/core/common/error_handler/failure.dart';
-import 'package:flustra_template/core/router/route_help_methods.dart';
 import 'package:flustra_template/core/services/app_session_manager.dart';
 import 'package:flustra_template/core/services/app_snake_bar.dart';
 import 'package:flustra_template/modules/home_with_navigation_bar/views/home_navigation_bar/home_navigation_bar.dart';
@@ -88,11 +87,7 @@ class LoginController extends ChangeNotifier {
   Future<void> _login() async {
     _setLoading(true);
     final res = await _authCubit.login(
-      loginRequest: LoginRequest(
-        companyEmail: "admin@gmail.com",
-        username: emailController.text.trim(),
-        password: passwordController.text,
-      ),
+      loginRequest: LoginRequest(companyEmail: "admin@gmail.com", username: emailController.text.trim(), password: passwordController.text),
       cancelToken: _cancel,
       state: loginState,
     );
@@ -112,11 +107,7 @@ class LoginController extends ChangeNotifier {
       message: 'Success',
       data: UserDataResponse(
         token: 'mock_token',
-        user: UserResponse(
-          id: 1,
-          name: 'Agent Name',
-          email: emailController.text.trim(),
-        ),
+        user: UserResponse(id: 1, name: 'Agent Name', email: emailController.text.trim()),
       ),
     );
   }

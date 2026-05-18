@@ -1,10 +1,10 @@
 import 'package:flustra_template/core/data/network/api_service_repo.dart';
-import 'package:flustra_template/core/helper/uti/clear_text.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flustra_template/core/extensions/color.dart';
+import 'package:flustra_template/core/helper/uti/clear_text.dart';
 import 'package:flustra_template/core/router/app_router.dart';
 import 'package:flustra_template/core/router/route_help_methods.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../widgets/my_firebase_token_widget.dart';
 import 'proxy_screen_controller.dart';
@@ -45,13 +45,7 @@ class _ProxyViewState extends State<ProxyView> {
       floatingActionButton: Wrap(
         spacing: 8,
         runSpacing: 8,
-        children: [
-          FloatingActionButton(
-            heroTag: "add proxy",
-            onPressed: _controller.onTapTheme,
-            child: Icon(Icons.color_lens_outlined),
-          ),
-        ],
+        children: [FloatingActionButton(heroTag: "add proxy", onPressed: _controller.onTapTheme, child: Icon(Icons.color_lens_outlined))],
       ),
       appBar: AppBar(
         title: const Text("ProxyView"),
@@ -71,10 +65,11 @@ class _ProxyViewState extends State<ProxyView> {
               const SizedBox(height: 10),
               if (true) ...[
                 SizedBox(
-                    height: 25,
-                    child: DioHelper.proxyRun == null
-                        ? null
-                        : Text("current proxy : ${DioHelper.proxyRun}", style: const TextStyle(fontSize: 16, color: Color(0xff1e9506)))),
+                  height: 25,
+                  child: DioHelper.proxyRun == null
+                      ? null
+                      : Text("current proxy : ${DioHelper.proxyRun}", style: const TextStyle(fontSize: 16, color: Color(0xff1e9506))),
+                ),
               ],
               ListView.separated(
                 shrinkWrap: true,
@@ -94,13 +89,19 @@ class _ProxyViewState extends State<ProxyView> {
               const SizedBox(height: 10),
               Row(
                 children: [
-                  Expanded(child: ElevatedButton(onPressed: _controller.onTapSave, style: getButtonTheme(Colors.green), child: Text("save"))),
+                  Expanded(
+                    child: ElevatedButton(onPressed: _controller.onTapSave, style: getButtonTheme(Colors.green), child: Text("save")),
+                  ),
                   if (DioHelper.proxyRun != null) ...[
                     const SizedBox(width: 15),
-                    Expanded(child: ElevatedButton(onPressed: _controller.onTapStop, style: getButtonTheme(Colors.redAccent), child: Text("stop"))),
+                    Expanded(
+                      child: ElevatedButton(onPressed: _controller.onTapStop, style: getButtonTheme(Colors.redAccent), child: Text("stop")),
+                    ),
                   ],
                   const SizedBox(width: 15),
-                  Expanded(child: ElevatedButton(onPressed: _controller.onTapAdd, style: getButtonTheme(Colors.deepPurple), child: Text("Add"))),
+                  Expanded(
+                    child: ElevatedButton(onPressed: _controller.onTapAdd, style: getButtonTheme(Colors.deepPurple), child: Text("Add")),
+                  ),
                 ],
               ),
               const SizedBox(height: 10),
@@ -122,9 +123,15 @@ class _ProxyViewState extends State<ProxyView> {
       children: [
         Text("My ip : $ip", style: const TextStyle(fontSize: 16)),
         const SizedBox(width: 10),
-        InkWell(onTap: () => Clipboard.setData(ClipboardData(text: ip)), child: const Icon(Icons.copy, color: Colors.brown)),
+        InkWell(
+          onTap: () => Clipboard.setData(ClipboardData(text: ip)),
+          child: const Icon(Icons.copy, color: Colors.brown),
+        ),
         const SizedBox(width: 10),
-        InkWell(onTap: () => _controller.proxyController.text = ip, child: const Icon(Icons.arrow_downward_outlined, color: Colors.teal)),
+        InkWell(
+          onTap: () => _controller.proxyController.text = ip,
+          child: const Icon(Icons.arrow_downward_outlined, color: Colors.teal),
+        ),
       ],
     );
   }
@@ -137,11 +144,7 @@ class _ProxyViewState extends State<ProxyView> {
       decoration: BoxDecoration(border: Border.all(color: Colors.purple.shade400, width: .2)),
       child: SingleChildScrollView(
         // scrollDirection: Axis.horizontal,
-        child: Wrap(
-          runSpacing: 8,
-          spacing: 8,
-          children: _controller.proxies.map((e) => proxyChip(e)).toList(),
-        ),
+        child: Wrap(runSpacing: 8, spacing: 8, children: _controller.proxies.map((e) => proxyChip(e)).toList()),
       ),
     );
   }
@@ -149,11 +152,7 @@ class _ProxyViewState extends State<ProxyView> {
   GestureDetector proxyChip(String e) {
     return GestureDetector(
       onTap: () => _controller.onTapProxyChip(e),
-      child: Chip(
-        label: Text(e),
-        backgroundColor: Colors.red.withOpacityEX(.1),
-        onDeleted: () => _controller.removeProxyFromList(e),
-      ),
+      child: Chip(label: Text(e), backgroundColor: Colors.red.withOpacityEX(.1), onDeleted: () => _controller.removeProxyFromList(e)),
     );
   }
 }

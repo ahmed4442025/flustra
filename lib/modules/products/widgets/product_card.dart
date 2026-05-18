@@ -25,20 +25,14 @@ class ProductCard extends StatelessWidget {
               children: [
                 Text(
                   product.name,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 4),
                 Text(
                   product.description,
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey[600],
-                  ),
+                  style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -56,44 +50,26 @@ class ProductCard extends StatelessWidget {
                   children: [
                     Text(
                       '\$${product.discountedPrice.toStringAsFixed(2)}',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Theme.of(context).primaryColor,
-                      ),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Theme.of(context).primaryColor),
                     ),
                     Text(
                       '\$${product.originalPrice.toStringAsFixed(2)}',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey[500],
-                        decoration: TextDecoration.lineThrough,
-                      ),
+                      style: TextStyle(fontSize: 12, color: Colors.grey[500], decoration: TextDecoration.lineThrough),
                     ),
                   ],
                 ),
                 // Add to Cart button
                 InkWell(
                   onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('${product.name} added to cart!'),
-                        duration: const Duration(seconds: 2),
-                      ),
-                    );
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text('${product.name} added to cart!'), duration: const Duration(seconds: 2)));
                   },
                   borderRadius: BorderRadius.circular(50),
                   child: Container(
                     padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor.withOpacity(0.15),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      Icons.add_shopping_cart,
-                      color: Theme.of(context).primaryColor,
-                      size: 22,
-                    ),
+                    decoration: BoxDecoration(color: Theme.of(context).primaryColor.withOpacity(0.15), shape: BoxShape.circle),
+                    child: Icon(Icons.add_shopping_cart, color: Theme.of(context).primaryColor, size: 22),
                   ),
                 ),
               ],

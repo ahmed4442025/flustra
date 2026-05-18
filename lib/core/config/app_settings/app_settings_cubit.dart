@@ -6,24 +6,21 @@ import '../../theme/app_theme.dart';
 import '../../theme/theme_controller.dart';
 import 'app_settings_model.dart';
 
-enum AppSettingsCubitTypes {
-  none,
-  theme,
-}
+enum AppSettingsCubitTypes { none, theme }
 
 class AppSettingsCubit extends BaseCubit<AppSettingsCubitTypes> {
   AppSettingsCubit() : super(AppSettingsCubitTypes.none);
 
   static AppSettingsCubit get i => getIt<AppSettingsCubit>();
 
-// ========================== 🔥 init 🔥 ==========================
+  // ========================== 🔥 init 🔥 ==========================
   @override
   void init() {
     _settings = loadSettings();
     changeTheme(_settings.themeMode);
   }
 
-// ========================== 🔥 Theme 🔥 ==========================
+  // ========================== 🔥 Theme 🔥 ==========================
   final ThemeController themeController = ThemeController();
 
   void changeTheme(ThemeModeType mode) {
@@ -36,7 +33,7 @@ class AppSettingsCubit extends BaseCubit<AppSettingsCubitTypes> {
     themeController.changeTheme(mode: mode, onChanged: onChanged);
   }
 
-// ========================== 🔥 handel settings 🔥 ==========================
+  // ========================== 🔥 handel settings 🔥 ==========================
   AppSettingsModel _settings = AppSettingsModel.defaults();
 
   void saveSettings(AppSettingsModel settings) => AppCache.saveData(key: CacheKey.publicSettings, value: settings.toJson());

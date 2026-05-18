@@ -15,11 +15,12 @@ class _ShowHidePasswordWidgetState extends State<ShowHidePasswordWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () {
-          passwordVisible = !passwordVisible;
-          widget.onChange(passwordVisible);
-          setState(() {});
-        },
-        child: Icon(passwordVisible ? Icons.visibility : Icons.visibility_off, color: Colors.grey));
+      onTap: () {
+        passwordVisible = !passwordVisible;
+        widget.onChange(passwordVisible);
+        setState(() {});
+      },
+      child: Icon(passwordVisible ? Icons.visibility : Icons.visibility_off, color: Colors.grey),
+    );
   }
 }

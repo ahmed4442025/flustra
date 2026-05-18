@@ -70,10 +70,7 @@ class _CustomSmartRefresherState extends State<CustomSmartRefresher> {
           body = Text(AppStrings.noMoreData.tr());
         }
 
-        return SizedBox(
-          height: 55.0,
-          child: Center(child: body),
-        );
+        return SizedBox(height: 55.0, child: Center(child: body));
       },
     );
   }

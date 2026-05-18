@@ -15,10 +15,7 @@ class CategoryListWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Categories',
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
+        Text('Categories', style: Theme.of(context).textTheme.titleLarge),
         SizedBox(
           height: 50,
           child: ListView.separated(
@@ -30,13 +27,11 @@ class CategoryListWidget extends StatelessWidget {
                 label: Text(categories?[index] ?? ""),
                 backgroundColor: Colors.teal.withOpacityEX(0.1),
                 side: BorderSide(color: Colors.teal.withOpacityEX(0.5)),
-                labelStyle: TextStyle(
-                  color: Colors.teal[800],
-                  fontWeight: FontWeight.w600,
-                ),
+                labelStyle: TextStyle(color: Colors.teal[800], fontWeight: FontWeight.w600),
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               );
-            }, separatorBuilder: (BuildContext context, int index)=> const SizedBox(width: 10),
+            },
+            separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 10),
           ),
         ),
       ],

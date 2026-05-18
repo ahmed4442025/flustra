@@ -1,7 +1,7 @@
-import 'package:flustra_template/core/localization/app_strings_localizations.dart';
-import 'package:flutter/material.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustra_template/core/extensions/trans_extention.dart';
+import 'package:flustra_template/core/localization/app_strings_localizations.dart';
+import 'package:flutter/material.dart';
 
 class NetworkToastBanner {
   static CancelFunc? _currentToast;

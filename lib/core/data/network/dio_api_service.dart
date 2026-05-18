@@ -10,7 +10,6 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'api_service_repo.dart';
 
-
 class DioApiService implements IApiService {
   final Dio _dio = Dio();
   final CacheServices _cacheService = AppCache;
@@ -41,7 +40,11 @@ class DioApiService implements IApiService {
 
   @override
   Future<Response> getData({required String uri, Map<String, dynamic>? query, Map<String, dynamic>? headers}) async {
-    return await _dio.get(uri, queryParameters: query, options: _buildOptions(customHeaders: headers));
+    return await _dio.get(
+      uri,
+      queryParameters: query,
+      options: _buildOptions(customHeaders: headers),
+    );
   }
 
   @override
@@ -65,12 +68,22 @@ class DioApiService implements IApiService {
 
   @override
   Future<Response> putData({required String uri, dynamic data, Map<String, dynamic>? query, Map<String, dynamic>? headers}) async {
-    return await _dio.put(uri, data: data, queryParameters: query, options: _buildOptions(customHeaders: headers));
+    return await _dio.put(
+      uri,
+      data: data,
+      queryParameters: query,
+      options: _buildOptions(customHeaders: headers),
+    );
   }
 
   @override
   Future<Response> deleteData({required String uri, dynamic data, Map<String, dynamic>? query, Map<String, dynamic>? headers}) async {
-    return await _dio.delete(uri, data: data, queryParameters: query, options: _buildOptions(customHeaders: headers));
+    return await _dio.delete(
+      uri,
+      data: data,
+      queryParameters: query,
+      options: _buildOptions(customHeaders: headers),
+    );
   }
 
   // ========================== 🔥 privet 🔥 ==========================
@@ -115,4 +128,3 @@ class DioApiService implements IApiService {
     }
   }
 }
-

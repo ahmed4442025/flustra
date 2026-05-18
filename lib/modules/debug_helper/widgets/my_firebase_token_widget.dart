@@ -45,6 +45,7 @@ class _MyFirebaseTokenWidgetState extends State<MyFirebaseTokenWidget> {
   void onTapShare() async {
     // Share.share(token);
   }
+
   void onTapCopy() async {
     if (isCopyLoading) return;
     isCopyLoading = true;

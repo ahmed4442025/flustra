@@ -18,16 +18,8 @@ class HomeDrawerWidget extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.deepPurple,
-            ),
-            child: Text(
-              'القائمة الجانبية',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
-            ),
+            decoration: BoxDecoration(color: Colors.deepPurple),
+            child: Text('القائمة الجانبية', style: TextStyle(color: Colors.white, fontSize: 24)),
           ),
           ListTile(
             leading: const Icon(Icons.home),

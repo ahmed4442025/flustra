@@ -94,7 +94,8 @@ class BaseCubit<StatesEnum> extends Cubit<BaseState<StatesEnum>> {
     if (stateType != null) _stateMap[type] = stateType;
     emit((BaseState(type)));
   }
-// ========================== 🔥 fastFire 🔥 ========================== //
+
+  // ========================== 🔥 fastFire 🔥 ========================== //
 
   Future<Either<Failure, T>> fastFire<T>({
     required StatesEnum type,
@@ -106,7 +107,7 @@ class BaseCubit<StatesEnum> extends Cubit<BaseState<StatesEnum>> {
     if (callLoading) fire(type, StateType.loading); // update state to loading
     var res = await fun(); // call function and wait until finished
     return res.fold(
-          (l) {
+      (l) {
         l.printInfo("fastFire<$T>"); // print error for debugging
         if (onFailure != null) onFailure(l); // call onFailure if existing
         fire(type, StateType.error); // update state to error

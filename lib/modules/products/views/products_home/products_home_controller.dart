@@ -1,5 +1,4 @@
 import 'package:flustra_template/core/helper/base_cubit/bse_cubit.dart';
-import 'package:flustra_template/core/services/app_snake_bar.dart';
 import 'package:flustra_template/core/services/bot_toast/app_bot_toast.dart';
 import 'package:flustra_template/modules/products/models/product.dart';
 import 'package:flutter/material.dart';
@@ -39,30 +38,29 @@ class ProductsHomeController extends ChangeNotifier {
     getProducts();
   }
 
-// ========================== 🌍 Public methods and events 🌍 ==========================
+  // ========================== 🌍 Public methods and events 🌍 ==========================
   /// These methods are used by the UI or other logic to interact with the controller. => Call notifyListeners() to update the UI
 
   // -------------------------- get banner --------------------------
   void getBanner() {
-    if(_cubit.stateOf(ProductsCubitTypes.banner).isLoading())  return AppBotToast.show("please wait don't spam", type: ToastType.warning);
+    if (_cubit.stateOf(ProductsCubitTypes.banner).isLoading()) return AppBotToast.show("please wait don't spam", type: ToastType.warning);
     _cubit.getBanner();
   }
 
   // -------------------------- get categories --------------------------
   void getCategories() {
-    if(_cubit.stateOf(ProductsCubitTypes.categories).isLoading())  return AppSnackBar.show("please wait don't spam", type: ToastType.warning);;
+    if (_cubit.stateOf(ProductsCubitTypes.categories).isLoading()) return AppSnackBar.show("please wait don't spam", type: ToastType.warning);
+    ;
     _cubit.getCategories(onSuccess: (r) => _categories = r);
   }
 
   // -------------------------- get products  --------------------------
   void getProducts() async {
-    if(_cubit.stateOf(ProductsCubitTypes.products).isLoading()) return AppSnackBar.show("please wait don't spam", type: ToastType.warning);
+    if (_cubit.stateOf(ProductsCubitTypes.products).isLoading()) return AppSnackBar.show("please wait don't spam", type: ToastType.warning);
     var res = await _cubit.getProducts();
-    res.fold(
-      (l) => null,
-      (r) => _products = r,
-    );
+    res.fold((l) => null, (r) => _products = r);
   }
-// ========================== 🔒 Private methods 🔒 ==========================
+
+  // ========================== 🔒 Private methods 🔒 ==========================
   /// These are internal methods specific to the controller, Use them to encapsulate any logic that doesn't need to be exposed.
 }

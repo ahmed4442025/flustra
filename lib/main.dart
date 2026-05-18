@@ -26,11 +26,14 @@ void main() async {
 
   MobileConfig.init();
 
-  runApp(EasyLocalization(
+  runApp(
+    EasyLocalization(
       assetLoader: const CodegenLoader(),
       supportedLocales: AppConstant.supportedLanguagesLocales,
       path: 'assets/translations',
       saveLocale: true,
       fallbackLocale: AppConstant.defaultLanguage.locale,
-      child: const MyApp()));
+      child: const MyApp(),
+    ),
+  );
 }
