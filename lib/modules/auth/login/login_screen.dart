@@ -1,5 +1,6 @@
 import 'package:flustra_template/core/constants/app_defults.dart';
 import 'package:flustra_template/core/services/app_validators.dart';
+import 'package:flustra_template/modules/auth/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 
 import 'login_controller.dart';
@@ -16,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (mounted) setState(() {});
   }
 
-  late final LoginController _controller = LoginController();
+  late final LoginController _controller = LoginController(AuthCubit.i);
 
   @override
   void initState() {

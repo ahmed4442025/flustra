@@ -1,17 +1,10 @@
 abstract class ApiConstants {
-  static const String baseUrl = "https://gtek.pri-po.com";
+  // TODO: Put your actual URL here
+  static const String baseUrl = "https://placeholder-api.example.com/api/v1";
 
-  // Api Endpoints
-  // -------------------------- control sub task --------------------------
-  static String stopTimerForSubTask(String subTaskId) => "/api/subtasks/$subTaskId/store_timer";
+  static final _AuthApi auth = _AuthApi();
+}
 
-  static String startTimerForSubTask(int subTaskId) => "/api/subtasks/$subTaskId/start";
-
-  static String completeSubTask(int subTaskId) => "/api/subtasks/complete/$subTaskId";
-  static const String storeSubTask = "/api/subtasks/store";
-
-  // -------------------------- projects + tasks --------------------------
-  static String tasksInCategory(int categoryID) => "/api/categories/$categoryID/tasks";
-  static const String getAllCategories = "/api/categories";
-  static const String addTask = "/api/tasks/add";
+class _AuthApi {
+  final String login = "/agent/auth/login";
 }

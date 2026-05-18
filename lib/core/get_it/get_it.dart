@@ -3,6 +3,8 @@ import 'package:flustra_template/core/data/cache/shared_prefs_cache_service.dart
 import 'package:flustra_template/core/data/network/api_service_repo.dart';
 import 'package:flustra_template/core/data/network/dio_api_service.dart';
 import 'package:flustra_template/core/services/internet_connection/internet_cubit.dart';
+import 'package:flustra_template/modules/auth/cubit/auth_cubit.dart';
+import 'package:flustra_template/modules/auth/data/auth_repo.dart';
 import 'package:flustra_template/modules/products/logic/products_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,10 +30,13 @@ Future initPublicServices() async {
 }
 // ========================== 🔥 repositories 🔥 ==========================
 
-void initRepositories() {}
+void initRepositories() {
+  getIt.registerLazySingleton<AuthRepo>(() => AuthImp());
+}
 // ========================== 🔥 cubits 🔥 ==========================
 void initCubits() {
   getIt.registerLazySingleton<AppSettingsCubit>(() => AppSettingsCubit());
+  getIt.registerLazySingleton<AuthCubit>(() => AuthCubit(getIt<AuthRepo>()));
   getIt.registerLazySingleton<ProductsCubit>(() => ProductsCubit());
   getIt.registerLazySingleton<InternetCubit>(() => InternetCubit());
 }
