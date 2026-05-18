@@ -1,5 +1,8 @@
+---
+trigger: manual
+---
+
 # Create Repo (Data Layer)
-**Persona:** Flutter Expert "سحلولي" (Personality: "الترللي").
 **Task:** Generate Data Layer (API, Repo, RepoImp, Cubit) from a Postman collection using the category prefix `CategoryName`. 
 
 ## 1. Endpoints (`_CategoryNameApi`)
@@ -13,34 +16,37 @@
 - **Parameters:** 
   - > 3 parameters → Create a `MethodNameRequest` class.
   - Pagination → Always add an `int page` parameter.
+  - **Always** add `CancelToken? cancelToken` as an optional parameter to all methods.
 - **Return Type:**
   - Default: `Future<Either<Failure, MethodNameResponse>>`
   - POST/DELETE methods: `Future<Either<Failure, DefaultAppResponse>>` (Do not change name).
+  - **GET Response Rule:** If the response class for a GET method doesn't exist yet, create a temporary empty class with only a `fromJson` factory method. ❌ Avoid using `dynamic`.
 
 ## 3. Repo Implementation (`CategoryNameImp`)
 - Implements `CategoryNameRepo`.
 - Separator: `// -------------------------- MethodName --------------------------`
-- Add `CancelToken? cancelToken` to all methods.
+- Ensure `cancelToken` is passed to all methods and then to the `handleResponse` helper.
 - Execution: Use `handleResponse` helper.
   - `endPoint`: `ApiConstants.categoryName.endpointName`
   - `asObject`: `(e) => MethodNameResponse.fromJson(e)`
   - `method`: `DioMethod.get` / `DioMethod.post`
   - `data`: `Map<String, dynamic>` or `FormData` (if dataMode is formdata).
   - `query`: Query parameters.
+  - `cancelToken`: `cancelToken`
 - **Imports:** `dartz`, `Failure`, `ApiConstants`.
-- **File Generation:** Generate `Request` files only. ❌ Do NOT generate `Response` files.
+- **File Generation:** Generate `Request` files and **temporary `Response`** files (if GET and missing).
 
 ## 4. Cubit (`CategoryNameCubit`)
 - **Enum:** `CategoryNameCubitTypes` containing `none` + all repo method names.
 - **Class:** `class CategoryNameCubit extends BaseCubit<dynamic>`
-- **Constructor:** `CategoryNameCubit(this._repo) : super(CubitAPIType.none);`
+- **Constructor:** `CategoryNameCubit(this._repo) : super(CategoryNameCubitTypes.none);`
 - **DI Getter:** `static CategoryNameCubit get i => getIt<CategoryNameCubit>();`
 - Separator: `// ========================== 🔥 MethodName 🔥 ==========================`
+- **Methods:** Should accept an optional `dynamic state` parameter.
 - **Non-Pagination:** Use `fastFire()`
-  ✅ `return await fastFire(type: CategoryNameCubitTypes.login, fun: () => _repo.login(), onSuccess: x, onFailure: (f) => f.printInfo("login"));`
+  ✅ `BaseEitherResponse<MethodNameResponse> methodName({dynamic state}) async => await fastFire(type: state ?? CategoryNameCubitTypes.methodName, fun: () => _repo.methodName(), onSuccess: x, onFailure: (f) => f.printInfo("methodName"));`
 - **Pagination:** Use `fastPagination()`
-  ✅ `await fastPagination(type: CategoryNameCubitTypes.list, fun: (page) => _repo.list(page: page), onSuccess: x, toMeta: (r) => r.data?.pagination, paginationMethod: paginationMethod, onFailure: (f) => f.printInfo("list"));`
+  ✅ `Future<void> list({dynamic state, PaginationMethod paginationMethod = PaginationMethod.none}) async => await fastPagination(type: state ?? CategoryNameCubitTypes.list, fun: (page) => _repo.list(page: page), onSuccess: x, toMeta: (r) => r.data?.pagination, paginationMethod: paginationMethod, onFailure: (f) => f.printInfo("list"));`
 
 ## 5. Final Instructions
 - Register `Repo` and `Cubit` in `getIt`.
-- If code exceeds context window limit, state this and offer to continue in the next message.

@@ -31,8 +31,6 @@ Text('x', style: AppTextStyle.bodyMedium.copyWith(color: AppColors.primary))
 ✅ Rely on the global theme defined in `base_theme_data.dart` for consistency.
 ✅ Only override styles if explicitly requested or for extremely unique edge cases.
 
-
-
 ## Dimensions — `lib/core/helper/utils/dimensions.dart`
 
 ## Text Overflow
@@ -46,6 +44,7 @@ Text('x', style: AppTextStyle.bodyMedium.copyWith(color: AppColors.primary))
 > **Note:** Use these widgets and services ONLY when necessary to maintain clean code and optimize performance.
 
 ## 🟢 Widget Registry
+
 **Base Path:** `lib/core/helper/widgets/`
 
 - `CustomImageNetwork`: For network images.
@@ -55,6 +54,7 @@ Text('x', style: AppTextStyle.bodyMedium.copyWith(color: AppColors.primary))
 - `ShimmerHelper`: For loading skeleton effects.
 
 ## 🔵 Service Registry
+
 **Base Path:** `lib/core/services/`
 
 - **Toasts:** `bot_toast/app_bot_toast.dart`
