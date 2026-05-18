@@ -1,4 +1,4 @@
-import 'package:flustra_template/core/constants/app_colors.dart';
+import 'package:flustra_template/core/constants/app_colors/app_colors.dart';
 import 'package:flustra_template/core/constants/app_constant.dart';
 import 'package:flutter/material.dart';
 

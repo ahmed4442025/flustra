@@ -32,7 +32,7 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.background,
+        backgroundColor: AppColors.surface,
         title: const Text('Theme Showcase'),
       ),
       floatingActionButton: FloatingActionButton(
@@ -161,7 +161,6 @@ class _ThemeShowcaseScreenState extends State<ThemeShowcaseScreen> {
             children: [
               _buildColorTile("primary", theme.colorScheme.primary),
               _buildColorTile("secondary", theme.colorScheme.secondary),
-              _buildColorTile("secondary 3", AppColors.secondaryPrimary3),
               _buildColorTile("background", theme.colorScheme.surface),
               _buildColorTile("error", theme.colorScheme.error),
               _buildColorTile("textPrimary", theme.textTheme.bodyLarge?.color ?? Colors.black),

@@ -1,88 +1,145 @@
 import 'package:flustra_template/core/config/app_settings/app_settings_cubit.dart';
-import 'package:flustra_template/core/constants/app_colors.dart';
+import 'package:flustra_template/core/constants/app_colors/app_colors.dart';
 import 'package:flutter/material.dart';
 
 ThemeData get _theme => AppSettingsCubit.i.themeController.currentTheme;
 
-AppColorsBase get _getAppColorsBase => AppSettingsCubit.i.themeController.currentColors;
-
-// ========================== 🔥 App colors 🔥 ==========================
+AppColorsBase get _colors => AppSettingsCubit.i.themeController.currentColors;
 
 class AppColors {
   AppColors._();
 
-  // ==========================  Primary Colors  ==========================
-  /// Main primary color used throughout the app.
+  // ========================== Mode ==========================
+
+  /// True when app is in dark mode — use for conditional shimmer, icons, etc.
   static bool get isDark => _theme.brightness == Brightness.dark;
 
-  static Color get primary => _theme.primaryColor;
+  // ========================== Brand / Primary ==========================
 
-  static Color get secondaryPrimary3 => _getAppColorsBase.accentOrange;
+  /// Main brand color — CTA buttons, FABs, active indicators.
+  static Color get primary => _colors.primary;
 
-  static Color get secondaryPrimary => _theme.colorScheme.secondary;
+  /// Hover/focus state color for primary buttons and interactive elements.
+  static Color get primaryHover => _colors.primaryHover;
 
-  // ==========================  Text Colors  ==========================
+  /// Subtle primary color tint for active chips and soft container fills.
+  static Color get primaryTint => _colors.primaryTint;
 
-  /// Default text color for general content.
-  static Color get textPrimary => _getAppColorsBase.textPrimary;
+  /// Slightly stronger primary tint for selected states or interactive shapes.
+  static Color get primaryTint2 => _colors.primaryTint2;
 
-  /// Secondary text color for less emphasis content.
-  static Color get textSecondary => _getAppColorsBase.textSecondary;
+  /// Tinted variant — chips, secondary actions, links.
+  static Color get secondary => _colors.secondary;
 
-  // ==========================  Background Colors  ==========================
+  /// Subtle secondary tint for sub-container background fills.
+  static Color get secondaryTint => _colors.secondaryTint;
 
-  /// General background color for screens and containers.
-  static Color get background => _theme.colorScheme.surface;
+  /// Text/icon ON a primary-colored surface.
+  static Color get onPrimary => _colors.onPrimary;
 
-  /// Background color for cards and elevated containers.
-  static Color get cardBackground => _theme.cardColor;
+  // ========================== Surfaces ==========================
 
-  /// Divider or section background to separate content.
-  static Color get divider => _theme.dividerColor;
+  /// Main page background (Scaffold).
+  static Color get surface => _colors.surface;
 
-  // ==========================  Border Colors  ==========================
+  /// Elevated containers — cards, bottom sheets, dialogs.
+  static Color get surfaceContainer => _colors.surfaceContainer;
 
-  /// Standard border color for inputs and containers.
-  static Color get border => _getAppColorsBase.border;
+  /// Highest-level surface — sticky headers, search bars.
+  static Color get surfaceContainerHigh => _colors.surfaceContainerHigh;
 
-  // ==========================  Button Colors  ==========================
+  // ========================== Content / On-surface ==========================
 
-  /// Disabled button color for inactive states.
-  static Color get buttonDisabled => _getAppColorsBase.buttonDisabled;
+  /// Primary text & icons — headings, body copy.
+  static Color get onSurface => _colors.onSurface;
 
-  // ==========================  Status Colors  ==========================
+  /// Secondary text — subtitles, timestamps, hints.
+  static Color get onSurfaceVariant => _colors.onSurfaceVariant;
 
-  /// Success color for positive feedback.
-  static Color get success => _getAppColorsBase.success;
+  // ========================== Outline / Borders ==========================
 
-  /// Warning color for caution messages.
-  static Color get warning => _getAppColorsBase.warning;
+  /// Medium-emphasis borders — input fields, card edges.
+  static Color get outline => _colors.outline;
 
-  /// Error color for error messages and indicators.
-  static Color get error => _theme.colorScheme.error;
+  /// Low-emphasis borders — dividers, separators.
+  static Color get outlineVariant => _colors.outlineVariant;
 
-  static Color get info => _getAppColorsBase.info;
+  // ========================== States ==========================
+
+  /// Disabled buttons, chips, inactive controls.
+  static Color get disabledElement => _colors.disabledElement;
+
+  // ========================== Accent / Green Success ==========================
+
+  /// Accent color — success badges, tags, highlights.
+  static Color get accent => _colors.accent;
+
+  /// Darker accent variant for text and high-contrast indicators.
+  static Color get accentDeep => _colors.accentDeep;
+
+  /// Muted tint of accent color for chip backgrounds.
+  static Color get accentTint => _colors.accentTint;
+
+  // ========================== Status / Semantic ==========================
+
+  /// Errors, destructive actions, validation.
+  static Color get error => _colors.error;
+
+  /// Muted error tint for card alerts.
+  static Color get errorTint => _colors.errorTint;
+
+  /// Success confirmations, completed.
+  static Color get success => _colors.success;
+
+  /// Warnings, caution banners, pending.
+  static Color get warning => _colors.warning;
+
+  /// Muted warning tint for warning backgrounds.
+  static Color get warningTint => _colors.warningTint;
+
+  /// Info messages, tips, neutral alerts.
+  static Color get info => _colors.info;
+
+  /// Muted info tint for supportive backgrounds.
+  static Color get infoTint => _colors.infoTint;
+
+  /// Neutral slate color.
+  static Color get cold => _colors.cold;
+
+  /// Muted slate tint.
+  static Color get coldTint => _colors.coldTint;
+
+  /// Hint color for placeholder text and subtle notes.
+  static Color get hint => _colors.hint;
+
+  /// Overlay color for modal backdrops.
+  static Color get overlay => _colors.overlay;
 }
 
-// ========================== 🔥 Text Styles 🔥 ==========================
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║  AppTextStyle — Pre-configured text styles from the theme.                   ║
+// ║                                                                              ║
+// ║  Pick the closest style and .copyWith() for tweaks.                          ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
+
 class AppTextStyle {
   AppTextStyle._();
 
-  // -------------------------- display --------------------------
+  // --------------------------[ Display ]-------------------------- //
   static TextStyle get displayLarge => _theme.textTheme.displayLarge ?? TextStyle();
 
   static TextStyle get displayMedium => _theme.textTheme.displayMedium ?? TextStyle();
 
   static TextStyle get displaySmall => _theme.textTheme.displaySmall ?? TextStyle();
 
-  // -------------------------- Title --------------------------
+  // --------------------------[ Title ]-------------------------- //
   static TextStyle get titleLarge => _theme.textTheme.titleLarge ?? TextStyle();
 
   static TextStyle get titleMedium => _theme.textTheme.titleMedium ?? TextStyle();
 
   static TextStyle get titleSmall => _theme.textTheme.titleSmall ?? TextStyle();
 
-  // -------------------------- Body  --------------------------
+  // --------------------------[ Body ]-------------------------- //
   static TextStyle get bodyLarge => _theme.textTheme.bodyLarge ?? TextStyle();
 
   static TextStyle get bodyMedium => _theme.textTheme.bodyMedium ?? TextStyle();

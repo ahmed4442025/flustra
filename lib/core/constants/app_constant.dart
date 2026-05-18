@@ -14,5 +14,5 @@ class AppConstant {
   static final List<Locale> supportedLanguagesLocales = AppLocalizationController.supportedLanguagesLocales;
 
   // -------------------------- Theme --------------------------
-  static ThemeModeType defaultThemeMode = ThemeModeType.lightDeepBlue;
+  static ThemeModeType defaultThemeMode = ThemeModeType.light;
 }
