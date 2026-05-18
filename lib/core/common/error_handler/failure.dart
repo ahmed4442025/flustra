@@ -1,4 +1,4 @@
-import '../../services/app_snake_bar.dart';
+import 'package:flustra_template/core/services/bot_toast/app_bot_toast.dart';
 
 class Failure {
   int code; // 200, 201, 400, 303..500 and so on
@@ -27,6 +27,6 @@ extension FailureEx on Failure {
       TypeMsg.warning => ToastType.warning,
     };
 
-    AppSnackBar.show(message, type: toastType);
+    AppBotToast.show(message, type: toastType);
   }
 }
