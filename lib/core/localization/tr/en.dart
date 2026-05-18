@@ -5,6 +5,7 @@ const Map<String, String> enJson = {
   AppStrings.english: 'English',
   AppStrings.arabic: 'Arabic',
   AppStrings.german: 'German',
+  AppStrings.chooseLanguage: 'Choose Language',
   AppStrings.noInternetConnection: 'No internet connection',
   AppStrings.weakInternetConnection: 'Weak internet connection',
   AppStrings.reconnecting: 'Reconnecting...',

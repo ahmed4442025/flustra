@@ -4,6 +4,7 @@ abstract class AppStrings {
   static const String english = 'English';
   static const String arabic = 'Arabic';
   static const String german = 'German';
+  static const String chooseLanguage = 'Choose Language';
 
   static const String noInternetConnection = 'No internet connection';
   static const String weakInternetConnection = 'Weak internet connection';

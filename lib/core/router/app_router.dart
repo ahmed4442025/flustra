@@ -5,6 +5,7 @@ import 'package:flustra_template/modules/auth/login/login_screen.dart';
 import 'package:flustra_template/modules/debug_helper/views/peoxy/proxy_view.dart';
 import 'package:flustra_template/modules/debug_helper/views/theme_showcase_screen.dart';
 import 'package:flustra_template/modules/home_with_navigation_bar/views/home_navigation_bar/home_navigation_bar.dart';
+import 'package:flustra_template/modules/settings/views/language_selection/language_selection_screen.dart';
 import 'package:flustra_template/modules/splash/views/onboarding/onbearding_screen.dart';
 import 'package:flustra_template/modules/splash/views/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ abstract class AppRoutes {
   static const String homeScreenWithNavigationBar = '/homeScreenWithNavigationBar';
   static const String themeShowcaseScreen = '/ThemeShowcaseScreen';
   static const String proxyView = '/ProxyView';
-
+  static const String languageSelectionScreen = '/LanguageSelectionScreen';
 }
 
 // ========================== 🔥 routerConfig 🔥 ==========================
@@ -48,6 +49,7 @@ List<RouteBase> _buildRoutes() {
     _baseGoRoute(AppRoutes.themeShowcaseScreen, (_) => ThemeShowcaseScreen()),
     _baseGoRoute<HomeScreenWithNavigationBarData>(AppRoutes.homeScreenWithNavigationBar, (data) => HomeScreenWithNavigationBar(data: data)),
     _baseGoRoute(AppRoutes.proxyView, (_) => ProxyView()),
+    _baseGoRoute(AppRoutes.languageSelectionScreen, (_) => const LanguageSelectionScreen()),
   ];
 }
 
@@ -59,7 +61,7 @@ GoRoute _baseGoRoute<T>(String path, Widget Function(T? data) screen) {
   return GoRoute(
     path: path,
     name: path,
-    builder: (context, state) => LocaleWatcher(child: ()=>screen(getTheObjectOrNull(state.extra))),
+    builder: (context, state) => LocaleWatcher(child: () => screen(getTheObjectOrNull(state.extra))),
   );
 }
 

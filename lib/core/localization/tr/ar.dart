@@ -23,6 +23,7 @@ const Map<String, String> arJson = {
   AppStrings.english: 'الانجليزية',
   AppStrings.arabic: 'العربية',
   AppStrings.german: 'الألمانية',
+  AppStrings.chooseLanguage: 'اختر اللغة',
   AppStrings.weDidNotReceiveTheExpectedData: 'خطأ في تحميل البيانات. تعذر الاتصال بالخادم. يرجى المحاولة مرة أخرى لاحقًا.',
   AppStrings.errorConnectionTimeout: "انتهت مهلة الاتصال. تحقق من الإنترنت وحاول مرة أخرى.",
   AppStrings.errorSendTimeout: "انتهت مهلة الطلب أثناء إرسال البيانات. حاول مرة أخرى.",
