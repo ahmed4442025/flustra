@@ -1,8 +1,6 @@
 abstract class AppStrings {
-  // ========================== 🔥 Other 🔥 ==========================
-  static const String noMoreData = 'No more data'; // todo
+  static const String noMoreData = 'No more data';
 
-  // ========================== 🔥 translations label 🔥 ==========================
   static const String english = 'English';
   static const String arabic = 'Arabic';
   static const String german = 'German';
@@ -13,7 +11,6 @@ abstract class AppStrings {
   static const String internetConnectionRestored = 'Internet connection restored';
   static const String connected = "Connected";
   static const String noInternet = "no internet";
-  // ========================== 🔥 Validations 🔥 ==========================
   static const String errorEmptyField = "This field can't be empty.";
   static const String errorInvalidEmail = "Please enter a valid email.";
   static const String errorInvalidPhone = "Enter a valid phone number.";
@@ -27,9 +24,6 @@ abstract class AppStrings {
   static const String errorInvalidFullName = "Enter valid name";
   static const String errorInvalidUrl = "Enter a valid link (URL).";
 
-  // ========================== 🔥 Error Validations 🔥 ==========================
-
-  // ========================== 🔥 Error handler 🔥 ==========================
   static const weDidNotReceiveTheExpectedData = 'We did not receive the expected data from the server. Please try again later.';
   static const errorConnectionTimeout = 'errorConnectionTimeout';
   static const errorSendTimeout = 'errorSendTimeout';
@@ -39,5 +33,4 @@ abstract class AppStrings {
   static const errorRequestCancelled = 'errorRequestCancelled';
   static const errorConnection = 'errorConnection';
   static const errorUnknown = 'errorUnknown';
-// ========================== 🔥 End error handler 🔥 ==========================
 }

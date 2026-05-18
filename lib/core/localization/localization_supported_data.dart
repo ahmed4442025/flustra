@@ -52,13 +52,7 @@ class LanguageOption {
   final String flagAsset;
   final Map<String, String> json;
 
-  const LanguageOption({
-    required this.json,
-    required this.locale,
-    required this.nameRaw,
-    required this.nameWithTr,
-    required this.flagAsset,
-  });
+  const LanguageOption({required this.json, required this.locale, required this.nameRaw, required this.nameWithTr, required this.flagAsset});
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is LanguageOption && runtimeType == other.runtimeType && locale == other.locale;
