@@ -62,4 +62,7 @@ const Map<String, String> deJson = {
   AppStrings.proxyDesc: 'Verbindungsproxy-Einstellungen verwalten',
   AppStrings.themeShowcase: 'Theme-Präsentation',
   AppStrings.themeShowcaseDesc: 'Themes und Komponenten-Stile erkunden',
+  AppStrings.exitApp: 'App beenden',
+  AppStrings.exitDesc: 'Möchten Sie die App wirklich beenden?',
+  AppStrings.exit: 'Beenden',
 };

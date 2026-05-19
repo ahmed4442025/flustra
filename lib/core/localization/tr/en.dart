@@ -61,4 +61,7 @@ const Map<String, String> enJson = {
   AppStrings.proxyDesc: 'Manage connection proxy settings',
   AppStrings.themeShowcase: 'Theme Showcase',
   AppStrings.themeShowcaseDesc: 'Explore themes and component styles',
+  AppStrings.exitApp: 'Exit App',
+  AppStrings.exitDesc: 'Are you sure you want to exit the application?',
+  AppStrings.exit: 'Exit',
 };

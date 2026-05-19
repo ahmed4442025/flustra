@@ -63,4 +63,7 @@ abstract class AppStrings {
   static const String proxyDesc = 'Manage connection proxy settings';
   static const String themeShowcase = 'Theme Showcase';
   static const String themeShowcaseDesc = 'Explore themes and component styles';
+  static const String exitApp = 'Exit App';
+  static const String exitDesc = 'Are you sure you want to exit the application?';
+  static const String exit = 'Exit';
 }

@@ -61,4 +61,7 @@ const Map<String, String> arJson = {
   AppStrings.proxyDesc: 'إدارة إعدادات خادم البروكسي لاتصالك',
   AppStrings.themeShowcase: 'عرض الثيمات',
   AppStrings.themeShowcaseDesc: 'استكشاف الثيمات وتصميمات المكونات المتاحة',
+  AppStrings.exitApp: 'إغلاق التطبيق',
+  AppStrings.exitDesc: 'هل أنت متأكد من رغبتك في الخروج من التطبيق؟',
+  AppStrings.exit: 'خروج',
 };
