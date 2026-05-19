@@ -1,5 +1,6 @@
 import 'package:flustra_template/core/helper/dialogs/exit_dialog.dart';
 import 'package:flustra_template/modules/products/views/products_home/products_home.dart';
+import 'package:flustra_template/modules/settings/views/settings/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/nav_bar_icon_widget.dart';
@@ -58,7 +59,7 @@ class HomeNavigationBarController extends ChangeNotifier {
       ),
     ),
     MainScreenPageType.settings: NavBarItemModel(
-      screen: SimplePage(pageName: 'الإعدادات (Settings)'),
+      screen: SettingsScreen(),
       buttonIcon: NavBarIconWidget(
         isSelected: selectedPageType == MainScreenPageType.settings,
         onTap: () => onItemTapped(MainScreenPageType.settings),

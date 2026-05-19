@@ -33,6 +33,7 @@ Future initPublicServices() async {
 void initRepositories() {
   getIt.registerLazySingleton<AuthRepo>(() => AuthImp());
 }
+
 // ========================== 🔥 cubits 🔥 ==========================
 void initCubits() {
   getIt.registerLazySingleton<AppSettingsCubit>(() => AppSettingsCubit());
