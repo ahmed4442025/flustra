@@ -2,6 +2,7 @@ import 'package:flustra_template/core/constants/app_defults.dart';
 import 'package:flustra_template/core/extensions/context_get_x.dart';
 import 'package:flustra_template/core/helper/base_cubit/block_builder_widget.dart';
 import 'package:flustra_template/core/helper/uti/shimmer_templates.dart';
+import 'package:flustra_template/core/helper/utils/dimensions.dart';
 import 'package:flutter/material.dart';
 
 import '../../logic/products_cubit.dart';
@@ -18,17 +19,17 @@ class ProductsHomeScreen extends StatefulWidget {
 }
 
 class _ProductsHomeScreenState extends State<ProductsHomeScreen> {
+  late final ProductsHomeController _controller = ProductsHomeController();
+
   void _refresh() {
     if (mounted) setState(() {});
   }
 
-  late final ProductsHomeController _controller = ProductsHomeController();
-
   @override
   void initState() {
+    super.initState();
     _controller.addListener(_refresh);
     _controller.init();
-    super.initState();
   }
 
   @override
@@ -41,44 +42,77 @@ class _ProductsHomeScreenState extends State<ProductsHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              buttons(),
-              SizedBox(height: 30),
-              Center(child: buildBannerListener()),
-              SizedBox(height: 30),
-              buildListCategoriesListener(),
-              SizedBox(height: 30),
-              Text('Featured Products', style: AppTextStyle.titleLarge),
-              SizedBox(height: 10),
-              buildListProductsListener(),
-              SizedBox(height: 20), // Add some padding at the bottom
-            ],
-          ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingScreen),
+          child: _buildBody(),
         ),
       ),
     );
   }
 
-  // -------------------------- buttons --------------------------
-  Widget buttons() {
-    return Row(
+  // --------------------------[ Body ]-------------------------- //
+  Widget _buildBody() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextButton(onPressed: _controller.getBanner, child: Text("Get banner")),
-        SizedBox(width: 10),
-        TextButton(onPressed: _controller.getCategories, child: Text("Get categories")),
-        SizedBox(width: 10),
-        TextButton(onPressed: _controller.getProducts, child: Text("Get products")),
+        // --------------------------[ Debug Controls ]-------------------------- //
+        const SizedBox(height: Dimensions.paddingScreen),
+        _buildDebugControls(),  const SizedBox(height: Dimensions.paddingScreen),
+        // --------------------------[ Header ]-------------------------- //
+        _buildHeader(),
+        const SizedBox(height: Dimensions.paddingSizeExtraLarge),
+        // --------------------------[ Banner ]-------------------------- //
+        _buildBanner(),
+        const SizedBox(height: Dimensions.paddingSizeExtraLarge),
+        // --------------------------[ Categories ]-------------------------- //
+        _buildCategories(),
+        const SizedBox(height: Dimensions.paddingSizeExtraLarge),
+        // --------------------------[ Products Header ]-------------------------- //
+        _buildProductsHeader(),
+        const SizedBox(height: Dimensions.paddingSizeSmall),
+        // --------------------------[ Products Grid ]-------------------------- //
+        _buildProductsGrid(),
+        const SizedBox(height: Dimensions.paddingSizeExtraLarge),
+
       ],
     );
   }
 
-  // -------------------------- Banner --------------------------
-  Widget buildBannerListener() {
+  // --------------------------[ Header ]-------------------------- //
+  Widget _buildHeader() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Discover',
+              style: AppTextStyle.displaySmall.copyWith(fontWeight: FontWeight.w900, color: AppColors.onSurface),
+            ),
+            const SizedBox(height: 4),
+            Text('Find the best products for you', style: AppTextStyle.bodyMedium.copyWith(color: AppColors.onSurfaceVariant)),
+          ],
+        ),
+        GestureDetector(
+          onTap: () => _controller.init(),
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: AppColors.surfaceContainer,
+              shape: BoxShape.circle,
+              border: Border.all(color: AppColors.outlineVariant, width: 1),
+            ),
+            child: Icon(Icons.refresh_rounded, color: AppColors.primary, size: 22),
+          ),
+        ),
+      ],
+    );
+  }
+
+  // --------------------------[ Banner ]-------------------------- //
+  Widget _buildBanner() {
     return BlockBuilderWidget<ProductsCubit, ProductsCubitTypes>(
       types: const [ProductsCubitTypes.banner],
       body: (_) => BannerWidget(message: _controller.banner),
@@ -87,45 +121,97 @@ class _ProductsHomeScreenState extends State<ProductsHomeScreen> {
     );
   }
 
-  // -------------------------- categories --------------------------
-  Widget buildListCategoriesListener() {
+  // --------------------------[ Categories ]-------------------------- //
+  Widget _buildCategories() {
     return BlockBuilderWidget<ProductsCubit, ProductsCubitTypes>(
       types: const [ProductsCubitTypes.categories],
-      body: (_) => CategoryListWidget(loading: false, categories: _controller.categories),
-      loading: (_) => CategoryListWidget(loading: true),
-      error: (_) => CategoryListWidget(loading: false),
+      body: (_) => CategoryListWidget(
+        loading: false,
+        categories: _controller.categories,
+        selectedCategory: _controller.selectedCategory,
+        onCategorySelected: _controller.selectCategory,
+      ),
+      loading: (_) => const CategoryListWidget(loading: true),
+      error: (_) => const CategoryListWidget(loading: false),
     );
   }
 
-  // -------------------------- products --------------------------
-  Widget buildListProductsListener() {
+  // --------------------------[ Products Header ]-------------------------- //
+  Widget _buildProductsHeader() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          _controller.selectedCategory == null ? 'Featured Products' : '${_controller.selectedCategory} Products',
+          style: AppTextStyle.titleLarge.copyWith(color: AppColors.onSurface, fontWeight: FontWeight.bold),
+        ),
+        if (_controller.selectedCategory != null) TextButton(onPressed: () => _controller.selectCategory(null), child: const Text('Clear Filter')),
+      ],
+    );
+  }
+
+  // --------------------------[ Products Grid ]-------------------------- //
+  Widget _buildProductsGrid() {
     return BlockBuilderWidget<ProductsCubit, ProductsCubitTypes>(
       types: const [ProductsCubitTypes.products],
-      body: (_) => buildListProducts(loading: false),
-      loading: (_) => buildListProducts(loading: true),
-      error: (_) => buildListProducts(loading: false),
+      body: (_) => _buildListProducts(isLoading: false),
+      loading: (_) => _buildListProducts(isLoading: true),
+      error: (_) => _buildListProducts(isLoading: false),
     );
   }
 
-  Widget buildListProducts({required bool loading}) {
+  Widget _buildListProducts({required bool isLoading}) {
     final products = _controller.products;
-    double width = context.width;
-    final crossAxisCount = (width ~/ 250).clamp(2, 6);
+
+    if (!isLoading && products.isEmpty) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 40.0),
+          child: Column(
+            children: [
+              Icon(Icons.inbox_rounded, size: 48, color: AppColors.hint),
+              const SizedBox(height: 16),
+              Text('No products found in this category.', style: AppTextStyle.bodyMedium.copyWith(color: AppColors.onSurfaceVariant)),
+            ],
+          ),
+        ),
+      );
+    }
+
+    final double width = context.width;
+    final int crossAxisCount = (width ~/ 180).clamp(2, 6);
 
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
-        childAspectRatio: 2 / 2,
+        crossAxisSpacing: Dimensions.paddingSizeDefault,
+        mainAxisSpacing: Dimensions.paddingSizeDefault,
+        childAspectRatio: 0.68,
       ),
-      itemCount: loading ? 10 : products.length,
+      itemCount: isLoading ? 6 : products.length,
       itemBuilder: (context, index) {
-        if (loading) return ShimmerTemplates.productCard();
+        if (isLoading) return ShimmerTemplates.productCard();
         return ProductCard(product: products[index]);
       },
+    );
+  }
+
+  // --------------------------[ Debug Controls ]-------------------------- //
+  Widget _buildDebugControls() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextButton.icon(onPressed: _controller.getBanner, icon: const Icon(Icons.refresh_rounded, size: 16), label: const Text("Banner")),
+          const SizedBox(width: 8),
+          TextButton.icon(onPressed: _controller.getCategories, icon: const Icon(Icons.category_rounded, size: 16), label: const Text("Categories")),
+          const SizedBox(width: 8),
+          TextButton.icon(onPressed: _controller.getProducts, icon: const Icon(Icons.grid_view_rounded, size: 16), label: const Text("Products")),
+        ],
+      ),
     );
   }
 }

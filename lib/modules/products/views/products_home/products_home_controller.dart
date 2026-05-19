@@ -19,6 +19,8 @@ class ProductsHomeController extends ChangeNotifier {
 
   List<Product>? _products;
 
+  String? _selectedCategory;
+
   // ========================== 🗝️ Public variables 🗝️ ==========================
   /// These variables are accessible to the widgets or other parts of the app.
 
@@ -26,7 +28,13 @@ class ProductsHomeController extends ChangeNotifier {
 
   List<String> get categories => _categories ?? [];
 
-  List<Product> get products => _products ?? [];
+  String? get selectedCategory => _selectedCategory;
+
+  List<Product> get products {
+    final list = _products ?? [];
+    if (_selectedCategory == null) return list;
+    return list.where((p) => p.category == _selectedCategory).toList();
+  }
 
   // ========================== 🔥 initialization 🔥 ==========================
   ///  Initialization logic and variables or call initialization methods.
@@ -43,22 +51,41 @@ class ProductsHomeController extends ChangeNotifier {
 
   // -------------------------- get banner --------------------------
   void getBanner() {
-    if (_cubit.stateOf(ProductsCubitTypes.banner).isLoading()) return AppBotToast.show("please wait don't spam", type: ToastType.warning);
+    if (_cubit.stateOf(ProductsCubitTypes.banner).isLoading())
+      return AppBotToast.show(
+        "please wait don't spam",
+        type: ToastType.warning,
+      );
     _cubit.getBanner();
   }
 
   // -------------------------- get categories --------------------------
   void getCategories() {
-    if (_cubit.stateOf(ProductsCubitTypes.categories).isLoading()) return AppSnackBar.show("please wait don't spam", type: ToastType.warning);
+    if (_cubit.stateOf(ProductsCubitTypes.categories).isLoading())
+      return AppSnackBar.show(
+        "please wait don't spam",
+        type: ToastType.warning,
+      );
     ;
     _cubit.getCategories(onSuccess: (r) => _categories = r);
   }
 
   // -------------------------- get products  --------------------------
   void getProducts() async {
-    if (_cubit.stateOf(ProductsCubitTypes.products).isLoading()) return AppSnackBar.show("please wait don't spam", type: ToastType.warning);
+    if (_cubit.stateOf(ProductsCubitTypes.products).isLoading())
+      return AppSnackBar.show(
+        "please wait don't spam",
+        type: ToastType.warning,
+      );
     var res = await _cubit.getProducts();
     res.fold((l) => null, (r) => _products = r);
+  }
+
+  // --------------------------[ selectCategory ]-------------------------- //
+  void selectCategory(String? category) {
+    if (_selectedCategory == category) return;
+    _selectedCategory = category;
+    notifyListeners();
   }
 
   // ========================== 🔒 Private methods 🔒 ==========================
