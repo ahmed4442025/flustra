@@ -1,4 +1,6 @@
+import 'package:flustra_template/core/extensions/trans_extention.dart';
 import 'package:flustra_template/core/helper/dialogs/exit_dialog.dart';
+import 'package:flustra_template/core/localization/app_strings_localizations.dart';
 import 'package:flustra_template/modules/products/views/products_home/products_home.dart';
 import 'package:flustra_template/modules/settings/views/settings/settings_screen.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +9,7 @@ import '../../widgets/nav_bar_icon_widget.dart';
 import '../simple_test_page.dart';
 import 'home_navigation_bar.dart';
 
-/// HomeNavigationBarController can be used to manage state and notify listeners about changes.
+/// HomeNavigationBarController manages the bottom navigation bar active tab state and pages list.
 class HomeNavigationBarController extends ChangeNotifier {
   // ========================== Constructor ==========================
   HomeNavigationBarController._();
@@ -22,63 +24,66 @@ class HomeNavigationBarController extends ChangeNotifier {
 
   MainScreenPageType selectedPageType = MainScreenPageType.home;
 
-  // مفتاح للوصول إلى حالة الـ Scaffold (مهم لمعرفة هل الـ Drawer مفتوح أم لا)
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  Widget get selectedPage => _pages[selectedPageType]?.screen ?? Text('404');
+  Widget get selectedPage => _pages[selectedPageType]?.screen ?? const Text('404');
 
   List<Widget> get navBarItems => _pages.values.map((e) => e.buttonIcon).toList();
 
   // -------------------------- pages --------------------------
   Map<MainScreenPageType, NavBarItemModel> get _pages => {
     MainScreenPageType.home: NavBarItemModel(
-      screen: ProductsHomeScreen(),
+      screen: const ProductsHomeScreen(),
       buttonIcon: NavBarIconWidget(
         isSelected: selectedPageType == MainScreenPageType.home,
         onTap: () => onItemTapped(MainScreenPageType.home),
-        icon: Icons.home,
-        label: () => "home",
+        icon: Icons.home_outlined,
+        label: () => AppStrings.home.tx(),
       ),
     ),
-    MainScreenPageType.search: NavBarItemModel(
-      screen: SimplePage(pageName: 'البحث (Search)'),
+    MainScreenPageType.leads: NavBarItemModel(
+      screen: const SimplePage(pageName: 'Leads'),
       buttonIcon: NavBarIconWidget(
-        isSelected: selectedPageType == MainScreenPageType.search,
-        onTap: () => onItemTapped(MainScreenPageType.search),
-        icon: Icons.search,
-        label: () => "search",
+        isSelected: selectedPageType == MainScreenPageType.leads,
+        onTap: () => onItemTapped(MainScreenPageType.leads),
+        icon: Icons.people_outline_rounded,
+        label: () => AppStrings.leads.tx(),
       ),
     ),
-    MainScreenPageType.profile: NavBarItemModel(
-      screen: SimplePage(pageName: 'الملف الشخصي (Profile)'),
+    MainScreenPageType.chat: NavBarItemModel(
+      screen: const SimplePage(pageName: 'Chat'),
       buttonIcon: NavBarIconWidget(
-        isSelected: selectedPageType == MainScreenPageType.profile,
-        onTap: () => onItemTapped(MainScreenPageType.profile),
-        icon: Icons.person,
-        label: () => "profile",
+        isSelected: selectedPageType == MainScreenPageType.chat,
+        onTap: () => onItemTapped(MainScreenPageType.chat),
+        icon: Icons.chat_bubble_outline_rounded,
+        label: () => AppStrings.chat.tx(),
+      ),
+    ),
+    MainScreenPageType.alerts: NavBarItemModel(
+      screen: const SimplePage(pageName: 'Alerts'),
+      buttonIcon: NavBarIconWidget(
+        isSelected: selectedPageType == MainScreenPageType.alerts,
+        onTap: () => onItemTapped(MainScreenPageType.alerts),
+        icon: Icons.notifications_outlined,
+        label: () => AppStrings.alerts.tx(),
+        badgeCount: 3,
       ),
     ),
     MainScreenPageType.settings: NavBarItemModel(
-      screen: SettingsScreen(),
+      screen: const SettingsScreen(),
       buttonIcon: NavBarIconWidget(
         isSelected: selectedPageType == MainScreenPageType.settings,
         onTap: () => onItemTapped(MainScreenPageType.settings),
-        icon: Icons.settings,
-        label: () => "settings",
+        icon: Icons.settings_outlined,
+        label: () => AppStrings.settings.tx(),
       ),
     ),
   };
 
   // ========================== 🔥 initialization 🔥 ==========================
-  ///  Initialization logic and variables or call initialization methods.
   void init() {}
 
   // ========================== 🌍 Public methods and events 🌍 ==========================
-  /// These methods are used by the UI or other logic to interact with the controller. => Call notifyListeners() to update the UI
-
-  // -------------------------- onTapDrawer --------------------------
-  void onTapDrawer() => scaffoldKey.currentState?.openDrawer();
-
   // -------------------------- onItemTapped --------------------------
   void onItemTapped(MainScreenPageType type) {
     selectedPageType = type;
@@ -86,18 +91,15 @@ class HomeNavigationBarController extends ChangeNotifier {
   }
 
   // -------------------------- handleBackButton --------------------------
-  void handleBackButton(context) {
-    if (scaffoldKey.currentState?.isDrawerOpen ?? false) {
-      Navigator.of(context).pop(); // if drawer is open, close it
-    } else if (selectedPageType != MainScreenPageType.home) {
-      onItemTapped(MainScreenPageType.home); // if not home screen, go to home screen
+  void handleBackButton(BuildContext context) {
+    if (selectedPageType != MainScreenPageType.home) {
+      onItemTapped(MainScreenPageType.home);
     } else {
-      showExitConfirmationDialog(); // if home screen, show exit confirmation dialog
+      showExitConfirmationDialog();
     }
   }
 
   // ========================== 🔒 Private methods 🔒 ==========================
-  /// These are internal methods specific to the controller, Use them to encapsulate any logic that doesn't need to be exposed.
 }
 
 class NavBarItemModel {

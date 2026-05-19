@@ -35,6 +35,11 @@ abstract class AppStrings {
   static const String errorConnection = 'errorConnection';
   static const String errorUnknown = 'errorUnknown';
 
+  static const String home = 'Home';
+  static const String leads = 'Leads';
+  static const String chat = 'Chat';
+  static const String alerts = 'Alerts';
+
   static const String settings = 'Settings';
   static const String guest = 'Guest';
   static const String guestDesc = 'Please login';
