@@ -24,26 +24,14 @@ void _safeExitApp() {
 Future<bool?> showExitConfirmationDialog() async {
   return await showDialog<bool>(
     context: AppContext!,
-    barrierDismissible: false, // لا يمكن إغلاق الصندوق بالضغط خارجه
+    barrierDismissible: false,
     builder: (BuildContext context) {
       return AlertDialog(
         title: const Text('تأكيد الخروج'),
-        content: const SingleChildScrollView(
-          child: ListBody(
-            children: <Widget>[
-              Text('هل أنت متأكد من رغبتك في الخروج من التطبيق؟'),
-            ],
-          ),
-        ),
+        content: const SingleChildScrollView(child: ListBody(children: <Widget>[Text('هل أنت متأكد من رغبتك في الخروج من التطبيق؟')])),
         actions: <Widget>[
-          TextButton(
-            child: const Text('إلغاء'),
-            onPressed: () => popIfUCan(result: false),
-          ),
-          TextButton(
-            onPressed: _safeExitApp,
-            child: const Text('خروج'),
-          ),
+          TextButton(child: const Text('إلغاء'), onPressed: () => popIfUCan(result: false)),
+          TextButton(onPressed: _safeExitApp, child: const Text('خروج')),
         ],
       );
     },
