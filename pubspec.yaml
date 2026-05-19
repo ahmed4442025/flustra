@@ -49,6 +49,7 @@ flutter:
     - assets/images/
     - assets/images/onboarding/
     - assets/images/countries_flags/
+    - assets/images/other/
     - assets/logo/
     - assets/fonts/cairo/
 

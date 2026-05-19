@@ -37,4 +37,9 @@ class _AppAssetsImagesFlags {
 
 class _AppAssetsImagesOther {
   const _AppAssetsImagesOther._();
+
+  final String locationLogo = 'assets/logo/location.png';
+  final String loggingOut = 'assets/images/other/logging_out.png';
+  final String deleteAcc = 'assets/images/other/delete_acc.png';
+  final String exitApp = 'assets/images/other/exit_app.png';
 }

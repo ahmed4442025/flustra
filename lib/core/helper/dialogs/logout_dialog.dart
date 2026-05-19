@@ -1,3 +1,4 @@
+import 'package:flustra_template/core/constants/app_images.dart';
 import 'package:flustra_template/core/extensions/trans_extention.dart';
 import 'package:flustra_template/core/localization/app_strings_localizations.dart';
 import 'package:flustra_template/core/router/app_router.dart';
@@ -16,7 +17,7 @@ void safeLogout() {
 /// 🚪 Logout Dialog
 Future<bool?> showLogoutConfirmationDialog() async {
   return await showCommonDialog(
-    icon: Icons.logout_rounded,
+    imagePath: AppAssetsImages.other.loggingOut,
     title: AppStrings.logout.tx(),
     description: AppStrings.logoutDesc.tx(),
     confirmText: AppStrings.yesLogOut.tx(),
