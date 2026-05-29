@@ -1,0 +1,12 @@
+name: custom_tools
+description: Custom Dart tools for localization automation and AST processing.
+version: 1.0.0
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  analyzer: ^13.0.0
+dev_dependencies:
+  test: ^1.31.1
