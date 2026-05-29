@@ -5,8 +5,9 @@
 /// AI Agents and Developers should ONLY trigger operations through this router.
 ///
 /// Usage:
-///   dart run custom_tools/run.dart <command> "<arguments>"
-///
+///   dart run custom_tools/run.dart --% <command> "<arguments>"
+///   Note: u must use --% for powershell parsing
+///   
 /// Supported Commands:
 ///
 /// 1. add_trans
