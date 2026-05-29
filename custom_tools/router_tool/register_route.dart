@@ -124,7 +124,7 @@ void registerRoute({
   }
 
   final listInsertOffset = listLiteral.leftBracket.offset + 1;
-  final listSnippet = "\n    _baseGoRoute(AppRoutes.$camelName, (_) => $pascalName()),";
+  final listSnippet = "\n    _baseGoRoute<${pascalName}Data>(AppRoutes.$camelName, (data) => $pascalName(data: data)),";
   content = content.substring(0, listInsertOffset) + listSnippet + content.substring(listInsertOffset);
 
   // Write changes

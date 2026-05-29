@@ -32,20 +32,26 @@ void generateScreen({
   final viewModelContent = '''
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
+import '$snakeName.dart';
 
 class ${pascalName}ViewModel extends ChangeNotifier {
+  final ${pascalName}Data? _data;
+
   // ========================== Constructor ========================== //
-  ${pascalName}ViewModel();
+  ${pascalName}ViewModel(this._data);
 
   // ========================== 🔒 Private variables 🔒 ========================== //
-  final CancelToken _cancel = CancelToken();
+  /// Private variables These variables should be private to the controller and accessed through public methods.
+ 
   final String stateKey = UniqueKey().toString();
 
-  // ========================== 🗝️ Public getters 🗝️ ========================== //
+  // ========================== 🗝️ Public getters & variables 🗝️ ========================== //
+  /// These variables are accessible to the widgets or other parts of the app.
 
   // ========================== 🌍 Public events 🌍 ========================== //
   void init() {}
 
+  // ========================== 🔒 Private methods 🔒 ========================== //
   @override
   void dispose() {
     _cancel.cancel();
@@ -59,26 +65,27 @@ class ${pascalName}ViewModel extends ChangeNotifier {
       ? '''
 
   static const String name = AppRoutes.$camelName;
-  static void navigateToMe() => navigateTo(name);'''
+  static Future<void> navigateToMe({${pascalName}Data? data}) async => await navigateTo(name, arguments: data);'''
       : '';
 
   // 2. Generate View Template
   final viewContent = '''
 import 'package:flutter/material.dart';
-import 'package:$packageName/core/constants/app_defults.dart';
 import 'package:$packageName/core/router/route_help_methods.dart';
 import 'package:$packageName/core/router/app_router.dart';
 import '${snakeName}_view_model.dart';
 
 class $pascalName extends StatefulWidget {
-  const $pascalName({super.key});
+  final ${pascalName}Data? data;
+
+  const $pascalName({super.key, this.data});
 $routingCode
   @override
   State<$pascalName> createState() => _${pascalName}State();
 }
 
 class _${pascalName}State extends State<$pascalName> {
-  late final ${pascalName}ViewModel _viewModel = ${pascalName}ViewModel();
+  late final ${pascalName}ViewModel _viewModel = ${pascalName}ViewModel(widget.data);
 
   void _refresh() {
     if (mounted) setState(() {});
@@ -126,6 +133,9 @@ class _${pascalName}State extends State<$pascalName> {
     return const Text('Content');
   }
 }
+
+// ========================== Data  ========================== //
+class ${pascalName}Data {}
 '''
       .trim();
 
