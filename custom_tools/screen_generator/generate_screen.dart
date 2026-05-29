@@ -55,6 +55,13 @@ class ${pascalName}ViewModel extends ChangeNotifier {
 '''
       .trim();
 
+  final routingCode = addToRouter
+      ? '''
+
+  static const String name = AppRoutes.$camelName;
+  static void navigateToMe() => navigateTo(name);'''
+      : '';
+
   // 2. Generate View Template
   final viewContent = '''
 import 'package:flutter/material.dart';
@@ -65,10 +72,7 @@ import '${snakeName}_view_model.dart';
 
 class $pascalName extends StatefulWidget {
   const $pascalName({super.key});
-
-  static const String name = AppRoutes.$camelName;
-  static void navigateToMe() => navigateTo(name);
-
+$routingCode
   @override
   State<$pascalName> createState() => _${pascalName}State();
 }

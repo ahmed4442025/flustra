@@ -13,20 +13,20 @@
 ///    Adds CSV-formatted localizations to AppStrings and translation maps.
 ///    Format: key|en|ar;...
 ///    Example:
-///      dart run custom_tools/run.dart add_trans "key|en|ar;loginBtn|Log In|تسجيل الدخول"
+///      dart run custom_tools/run.dart add_trans --% "key|en|ar;loginBtn|Log In|تسجيل الدخول"
 ///
 /// 2. create_screen
 ///    Creates feature module screen and viewmodel files matching project rules,
 ///    and optionally registers the new screen inside GoRouter.
 ///    Format: module_name|screen_name|add_to_router
 ///    Example:
-///      dart run custom_tools/run.dart create_screen "auth|login_page|true"
+///      dart run custom_tools/run.dart create_screen --% "auth|login_page|true"
 ///
 /// 3. add_route
 ///    Manually registers an existing screen in lib/core/router/app_router.dart.
 ///    Format: module_name|screen_name
 ///    Example:
-///      dart run custom_tools/run.dart add_route "auth|login_page"
+///      dart run custom_tools/run.dart add_route --% "auth|login_page"
 /// ============================================================================
 
 import 'dart:io';
