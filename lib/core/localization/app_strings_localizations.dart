@@ -1,5 +1,8 @@
 abstract class AppStrings {
   static const String noMoreData = 'No more data';
+  static const String retry = 'Retry';
+  static const String somethingWentWrong = 'Something went wrong';
+  static const String failedToLoadData = 'Failed to load data';
 
   static const String english = 'English';
   static const String arabic = 'Arabic';

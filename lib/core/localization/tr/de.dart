@@ -2,6 +2,9 @@ import '../app_strings_localizations.dart';
 
 const Map<String, String> deJson = {
   AppStrings.noMoreData: 'Keine weiteren Daten',
+  AppStrings.retry: 'Wiederholen',
+  AppStrings.somethingWentWrong: 'Etwas ist schief gelaufen',
+  AppStrings.failedToLoadData: 'Daten konnten nicht geladen werden. Bitte überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.',
   AppStrings.english: 'Englisch',
   AppStrings.arabic: 'Arabisch',
   AppStrings.german: 'Deutsch',

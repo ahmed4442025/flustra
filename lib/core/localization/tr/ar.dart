@@ -2,6 +2,9 @@ import '../app_strings_localizations.dart';
 
 const Map<String, String> arJson = {
   AppStrings.noMoreData: 'لا توجد بيانات أخرى',
+  AppStrings.retry: 'إعادة المحاولة',
+  AppStrings.somethingWentWrong: 'حدث خطأ ما',
+  AppStrings.failedToLoadData: 'تعذر تحميل البيانات. يرجى التحقق من الاتصال والمحاولة مرة أخرى.',
   AppStrings.noInternetConnection: 'لا يوجد اتصال بالإنترنت',
   AppStrings.weakInternetConnection: 'اتصال إنترنت ضعيف',
   AppStrings.reconnecting: 'إعادة الاتصال...',

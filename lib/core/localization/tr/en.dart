@@ -2,6 +2,9 @@ import '../app_strings_localizations.dart';
 
 const Map<String, String> enJson = {
   AppStrings.noMoreData: 'No more data',
+  AppStrings.retry: 'Retry',
+  AppStrings.somethingWentWrong: 'Something went wrong',
+  AppStrings.failedToLoadData: 'Failed to load data. Please check your connection and try again.',
   AppStrings.english: 'English',
   AppStrings.arabic: 'Arabic',
   AppStrings.german: 'German',
