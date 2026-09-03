@@ -20,7 +20,7 @@ class AuthCubit extends BaseCubit<dynamic> {
     return await fastFire(
       type: state ?? AuthCubitTypes.login,
       fun: () => _repo.login(loginRequest: loginRequest, cancelToken: cancelToken),
-      onSuccess: x,
+      onSuccess: noOp,
       onFailure: (failure) => failure.printInfo("login"),
     );
   }

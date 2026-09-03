@@ -27,6 +27,6 @@ class ProductsCubit extends BaseCubit<ProductsCubitTypes> {
 
   // ========================== 🔥 products 🔥 ==========================
   BaseEitherResponse<List<Product>> getProducts() {
-    return fastFire<List<Product>>(type: ProductsCubitTypes.products, fun: _repo.getProducts, onSuccess: x);
+    return fastFire<List<Product>>(type: ProductsCubitTypes.products, fun: _repo.getProducts, onSuccess: noOp);
   }
 }
