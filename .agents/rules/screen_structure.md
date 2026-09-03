@@ -108,6 +108,13 @@ Widget _buildProducts({required bool isLoading}) {
 
 Path: `lib/core/helper/base_cubit/block_builder_widget.dart`
 
+## Error States & Refresh
+
+- ❌ `state.isError()` alone on refresh (wipes cached data)
+- ✅ `if (state.isError() && _viewModel.isEmpty) return CustomErrorWidget(message: _viewModel.errorMessage, onRetry: ...);`
+- Refresh failure (`!_viewModel.isEmpty`): keep data on screen + `f.showToast()`
+- Widget: `lib/core/helper/widgets/custom_error_widget.dart`
+
 ## Event Handlers & Business Logic
 
 ❌ Never leave `onTap`, `onPressed`, or similar callbacks empty.

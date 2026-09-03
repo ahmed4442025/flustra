@@ -51,6 +51,7 @@ Text('x', style: AppTextStyle.bodyMedium.copyWith(color: AppColors.primary))
 - `ImageAssetWidget`: For asset images.
 - `CustomSmartRefresher`: For pull-to-refresh logic.
 - `CustomValidationWidget`: For displaying validation errors.
+- `CustomErrorWidget`: For unified full-page error display with retry capability.
 - `ShimmerHelper`: For loading skeleton effects.
 
 ## 🔵 Service Registry

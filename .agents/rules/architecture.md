@@ -17,8 +17,10 @@ class {Screen}ViewModel extends ChangeNotifier {
   final {Feature}Cubit _{feature}Cubit;
   final CancelToken _cancel = CancelToken();
   final String {state}State = UniqueKey().toString();
+  String? _errorMessage;
 
   // ========================== 🗝️ Public getters 🗝️ ========================== //
+  String? get errorMessage => _errorMessage;
   List<{Model}> get {items} => _cubitData?.data ?? [];
 
   // ========================== 🌍 Public events 🌍 ========================== //
@@ -31,7 +33,10 @@ class {Screen}ViewModel extends ChangeNotifier {
   // --------------------------[ _load{Data} ]-------------------------- //
   Future<void> _load{Data}() async {
     final res = await _{feature}Cubit.{method}(cancelToken: _cancel, state: {state}State);
-    res.fold((f) => f.showToast(), (data) => /* update */);
+    res.fold(
+      (f) { _errorMessage = f.message; f.showToast(); },
+      (data) { _errorMessage = null; /* update */ },
+    );
   }
 
   @override
