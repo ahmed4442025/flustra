@@ -1,5 +1,6 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flustra_template/core/localization/locale_watcher.dart';
+import 'package:flustra_template/core/services/console_printer.dart';
 import 'package:flustra_template/main.dart';
 import 'package:flustra_template/modules/auth/login/login_screen.dart';
 import 'package:flustra_template/modules/debug_helper/views/peoxy/proxy_view.dart';
@@ -71,9 +72,9 @@ GoRoute _baseGoRoute<T>(String path, Widget Function(T? data) screen) {
 // -------------------------- getTheObjectOrNull --------------------------
 
 T? getTheObjectOrNull<T>(Object? extra) {
-  print("extra : $extra type ${extra.runtimeType}");
+  "extra : $extra type ${extra.runtimeType}".printWithColor();
 
   if (extra == null || extra is! T) return null;
-  print("2");
+  "2".printWithColor();
   return extra as T;
 }

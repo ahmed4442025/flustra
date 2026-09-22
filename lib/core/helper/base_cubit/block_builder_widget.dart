@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flustra_template/core/services/console_printer.dart';
 
 import '../../get_it/get_it.dart';
 import 'bse_cubit.dart';
@@ -28,7 +29,7 @@ class BlockBuilderWidget<Cubit extends BaseCubit<S>, S> extends StatelessWidget 
   Widget build(BuildContext context) {
     Cubit? cubit;
     if (getIt.isRegistered<Cubit>()) cubit = getIt.get<Cubit>();
-    if (cubit == null) print("cubit == null  cubit($Cubit)");
+    if (cubit == null) "cubit == null  cubit($Cubit)".printWithColor(textColor: ConsoleColor.red);
 
     return _useProvider(
       useIt: cubit != null,
@@ -69,7 +70,7 @@ class BlockBuilderWidget2<Cubit extends BaseCubit<S>, S> extends StatelessWidget
   Widget build(BuildContext context) {
     Cubit? cubit;
     if (getIt.isRegistered<Cubit>()) cubit = getIt.get<Cubit>();
-    if (cubit == null) print("cubit == null  cubit($Cubit)");
+    if (cubit == null) "cubit == null  cubit($Cubit)".printWithColor(textColor: ConsoleColor.red);
 
     return _useProvider(
       useIt: cubit != null,

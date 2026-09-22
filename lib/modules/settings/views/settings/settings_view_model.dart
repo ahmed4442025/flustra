@@ -3,6 +3,7 @@ import 'package:flustra_template/core/helper/dialogs/logout_dialog.dart';
 import 'package:flustra_template/core/router/app_router.dart';
 import 'package:flustra_template/core/router/route_help_methods.dart';
 import 'package:flustra_template/core/services/app_session_manager.dart';
+import 'package:flustra_template/core/services/console_printer.dart';
 import 'package:flustra_template/modules/debug_helper/views/peoxy/proxy_view.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class SettingsViewModel extends ChangeNotifier {
 
   // ========================== 🌍 Public events 🌍 ========================== //
   void init() {
-    debugPrint('🔵 SettingsViewModel.init() called, amILogin=$amILogin');
+    'SettingsViewModel.init() called, amILogin=$amILogin'.printWithColor();
   }
 
   // --------------------------[ onLogout ]-------------------------- //
@@ -48,13 +49,13 @@ class SettingsViewModel extends ChangeNotifier {
   // --------------------------[ onNotificationsTap ]-------------------------- //
   void onNotificationsTap() {
     // TODO: Implement Notifications screen
-    print('SettingsViewModel.onNotificationsTap() triggered');
+    'SettingsViewModel.onNotificationsTap() triggered'.printWithColor();
   }
 
   // --------------------------[ onBillingTap ]-------------------------- //
   void onBillingTap() {
     // TODO: Implement Billing screen
-    print('SettingsViewModel.onBillingTap() triggered');
+    'SettingsViewModel.onBillingTap() triggered'.printWithColor();
   }
 
   // --------------------------[ onProxyTap ]-------------------------- //

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flustra_template/core/extensions/trans_extention.dart';
 import 'package:flustra_template/core/localization/app_strings_localizations.dart';
+import 'package:flustra_template/core/services/console_printer.dart';
 
 import '../failure.dart';
 import '../res/error_source.dart';
@@ -9,7 +10,7 @@ import '../res/error_source.dart';
 enum DataSourceDioError { connectTimeOut, sendTimeOut, receiveTimeOut, transformTimeout, defaultError, cancel }
 
 Failure dioHandleError(DioException error) {
-  debugPrint("from dio error ${error.response?.statusCode}");
+  "from dio error ${error.response?.statusCode}".printWithColor(textColor: ConsoleColor.red);
   return switch (error.type) {
     DioExceptionType.connectionTimeout => Failure(ErrorCodes.connectTimeout, AppStrings.errorConnectionTimeout.tx(), TypeMsg.error),
     DioExceptionType.sendTimeout => Failure(ErrorCodes.sendTimeout, AppStrings.errorSendTimeout.tx(), TypeMsg.error),

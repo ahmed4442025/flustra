@@ -34,10 +34,9 @@ class _HomeScreenWithNavigationBarState extends State<HomeScreenWithNavigationBa
 
   @override
   void initState() {
-    _controller.addListener(_refresh);
-    Future.delayed(const Duration(milliseconds: 100), () => _controller.onItemTapped(widget.data?.initialPage ?? MainScreenPageType.home));
-
     super.initState();
+    _controller.selectedPageType = widget.data?.initialPage ?? MainScreenPageType.home;
+    _controller.addListener(_refresh);
   }
 
   @override

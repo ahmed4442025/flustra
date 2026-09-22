@@ -5,6 +5,7 @@ import 'package:dio/io.dart';
 import 'package:flustra_template/core/constants/app_api.dart';
 import 'package:flustra_template/core/data/cache/cache_key.dart';
 import 'package:flustra_template/core/data/cache/cache_service.dart';
+import 'package:flustra_template/core/services/console_printer.dart';
 import 'package:flustra_template/modules/debug_helper/services/proxy_cach.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -123,7 +124,7 @@ class DioApiService implements IApiService {
     } catch (e, s) {
       _proxyRun = null;
       ProxyManager().setRunningProxy(null);
-      print("$e$s");
+      "$e$s".printWithColor(textColor: ConsoleColor.red);
       return e.toString();
     }
   }

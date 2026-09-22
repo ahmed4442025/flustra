@@ -9,6 +9,7 @@ import 'package:flustra_template/core/common/error_handler/failure.dart';
 import 'package:flustra_template/core/data/network/api_service_repo.dart';
 import 'package:flustra_template/core/extensions/trans_extention.dart';
 import 'package:flustra_template/core/localization/app_strings_localizations.dart';
+import 'package:flustra_template/core/services/console_printer.dart';
 import 'package:flustra_template/core/services/internet_connection/internet_cubit.dart';
 import 'package:flustra_template/main.dart' show AppContext;
 import 'package:flutter/foundation.dart';
@@ -28,7 +29,7 @@ void calcTime({required Function() call, int callbackTimes = 1, int repeatCount 
     for (int j = 0; j < callbackTimes; j++) {
       call();
     }
-    print(DateTime.now().difference(d1));
+    (DateTime.now().difference(d1)).printWithColor();
   }
 }
 
@@ -106,7 +107,7 @@ Future<Either<Failure, T>> handleResponse<T>({
     if (_handleServerError(json) != null) return left(_handleServerError(json)!); // check id success is true
     return right(asObject(json));
   } catch (e, s) {
-    if (kDebugMode) print("ERROR IN handleResponse : $e \n\n$s");
+    if (kDebugMode) "ERROR IN handleResponse : $e \n\n$s".printWithColor(textColor: ConsoleColor.red);
     return left(ErrorHandlerCustom.handle(e));
   }
 }

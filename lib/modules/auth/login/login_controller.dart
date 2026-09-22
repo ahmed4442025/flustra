@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flustra_template/core/common/error_handler/failure.dart';
 import 'package:flustra_template/core/services/app_session_manager.dart';
 import 'package:flustra_template/core/services/app_snake_bar.dart';
+import 'package:flustra_template/core/services/console_printer.dart';
 import 'package:flustra_template/modules/home_with_navigation_bar/views/home_navigation_bar/home_navigation_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -58,27 +59,27 @@ class LoginController extends ChangeNotifier {
   // --------------------------[ onTapForgetPassword ]-------------------------- //
   void onTapForgetPassword() {
     AppSnackBar.show("صفحة استعادة كلمة المرور (قيد الإنشاء)", type: ToastType.info);
-    print("Forgot Password tapped");
+    "Forgot Password tapped".printWithColor();
   }
 
   // --------------------------[ onTapGoogleLogin ]-------------------------- //
   void onTapGoogleLogin() {
-    print("Google Login tapped");
+    "Google Login tapped".printWithColor();
   }
 
   // --------------------------[ onTapAppleLogin ]-------------------------- //
   void onTapAppleLogin() {
-    print("Apple Login tapped");
+    "Apple Login tapped".printWithColor();
   }
 
   // --------------------------[ onTapFacebookLogin ]-------------------------- //
   void onTapFacebookLogin() {
-    print("Facebook Login tapped");
+    "Facebook Login tapped".printWithColor();
   }
 
   // --------------------------[ onTapSignUp ]-------------------------- //
   void onTapSignUp() {
-    print("Sign Up tapped");
+    "Sign Up tapped".printWithColor();
   }
 
   // ========================== 🔒 Private methods 🔒 ========================== //

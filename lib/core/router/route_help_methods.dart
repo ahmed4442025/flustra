@@ -1,4 +1,5 @@
 import 'package:flustra_template/main.dart';
+import 'package:flustra_template/core/services/console_printer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
@@ -23,8 +24,8 @@ bool _printNavigation = true;
 
 Future<dynamic> navigateTo(String routeName, {arguments, BuildContext? context, NavigationType type = NavigationType.normal}) async {
   context ??= AppContext;
-  print("color _navigateTo type($type), routeName($routeName), arguments($arguments)");
-  if (context == null) return print("error context = null");
+  "color _navigateTo type($type), routeName($routeName), arguments($arguments)".printWithColor(textColor: ConsoleColor.cyan);
+  if (context == null) return "error context = null".printWithColor(textColor: ConsoleColor.red);
   switch (type) {
     case NavigationType.normal:
       return await context.push(routeName, extra: arguments);
@@ -39,11 +40,11 @@ Future<dynamic> navigateTo(String routeName, {arguments, BuildContext? context, 
 // ========================== 🔥 pop 🔥 ==========================
 
 popIfUCan({BuildContext? context, dynamic result}) {
-  if (kDebugMode && _printNavigation) print("navigate popIfUCan");
+  if (kDebugMode && _printNavigation) "navigate popIfUCan".printWithColor(textColor: ConsoleColor.cyan);
 
   context ??= AppContext;
 
-  if (context == null) return print("error context = null");
+  if (context == null) return "error context = null".printWithColor(textColor: ConsoleColor.red);
 
   // if (Navigator.of(context).canPop()) Navigator.of(context).pop(result);
   if (context.canPop()) context.pop(result);

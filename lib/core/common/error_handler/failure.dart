@@ -1,4 +1,5 @@
 import 'package:flustra_template/core/services/bot_toast/app_bot_toast.dart';
+import 'package:flustra_template/core/services/console_printer.dart';
 
 class Failure {
   int code; // 200, 201, 400, 303..500 and so on
@@ -13,7 +14,12 @@ class Failure {
   }
 
   void printInfo(String from) {
-    print('from => $from : Failure{code: $code, message: $message, type: $type}');
+    final textColor = switch (type) {
+      TypeMsg.ok => ConsoleColor.green,
+      TypeMsg.error => ConsoleColor.red,
+      TypeMsg.warning => ConsoleColor.yellow,
+    };
+    'from => $from : Failure{code: $code, message: $message, type: $type}'.printWithColor(textColor: textColor);
   }
 }
 

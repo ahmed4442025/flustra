@@ -4,6 +4,7 @@ import 'package:flustra_template/core/data/network/api_service_repo.dart';
 import 'package:flustra_template/core/router/app_router.dart';
 import 'package:flustra_template/core/router/route_help_methods.dart';
 import 'package:flustra_template/core/services/app_snake_bar.dart';
+import 'package:flustra_template/core/services/console_printer.dart';
 import 'package:flutter/material.dart';
 
 import '../../services/proxy_cach.dart';
@@ -61,7 +62,7 @@ class ProxyScreenController extends ChangeNotifier {
   // --------------------------  --------------------------
   Future onTapAdd() async {
     _addProxyToList(proxyController.text);
-    print("added proxy ${_proxyManager.proxies}");
+    "added proxy ${_proxyManager.proxies}".printWithColor(textColor: ConsoleColor.green);
   }
 
   // --------------------------  --------------------------
@@ -99,15 +100,15 @@ class ProxyScreenController extends ChangeNotifier {
     var interface = await NetworkInterface.list();
     myIp = [];
     for (var element in interface) {
-      print(element);
+      element.printWithColor();
       for (var element2 in element.addresses) {
         myIp.add(element2.address);
       }
     }
     // _myIp = interface.map((e) => [e.addresses.map((e) => e.address).toList()]).toList() ?? [];
     String? ip = myIp.firstOrNull;
-    print("_myIp ${myIp.length}");
-    print("_myIp ${myIp}");
+    "_myIp ${myIp.length}".printWithColor();
+    "_myIp ${myIp}".printWithColor();
     if (ip != null) proxyController.text = "$ip:8888";
     notifyListeners();
   }
