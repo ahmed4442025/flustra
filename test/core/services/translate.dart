@@ -29,7 +29,7 @@ void main() {
         fail('❌ No static fields found in AppStrings class in $appStringsPath');
       }
 
-      print('ℹ️ Found ${appStringsFieldNames.length} keys defined in AppStrings.');
+      printOnFailure('ℹ️ Found ${appStringsFieldNames.length} keys defined in AppStrings.');
     });
 
     for (var entry in translationFiles.entries) {
@@ -58,19 +58,19 @@ void main() {
         final stringLiteralKeys = collectedKeys.stringKeys.toList()..sort();
 
         if (missingKeys.isNotEmpty) {
-          print('\n❌ MISSING translations in $langName ($rootMapName):');
+          printOnFailure('\n❌ MISSING translations in $langName ($rootMapName):');
           for (var key in missingKeys) {
-            print('   - AppStrings.$key');
+            printOnFailure('   - AppStrings.$key');
           }
         }
 
         if (extraStaticKeys.isNotEmpty || stringLiteralKeys.isNotEmpty) {
-          print('\n⚠️ EXTRA/INVALID keys found in $langName ($rootMapName):');
+          printOnFailure('\n⚠️ EXTRA/INVALID keys found in $langName ($rootMapName):');
           for (var key in extraStaticKeys) {
-            print('   - AppStrings.$key (Not defined in AppStrings class)');
+            printOnFailure('   - AppStrings.$key (Not defined in AppStrings class)');
           }
           for (var key in stringLiteralKeys) {
-            print('   - "$key" (String literal used as key instead of AppStrings constant)');
+            printOnFailure('   - "$key" (String literal used as key instead of AppStrings constant)');
           }
         }
 
@@ -95,8 +95,8 @@ void main() {
 Set<String> _extractAppStringsStaticFieldNames(CompilationUnit unit) {
   final Set<String> names = {};
   for (var declaration in unit.declarations) {
-    if (declaration is ClassDeclaration && declaration.name.lexeme == 'AppStrings') {
-      for (var member in declaration.members) {
+    if (declaration is ClassDeclaration && declaration.namePart.typeName.lexeme == 'AppStrings') {
+      for (var member in declaration.body.members) {
         if (member is FieldDeclaration && member.isStatic) {
           for (var variable in member.fields.variables) {
             names.add(variable.name.lexeme);
