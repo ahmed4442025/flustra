@@ -1,4 +1,4 @@
-import 'package:flustra_template/core/helper/base_cubit/bse_cubit.dart';
+import 'package:flustra_template/core/helper/base_cubit/base_cubit.dart';
 import 'package:flustra_template/core/services/bot_toast/app_bot_toast.dart';
 import 'package:flustra_template/modules/products/models/product.dart';
 import 'package:flutter/material.dart';

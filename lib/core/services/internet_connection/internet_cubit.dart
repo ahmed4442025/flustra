@@ -1,6 +1,6 @@
 import 'package:flustra_template/core/extensions/trans_extention.dart';
 import 'package:flustra_template/core/get_it/get_it.dart';
-import 'package:flustra_template/core/helper/base_cubit/bse_cubit.dart';
+import 'package:flustra_template/core/helper/base_cubit/base_cubit.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flustra_template/core/localization/app_strings_localizations.dart';
 import 'package:flustra_template/core/services/console_printer.dart';

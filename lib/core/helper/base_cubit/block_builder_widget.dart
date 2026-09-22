@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flustra_template/core/services/console_printer.dart';
 
 import '../../get_it/get_it.dart';
-import 'bse_cubit.dart';
+import 'base_cubit.dart';
 
 class BlockBuilderWidget<Cubit extends BaseCubit<S>, S> extends StatelessWidget {
   final List<S> types;

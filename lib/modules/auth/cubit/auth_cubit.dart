@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flustra_template/core/get_it/get_it.dart';
-import 'package:flustra_template/core/helper/base_cubit/bse_cubit.dart';
+import 'package:flustra_template/core/helper/base_cubit/base_cubit.dart';
 
 import '../data/auth_repo.dart';
 import '../data/requests/login_request.dart';
