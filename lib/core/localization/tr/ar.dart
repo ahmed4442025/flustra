@@ -31,6 +31,7 @@ const Map<String, String> arJson = {
   AppStrings.errorConnectionTimeout: "انتهت مهلة الاتصال. تحقق من الإنترنت وحاول مرة أخرى.",
   AppStrings.errorSendTimeout: "انتهت مهلة الطلب أثناء إرسال البيانات. حاول مرة أخرى.",
   AppStrings.errorReceiveTimeout: "انتهت مهلة الطلب أثناء انتظار الاستجابة. حاول مرة أخرى.",
+  AppStrings.errorTransformTimeout: "انتهت مهلة معالجة البيانات. حاول مرة أخرى.",
   AppStrings.errorBadCertificate: "تعذر التحقق من هوية الخادم. حاول لاحقاً.",
   AppStrings.errorBadResponse: "حدث خطأ في استجابة الخادم. حاول لاحقاً.",
   AppStrings.errorRequestCancelled: "تم إلغاء الطلب. حاول مرة أخرى.",

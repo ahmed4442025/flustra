@@ -11,6 +11,7 @@ class ErrorCodes {
   static const int badResponse = -16;
   static const int cancel = -13;
   static const int connectionError = -14;
+  static const int transformTimeout = -17;
 
   /// HTTP-specific mapped responses (optional if needed)
   static const int authError = 401;

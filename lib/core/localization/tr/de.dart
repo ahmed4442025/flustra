@@ -19,6 +19,7 @@ const Map<String, String> deJson = {
   AppStrings.errorConnectionTimeout: 'Verbindungszeitüberschreitung. Bitte überprüfen Sie Ihr Internet und versuchen Sie es erneut.',
   AppStrings.errorSendTimeout: 'Zeitüberschreitung bei der Anfrage während des Sendens der Daten. Bitte versuchen Sie es erneut.',
   AppStrings.errorReceiveTimeout: 'Zeitüberschreitung bei der Anfrage während des Wartens auf eine Antwort. Bitte versuchen Sie es erneut.',
+  AppStrings.errorTransformTimeout: 'Zeitüberschreitung bei der Datenverarbeitung. Bitte versuchen Sie es erneut.',
   AppStrings.errorBadCertificate: 'Die Identität des Servers konnte nicht überprüft werden. Bitte versuchen Sie es später erneut.',
   AppStrings.errorBadResponse: 'Etwas ist mit der Serverantwort schiefgelaufen. Bitte versuchen Sie es später erneut.',
   AppStrings.errorRequestCancelled: 'Anfrage wurde abgebrochen. Bitte versuchen Sie es erneut.',

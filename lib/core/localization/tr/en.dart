@@ -19,6 +19,7 @@ const Map<String, String> enJson = {
   AppStrings.errorConnectionTimeout: "Connection timed out. Please check your internet and try again.",
   AppStrings.errorSendTimeout: "Request timed out while sending data. Please try again.",
   AppStrings.errorReceiveTimeout: "Request timed out while waiting for response. Please try again.",
+  AppStrings.errorTransformTimeout: "Request processing timed out. Please try again.",
   AppStrings.errorBadCertificate: "Could not verify the server's identity. Please try again later.",
   AppStrings.errorBadResponse: "Something went wrong with the server response. Please try again later.",
   AppStrings.errorRequestCancelled: "Request was cancelled. Please try again.",

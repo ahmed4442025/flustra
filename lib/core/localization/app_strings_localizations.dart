@@ -32,6 +32,7 @@ abstract class AppStrings {
   static const errorConnectionTimeout = 'errorConnectionTimeout';
   static const errorSendTimeout = 'errorSendTimeout';
   static const errorReceiveTimeout = 'errorReceiveTimeout';
+  static const errorTransformTimeout = 'errorTransformTimeout';
   static const errorBadCertificate = 'errorBadCertificate';
   static const errorBadResponse = 'errorBadResponse';
   static const errorRequestCancelled = 'errorRequestCancelled';
