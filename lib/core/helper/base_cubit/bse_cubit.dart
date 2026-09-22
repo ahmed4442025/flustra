@@ -80,7 +80,7 @@ class BaseCubit<StatesEnum> extends Cubit<BaseState<StatesEnum>> {
     BasePaginationResponse paginationInfo = paginationOf(paginationKey);
     // if load more check if not last page or exit
     if (paginationMethod == PaginationMethod.loadMore && paginationInfo.currentPage >= paginationInfo.lastPage) {
-      return left(Failure(-1054, "", TypeMsg.ok));
+      return left(Failure(-1054, "", TypeMsg.none));
     }
 
     if (paginationMethod == PaginationMethod.refresh) fire(type, StateType.loading); // if refresh only => update state to loading

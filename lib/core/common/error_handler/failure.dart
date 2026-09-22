@@ -1,4 +1,5 @@
 import 'package:flustra_template/core/services/bot_toast/app_bot_toast.dart';
+
 import 'package:flustra_template/core/services/console_printer.dart';
 
 class Failure {
@@ -15,6 +16,7 @@ class Failure {
 
   void printInfo(String from) {
     final textColor = switch (type) {
+      TypeMsg.none => ConsoleColor.defaultColor,
       TypeMsg.ok => ConsoleColor.green,
       TypeMsg.error => ConsoleColor.red,
       TypeMsg.warning => ConsoleColor.yellow,
@@ -23,16 +25,19 @@ class Failure {
   }
 }
 
-enum TypeMsg { ok, error, warning }
+enum TypeMsg { none, ok, error, warning }
 
 extension FailureEx on Failure {
   void showToast() {
-    ToastType toastType = switch (type) {
-      TypeMsg.ok => ToastType.info,
-      TypeMsg.error => ToastType.error,
-      TypeMsg.warning => ToastType.warning,
+    final ToastType? toastType = switch (type) {
+      TypeMsg.none => null,
+      TypeMsg.ok => .info,
+      TypeMsg.error => .error,
+      TypeMsg.warning => .warning,
     };
 
-    AppBotToast.show(message, type: toastType);
+    if (toastType != null) {
+      AppBotToast.show(message, type: toastType);
+    }
   }
 }
