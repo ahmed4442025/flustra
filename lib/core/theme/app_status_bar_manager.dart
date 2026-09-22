@@ -36,8 +36,8 @@ class AppStatusBarManager {
     var r = getSystemUIOverlayStyle(
       isDarkIcons: !AppColors.isDark,
       // isDarkIcons: true,
-      navigationBarAndroidColor: AppColors.isDark ? Colors.black : Colors.white,
-      statusBarAndroidColor: AppColors.isDark ? Colors.black : Colors.white,
+      navigationBarAndroidColor: AppColors.surface,
+      statusBarAndroidColor: AppColors.surface,
     );
     // await Future.delayed(Duration(milliseconds: 1000));
     SystemChrome.setSystemUIOverlayStyle(r);

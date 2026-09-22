@@ -1,3 +1,4 @@
+import 'package:flustra_template/core/constants/app_defults.dart';
 import 'package:flutter/material.dart';
 
 class ClearTextFieldWidget extends StatefulWidget {
@@ -27,7 +28,7 @@ class _ClearTextFieldWidgetState extends State<ClearTextFieldWidget> {
     if (!show) return const SizedBox.shrink();
     return InkWell(
       onTap: () => widget.controller.clear(),
-      child: const Icon(Icons.close, size: 15, color: Colors.black54),
+      child: Icon(Icons.close, size: 15, color: AppColors.onSurfaceVariant),
     );
   }
 }

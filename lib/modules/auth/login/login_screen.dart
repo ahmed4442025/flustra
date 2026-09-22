@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text(
                     'سجل الدخول للمتابعة',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                    style: AppTextStyle.bodyLarge.copyWith(color: AppColors.onSurfaceVariant),
                   ),
                   SizedBox(height: screenHeight * 0.05),
 
@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       hintText: 'البريد الإلكتروني',
-                      prefixIcon: Icon(Icons.email_outlined, color: Colors.grey[600]),
+                      prefixIcon: Icon(Icons.email_outlined, color: AppColors.onSurfaceVariant),
                     ),
                     validator: AppValidators.email.translated,
                   ),
@@ -91,11 +91,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     obscureText: !_controller.isPasswordVisible,
                     decoration: InputDecoration(
                       hintText: 'كلمة المرور',
-                      prefixIcon: Icon(Icons.lock_outline, color: Colors.grey[600]),
+                      prefixIcon: Icon(Icons.lock_outline, color: AppColors.onSurfaceVariant),
                       suffixIcon: IconButton(
                         icon: Icon(
                           _controller.isPasswordVisible ? Icons.visibility_off_outlined : Icons.visibility_outlined,
-                          color: Colors.grey[600],
+                          color: AppColors.onSurfaceVariant,
                         ),
                         onPressed: _controller.onTogglePasswordVisibility,
                       ),
@@ -123,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       const Expanded(child: Divider(thickness: 1)),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text('أو', style: TextStyle(color: Colors.grey[600])),
+                        child: Text('أو', style: AppTextStyle.bodyMedium.copyWith(color: AppColors.onSurfaceVariant)),
                       ),
                       const Expanded(child: Divider(thickness: 1)),
                     ],
@@ -169,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text('ليس لديك حساب؟', style: TextStyle(color: Colors.grey[600])),
+                      Text('ليس لديك حساب؟', style: AppTextStyle.bodyMedium.copyWith(color: AppColors.onSurfaceVariant)),
                       TextButton(
                         onPressed: () {
                           // انتقل إلى شاشة إنشاء حساب
@@ -197,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: const EdgeInsets.all(12.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.0),
-          border: Border.all(color: Colors.grey[300]!, width: 1.5),
+          border: Border.all(color: AppColors.outline, width: 1.5),
         ),
         child: Icon(icon, color: color, size: 28),
       ),

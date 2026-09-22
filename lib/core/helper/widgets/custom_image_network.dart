@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../constants/app_defults.dart';
 import '../../constants/app_images.dart';
 
 class CachedImageWidget extends StatelessWidget {
@@ -45,7 +46,7 @@ class CachedImageWidget extends StatelessWidget {
         fit: fit,
         imageBuilder: (context, imageProvider) => Container(
           decoration: BoxDecoration(
-            border: enableBorder == true ? Border.all(color: const Color(0xff9DFFDC), width: 0.6) : null,
+            border: enableBorder == true ? Border.all(color: AppColors.accent, width: 0.6) : null,
             shape: isCircle == true ? BoxShape.circle : BoxShape.rectangle,
             image: DecorationImage(image: imageProvider, fit: fit ?? BoxFit.cover),
           ),

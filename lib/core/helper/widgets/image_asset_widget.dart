@@ -1,3 +1,4 @@
+import 'package:flustra_template/core/constants/app_defults.dart';
 import 'package:flustra_template/core/constants/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -94,7 +95,7 @@ class ImageAssetWidget extends StatelessWidget {
   Widget _buildErrorWidget() {
     return Icon(
       Icons.image_not_supported_outlined,
-      color: Colors.grey.shade400,
+      color: AppColors.disabledElement,
       // Make the icon size proportional to the widget size, with a fallback.
       size: width != null ? width! : 24,
     );

@@ -1,3 +1,4 @@
+import 'package:flustra_template/core/constants/app_defults.dart';
 import 'package:flutter/material.dart';
 
 class ShowHidePasswordWidget extends StatefulWidget {
@@ -20,7 +21,7 @@ class _ShowHidePasswordWidgetState extends State<ShowHidePasswordWidget> {
         widget.onChange(passwordVisible);
         setState(() {});
       },
-      child: Icon(passwordVisible ? Icons.visibility : Icons.visibility_off, color: Colors.grey),
+      child: Icon(passwordVisible ? Icons.visibility : Icons.visibility_off, color: AppColors.onSurfaceVariant),
     );
   }
 }

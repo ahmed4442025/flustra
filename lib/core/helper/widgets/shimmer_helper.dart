@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerHelper {
-  static Color get _shimmerBase => AppColors.isDark ? Colors.grey.shade800 : Colors.grey.shade200;
+  static Color get _shimmerBase => AppColors.isDark ? AppColors.surfaceContainerHigh : AppColors.outlineVariant;
 
-  static Color get _shimmerHighlighted => AppColors.isDark ? Colors.grey.shade700 : Colors.grey.shade300;
+  static Color get _shimmerHighlighted => AppColors.isDark ? AppColors.outline : AppColors.coldTint;
 
   static Widget buildBasicShimmer({double height = double.infinity, double width = double.infinity, double radios = 0}) {
     return ClipRRect(
@@ -13,7 +13,7 @@ class ShimmerHelper {
       child: Shimmer.fromColors(
         baseColor: _shimmerBase,
         highlightColor: _shimmerHighlighted,
-        child: Container(color: Colors.white, height: height, width: width),
+        child: Container(color: AppColors.surfaceContainer, height: height, width: width),
       ),
     );
   }

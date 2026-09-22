@@ -7,11 +7,6 @@ class SimplePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        pageName,
-        style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-      ),
-    );
+    return Center(child: Text(pageName, style: Theme.of(context).textTheme.displaySmall));
   }
 }

@@ -19,6 +19,9 @@ ThemeData generateBaseThemeData({required AppColorsBase c, required bool dark}) 
     primary: c.primary,
     onPrimary: c.onPrimary,
     secondary: c.secondary,
+    onSecondary: c.onSurface,
+    tertiary: c.accent,
+    onTertiary: c.surface,
     surface: c.surface,
     surfaceContainer: c.surfaceContainer,
     surfaceContainerHighest: c.surfaceContainerHigh,
@@ -30,6 +33,7 @@ ThemeData generateBaseThemeData({required AppColorsBase c, required bool dark}) 
   );
 
   return ThemeData(
+    useMaterial3: true,
     brightness: brightness,
     colorScheme: colorScheme,
     scaffoldBackgroundColor: c.surface,
@@ -39,6 +43,7 @@ ThemeData generateBaseThemeData({required AppColorsBase c, required bool dark}) 
     // ========================== AppBar ==========================
     appBarTheme: AppBarTheme(
       backgroundColor: c.surface,
+      foregroundColor: c.onSurface,
       centerTitle: true,
       elevation: 0,
       systemOverlayStyle: SystemUiOverlayStyle(
@@ -108,6 +113,26 @@ ThemeData generateBaseThemeData({required AppColorsBase c, required bool dark}) 
       ),
     ),
 
+    filledButtonTheme: FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+        backgroundColor: c.primary,
+        foregroundColor: c.onPrimary,
+        disabledBackgroundColor: c.disabledElement,
+        disabledForegroundColor: c.onSurfaceVariant,
+        textStyle: TextStyle(fontSize: Dimensions.fontSizeDefault, fontWeight: FontWeight.w600),
+        minimumSize: buttonMinimumSize,
+        padding: textFieldContentPadding,
+        shape: RoundedRectangleBorder(borderRadius: borderTextFieldRadius),
+      ),
+    ),
+
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: c.primary,
+        textStyle: TextStyle(fontSize: Dimensions.fontSizeDefault, fontWeight: FontWeight.w600),
+      ),
+    ),
+
     // ========================== Outlined Button ==========================
     outlinedButtonTheme: OutlinedButtonThemeData(
       style:
@@ -136,6 +161,8 @@ ThemeData generateBaseThemeData({required AppColorsBase c, required bool dark}) 
       ),
       margin: EdgeInsets.zero,
     ),
+
+    floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: c.primary, foregroundColor: c.onPrimary),
 
     // ========================== Dialog ==========================
     dialogTheme: DialogThemeData(

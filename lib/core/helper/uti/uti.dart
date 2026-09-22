@@ -1,3 +1,4 @@
+import 'package:flustra_template/core/constants/app_defults.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart' show CustomFooter, LoadStyle;
 
@@ -17,9 +18,9 @@ abstract class UTI {
 
   // static Widget defaultUserIcon() => const CircleAvatar(radius: 25, backgroundColor: AppColors.colorPrimary, child: Icon(Icons.person, color: Colors.white));
   static Widget defaultUserIcon({double avatarRadios = 15}) => CircleAvatar(
-    backgroundColor: const Color(0xffDFDFDF),
+    backgroundColor: AppColors.surfaceContainerHigh,
     radius: avatarRadios,
-    child: const Icon(Icons.person, color: Colors.white, size: 30),
+    child: Icon(Icons.person, color: AppColors.onSurfaceVariant, size: 30),
   );
 
   static Widget clearTextField(TextEditingController controller) => ClearTextFieldWidget(controller: controller);

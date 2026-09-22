@@ -120,7 +120,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       margin: const EdgeInsets.only(right: 5),
       height: 10,
       width: _currentPage == index ? 20 : 10,
-      decoration: BoxDecoration(color: _currentPage == index ? AppColors.primary : Colors.grey[400], borderRadius: BorderRadius.circular(5)),
+      decoration: BoxDecoration(color: _currentPage == index ? AppColors.primary : AppColors.outline, borderRadius: BorderRadius.circular(5)),
     );
   }
 }
@@ -150,7 +150,7 @@ class OnboardingPageContent extends StatelessWidget {
               // في حال لم يتم العثور على الصورة، اعرض نصاً بديلاً
               return Container(
                 height: 250,
-                color: Colors.grey[200],
+                color: AppColors.surfaceContainer,
                 child: Center(
                   child: Text("Image not found", style: TextStyle(color: AppColors.error)),
                 ),
@@ -167,7 +167,7 @@ class OnboardingPageContent extends StatelessWidget {
           Text(
             description,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 16, color: Colors.black54),
+            style: AppTextStyle.bodyLarge.copyWith(color: AppColors.onSurfaceVariant),
           ),
         ],
       ),

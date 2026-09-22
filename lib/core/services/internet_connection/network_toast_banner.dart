@@ -1,4 +1,5 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flustra_template/core/constants/app_defults.dart';
 import 'package:flustra_template/core/extensions/trans_extention.dart';
 import 'package:flustra_template/core/localization/app_strings_localizations.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class NetworkToastBanner {
       toastBuilder: (context) => _buildNetworkBanner(
         message: AppStrings.noInternetConnection.tx(),
         icon: Icons.wifi_off,
-        backgroundColor: const Color(0xFFD32F2F), // أحمر
+        backgroundColor: AppColors.error,
         textColor: Colors.white,
       ),
       duration: null,
@@ -37,7 +38,7 @@ class NetworkToastBanner {
       toastBuilder: (context) => _buildNetworkBanner(
         message: AppStrings.weakInternetConnection.tx(),
         icon: Icons.signal_wifi_bad,
-        backgroundColor: const Color(0xFFFF8F00), // برتقالي
+        backgroundColor: AppColors.warning,
         textColor: Colors.white,
       ),
       duration: null,
@@ -58,8 +59,7 @@ class NetworkToastBanner {
       toastBuilder: (context) => _buildNetworkBanner(
         message: AppStrings.reconnecting.tx(),
         icon: Icons.refresh,
-        backgroundColor: const Color(0xFF1976D2),
-        // أزرق
+        backgroundColor: AppColors.info,
         textColor: Colors.white,
         showLoading: true,
       ),
@@ -82,7 +82,7 @@ class NetworkToastBanner {
       toastBuilder: (context) => _buildNetworkBanner(
         message: AppStrings.internetConnectionRestored.tx(),
         icon: Icons.wifi,
-        backgroundColor: const Color(0xFF388E3C), // أخضر
+        backgroundColor: AppColors.success,
         textColor: Colors.white,
       ),
       duration: const Duration(seconds: 3),
