@@ -2,6 +2,7 @@ import 'package:flustra_template/core/constants/app_defults.dart';
 import 'package:flustra_template/core/constants/app_images.dart';
 import 'package:flustra_template/core/data/cache/cache_key.dart';
 import 'package:flustra_template/core/router/app_router.dart';
+import 'package:flustra_template/core/router/navigation_manager.dart';
 import 'package:flustra_template/core/router/route_help_methods.dart';
 import 'package:flutter/material.dart';
 
@@ -36,8 +37,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   void _onSkip() {
     AppCache.saveData(key: CacheKey.skipOnBoarding, value: true);
-    navigateTo(AppRoutes.login, type: NavigationType.finish);
-    // navigateTo(AppRoutes.themeShowcaseScreen, type: NavigationType.finish);
+    NavigationManager.navigateToLogin();
   }
 
   void _onNext() {

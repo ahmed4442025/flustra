@@ -4,13 +4,9 @@ import 'dart:math';
 import 'package:flustra_template/core/constants/app_constant.dart';
 import 'package:flustra_template/core/constants/app_defults.dart';
 import 'package:flustra_template/core/constants/app_images.dart';
-import 'package:flustra_template/core/data/cache/cache_key.dart';
 import 'package:flustra_template/core/extensions/context_get_x.dart';
-import 'package:flustra_template/core/router/app_router.dart';
-import 'package:flustra_template/core/router/route_help_methods.dart';
+import 'package:flustra_template/core/router/navigation_manager.dart';
 import 'package:flutter/material.dart';
-
-import 'onboarding/onbearding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -24,10 +20,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Timer? _timer;
   bool _hasNavigated = false;
-
-  bool get _shouldShowOnboarding => !(AppCache.getBool(key: CacheKey.skipOnBoarding) ?? false);
-
-  bool get _isUserLoggedIn => AppCache.getString(key: CacheKey.loginResponse)?.isNotEmpty ?? false;
 
   @override
   void initState() {
@@ -45,22 +37,12 @@ class _SplashScreenState extends State<SplashScreen> {
     _navigateToNextScreen();
   }
 
-  Future<void> _navigateToNextScreen() async {
+  void _navigateToNextScreen() {
     if (_hasNavigated) return;
     _hasNavigated = true;
     _timer?.cancel();
 
-    if (_shouldShowOnboarding) {
-      OnboardingScreen.navigateToMe(type: NavigationType.finish);
-      return;
-    }
-
-    if (!_isUserLoggedIn) {
-      navigateTo(AppRoutes.login, type: NavigationType.finish);
-      return;
-    }
-
-    navigateTo(AppRoutes.homeScreenWithNavigationBar, type: NavigationType.finish);
+    NavigationManager.navigateFromSplash();
   }
 
   @override

@@ -16,7 +16,10 @@ class HomeScreenWithNavigationBarData {
 class HomeScreenWithNavigationBar extends StatefulWidget {
   final HomeScreenWithNavigationBarData? data;
 
-  static void navigateToMe(HomeScreenWithNavigationBarData? data) => navigateTo(AppRoutes.homeScreenWithNavigationBar, arguments: data);
+  // --------------------------[ navigateToMe ]-------------------------- //
+  static void navigateToMe(HomeScreenWithNavigationBarData? data, {NavigationType type = NavigationType.normal}) {
+    navigateTo(AppRoutes.homeScreenWithNavigationBar, arguments: data, type: type);
+  }
 
   const HomeScreenWithNavigationBar({super.key, this.data});
 

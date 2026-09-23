@@ -25,3 +25,4 @@ navigation bar layout. It acts as the wrapper container for the core dashboard t
 - Defined translation strings and mappings for home, leads, chat, and alerts tabs in English,
   Arabic, and German.
 - Replaced notched FAB with flat bottom container.
+- Entering home from the opening screen now clears the earlier screens from navigation history.
