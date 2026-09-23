@@ -32,52 +32,11 @@ class HomeNavigationBarController extends ChangeNotifier {
 
   // -------------------------- pages --------------------------
   Map<MainScreenPageType, NavBarItemModel> get _pages => {
-    MainScreenPageType.home: NavBarItemModel(
-      screen: const ProductsHomeScreen(),
-      buttonIcon: NavBarIconWidget(
-        isSelected: selectedPageType == MainScreenPageType.home,
-        onTap: () => onItemTapped(MainScreenPageType.home),
-        icon: Icons.home_outlined,
-        label: () => AppStrings.home.tx(),
-      ),
-    ),
-    MainScreenPageType.leads: NavBarItemModel(
-      screen: const SimplePage(pageName: 'Leads'),
-      buttonIcon: NavBarIconWidget(
-        isSelected: selectedPageType == MainScreenPageType.leads,
-        onTap: () => onItemTapped(MainScreenPageType.leads),
-        icon: Icons.people_outline_rounded,
-        label: () => AppStrings.leads.tx(),
-      ),
-    ),
-    MainScreenPageType.chat: NavBarItemModel(
-      screen: const SimplePage(pageName: 'Chat'),
-      buttonIcon: NavBarIconWidget(
-        isSelected: selectedPageType == MainScreenPageType.chat,
-        onTap: () => onItemTapped(MainScreenPageType.chat),
-        icon: Icons.chat_bubble_outline_rounded,
-        label: () => AppStrings.chat.tx(),
-      ),
-    ),
-    MainScreenPageType.alerts: NavBarItemModel(
-      screen: const SimplePage(pageName: 'Alerts'),
-      buttonIcon: NavBarIconWidget(
-        isSelected: selectedPageType == MainScreenPageType.alerts,
-        onTap: () => onItemTapped(MainScreenPageType.alerts),
-        icon: Icons.notifications_outlined,
-        label: () => AppStrings.alerts.tx(),
-        badgeCount: 3,
-      ),
-    ),
-    MainScreenPageType.settings: NavBarItemModel(
-      screen: const SettingsScreen(),
-      buttonIcon: NavBarIconWidget(
-        isSelected: selectedPageType == MainScreenPageType.settings,
-        onTap: () => onItemTapped(MainScreenPageType.settings),
-        icon: Icons.settings_outlined,
-        label: () => AppStrings.settings.tx(),
-      ),
-    ),
+    MainScreenPageType.home: _homePage(),
+    MainScreenPageType.leads: _leadsPage(),
+    MainScreenPageType.chat: _chatPage(),
+    MainScreenPageType.alerts: _alertsPage(),
+    MainScreenPageType.settings: _settingsPage(),
   };
 
   // ========================== 🔥 initialization 🔥 ==========================
@@ -100,6 +59,61 @@ class HomeNavigationBarController extends ChangeNotifier {
   }
 
   // ========================== 🔒 Private methods 🔒 ==========================
+  // --------------------------[ _homePage ]-------------------------- //
+  NavBarItemModel _homePage() => NavBarItemModel(
+    screen: const ProductsHomeScreen(),
+    buttonIcon: NavBarIconWidget(
+      isSelected: selectedPageType == MainScreenPageType.home,
+      onTap: () => onItemTapped(MainScreenPageType.home),
+      icon: Icons.home_outlined,
+      label: () => AppStrings.home.tx(),
+    ),
+  );
+
+  // --------------------------[ _leadsPage ]-------------------------- //
+  NavBarItemModel _leadsPage() => NavBarItemModel(
+    screen: const SimplePage(pageName: 'Leads'),
+    buttonIcon: NavBarIconWidget(
+      isSelected: selectedPageType == MainScreenPageType.leads,
+      onTap: () => onItemTapped(MainScreenPageType.leads),
+      icon: Icons.people_outline_rounded,
+      label: () => AppStrings.leads.tx(),
+    ),
+  );
+
+  // --------------------------[ _chatPage ]-------------------------- //
+  NavBarItemModel _chatPage() => NavBarItemModel(
+    screen: const SimplePage(pageName: 'Chat'),
+    buttonIcon: NavBarIconWidget(
+      isSelected: selectedPageType == MainScreenPageType.chat,
+      onTap: () => onItemTapped(MainScreenPageType.chat),
+      icon: Icons.chat_bubble_outline_rounded,
+      label: () => AppStrings.chat.tx(),
+    ),
+  );
+
+  // --------------------------[ _alertsPage ]-------------------------- //
+  NavBarItemModel _alertsPage() => NavBarItemModel(
+    screen: const SimplePage(pageName: 'Alerts'),
+    buttonIcon: NavBarIconWidget(
+      isSelected: selectedPageType == MainScreenPageType.alerts,
+      onTap: () => onItemTapped(MainScreenPageType.alerts),
+      icon: Icons.notifications_outlined,
+      label: () => AppStrings.alerts.tx(),
+      badgeCount: 3,
+    ),
+  );
+
+  // --------------------------[ _settingsPage ]-------------------------- //
+  NavBarItemModel _settingsPage() => NavBarItemModel(
+    screen: const SettingsScreen(),
+    buttonIcon: NavBarIconWidget(
+      isSelected: selectedPageType == MainScreenPageType.settings,
+      onTap: () => onItemTapped(MainScreenPageType.settings),
+      icon: Icons.settings_outlined,
+      label: () => AppStrings.settings.tx(),
+    ),
+  );
 }
 
 class NavBarItemModel {
