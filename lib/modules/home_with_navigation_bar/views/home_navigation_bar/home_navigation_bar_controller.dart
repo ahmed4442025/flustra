@@ -24,9 +24,11 @@ class HomeNavigationBarController extends ChangeNotifier {
 
   MainScreenPageType selectedPageType = MainScreenPageType.home;
 
+  MainScreenPageType get defaultPageType => _pages.keys.firstOrNull ?? MainScreenPageType.home;
+
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  Widget get selectedPage => _pages[selectedPageType]?.screen ?? const Text('404');
+  Widget get selectedPage => _pages[selectedPageType]?.screen ?? _pages.values.firstOrNull?.screen ?? const Text('404');
 
   List<Widget> get navBarItems => _pages.values.map((e) => e.buttonIcon).toList();
 
@@ -45,14 +47,16 @@ class HomeNavigationBarController extends ChangeNotifier {
   // ========================== 🌍 Public methods and events 🌍 ==========================
   // -------------------------- onItemTapped --------------------------
   void onItemTapped(MainScreenPageType type) {
+    if (selectedPageType == type) return;
     selectedPageType = type;
     notifyListeners();
   }
 
   // -------------------------- handleBackButton --------------------------
   void handleBackButton(BuildContext context) {
-    if (selectedPageType != MainScreenPageType.home) {
-      onItemTapped(MainScreenPageType.home);
+    final firstPageType = _pages.keys.firstOrNull ?? MainScreenPageType.home;
+    if (selectedPageType != firstPageType) {
+      onItemTapped(firstPageType);
     } else {
       showExitConfirmationDialog();
     }

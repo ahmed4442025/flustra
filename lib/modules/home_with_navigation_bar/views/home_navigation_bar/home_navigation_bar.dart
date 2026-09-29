@@ -38,7 +38,7 @@ class _HomeScreenWithNavigationBarState extends State<HomeScreenWithNavigationBa
   @override
   void initState() {
     super.initState();
-    _controller.selectedPageType = widget.data?.initialPage ?? MainScreenPageType.home;
+    _controller.selectedPageType = widget.data?.initialPage ?? _controller.defaultPageType;
     _controller.addListener(_refresh);
   }
 
