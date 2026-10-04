@@ -67,3 +67,10 @@ you use latest version of flutter and material 3
 - Use descriptive variable, file, and class names that reveal purpose and feature context, even to beginners. Prefer longer names over ambiguity; avoid unclear abbreviations and names easily confused with others in the project.
 
 Bool → `is/has/can` · Events → `on` prefix · Builders → `_build` prefix
+
+## Task Analysis & Evaluation
+
+Before executing any task:
+- **Analyze & Rate (0-10)**: Analyze the task and objectively rate the idea/approach from 0 to 10 with complete impartiality.
+- **Clarifications & Improvements**: Check if any questions need to be asked, modifications are required, or there is an important improvement to suggest. If so, share them first.
+- **Immediate Execution**: If everything is solid and there are no questions or necessary enhancements, proceed with execution immediately.
