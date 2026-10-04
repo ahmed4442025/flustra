@@ -64,4 +64,6 @@ you use latest version of flutter and material 3
 
 ## Naming
 
+- Use descriptive variable, file, and class names that reveal purpose and feature context, even to beginners. Prefer longer names over ambiguity; avoid unclear abbreviations and names easily confused with others in the project.
+
 Bool → `is/has/can` · Events → `on` prefix · Builders → `_build` prefix
