@@ -1,8 +1,12 @@
+**Mandatory: Follow all instructions below.**
+
 # ViewModel-Cubit Pattern
 
 ViewModel = UI logic separation (NOT state management). Cubit owns state.
 
 ## Template
+
+ViewModels MUST match this template's sections, order, and comments exactly.
 
 ```dart
 class {Screen}ViewModel extends ChangeNotifier {
@@ -50,6 +54,7 @@ class {Screen}ViewModel extends ChangeNotifier {
 - `CancelToken` per ViewModel → cancel in `dispose()` for each API call
 - One `UniqueKey().toString()` for each API call
 - Data access: **public getters only**, never expose cubit
+- NEVER add ViewModel request flags (`_isLoading`, `_hasFetched`), even as guards. Use Cubit's `stateOf(stateKey)`; expose a getter only if needed.
 - `notifyListeners()`: only when rebuild needed without cubit state
 - Comment before every method: `// --------------------------[ {name} ]-------------------------- //`
 - **No cubit?** → If the screen has no existing cubit, do NOT create one. Use ViewModel alone with `notifyListeners()`.
@@ -60,7 +65,7 @@ class {Screen}ViewModel extends ChangeNotifier {
 API returns `Either<Failure, Response>` → always `res.fold()`:
 
 ```dart
-✅ res.fold((f) => f.showToast(), (data) => _items = data);
+✅ res.fold((f) => f.showToast(), (response) => _contactPropertiesResponse = response);
 ❌ try { await cubit.fetchData(); } catch (e) { ... }
 ```
 
@@ -89,14 +94,16 @@ you use latest version of flutter and material 3
   ❌ `if (items.isNotEmpty) { if (isValid) { _process(); } }`
 
 - Arrow `=>` for **single-expression only** — multi-child widgets use `{}`
-  ✅ `bool get isEmpty => _items.isEmpty;`
+  ✅ `bool get hasNoContactProperties => contactProperties.isEmpty;`
   ✅ `Widget _label() => Text('OK');`
-  ❌ `bool get isEmpty { return _items.isEmpty; }`
+  ❌ `bool get hasNoContactProperties { return contactProperties.isEmpty; }`
   ❌ `Widget _body() => Column(children: [_header(), _content()]);`
 
 - No nested ternaries
   ✅ `if (isLoading) return _shimmer(); if (hasError) return _error(); return _content();`
   ❌ `isLoading ? _shimmer() : hasError ? _error() : _content();`
+
+- Prefer `switch` over `if` for multiple cases of one value.
 
 - Complex booleans → descriptive getters
   ✅ `bool get canSubmit => _items.isNotEmpty && _reason.isNotEmpty;`
@@ -138,7 +145,7 @@ you use latest version of flutter and material 3
 
 ## Naming
 
-- Use descriptive variable, file, and class names that reveal purpose and feature context, even to beginners. Prefer longer names over ambiguity; avoid unclear abbreviations and names easily confused with others in the project.
+- **Mandatory:** Variable, class, and file names (especially responses) MUST identify purpose and feature immediately, even to junior/new developers. Names replace explanatory comments. Prefer longer, explicit names; this app has many modules and large files, so avoid ambiguous names and abbreviations.
 
 Bool → `is/has/can` · Events → `on` prefix · Builders → `_build` prefix
 
@@ -287,8 +294,8 @@ Path: `lib/core/helper/base_cubit/block_builder_widget.dart`
 ## Error States & Refresh
 
 - ❌ `state.isError()` alone on refresh (wipes cached data)
-- ✅ `if (state.isError() && _viewModel.isEmpty) return CustomErrorWidget(message: _viewModel.errorMessage, onRetry: ...);`
-- Refresh failure (`!_viewModel.isEmpty`): keep data on screen + `f.showToast()`
+- ✅ `if (state.isError() && _viewModel.hasNoContactProperties) return CustomErrorWidget(message: _viewModel.errorMessage, onRetry: ...);`
+- Refresh failure (`!_viewModel.hasNoContactProperties`): keep data on screen + `f.showToast()`
 - Widget: `lib/core/helper/widgets/custom_error_widget.dart`
 
 ## Event Handlers & Business Logic
@@ -302,7 +309,7 @@ Path: `lib/core/helper/base_cubit/block_builder_widget.dart`
 1. Define route constant in `AppRoutes`.
 2. Register the screen in `lib/core/router/app_router.dart`.
 3. ✅ Always use `navigateTo(name)` for navigation without context.
-    - Source: `lib/core/router/route_help_methods.dart`
+  - Source: `lib/core/router/route_help_methods.dart`
 
 ## Translations
 
